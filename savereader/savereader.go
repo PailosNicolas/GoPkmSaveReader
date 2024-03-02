@@ -11,6 +11,7 @@ import (
 type Save struct {
 	saveRaw [57344]byte
 	Trainer Trainer
+	Game    string
 }
 
 func ReadDataFromSave(path string) (Save, error) {
@@ -62,6 +63,15 @@ func ReadDataFromSave(path string) (Save, error) {
 		save.Trainer.Gender = "Boy"
 	} else {
 		save.Trainer.Gender = "Girl"
+	}
+
+	// getting gamecode
+	if code := int(sections[0].Contents[172]); code == 0 {
+		save.Game = "R/S"
+	} else if code == 1 {
+		save.Game = "FR/LG"
+	} else {
+		save.Game = "E"
 	}
 
 	return save, nil
