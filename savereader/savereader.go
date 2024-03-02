@@ -2,6 +2,7 @@ package savereader
 
 import (
 	"bytes"
+	"encoding/binary"
 	"fmt"
 	"os"
 
@@ -74,10 +75,16 @@ func ReadDataFromSave(path string) (Save, error) {
 		save.Game = "E"
 	}
 
+	//getting trainer's ids
+	save.Trainer.PublicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
+	save.Trainer.SecretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
+
 	return save, nil
 }
 
 type Trainer struct {
-	Name   string
-	Gender string
+	Name     string
+	Gender   string
+	PublicID int
+	SecretID int
 }
