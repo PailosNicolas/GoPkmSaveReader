@@ -8,11 +8,13 @@ import (
 )
 
 type Save struct {
+	saveRaw [57344]byte
 	Trainer Trainer
 }
 
 func ReadDataFromSave(path string) (Save, error) {
-	var primarySave []byte
+	var primarySave [57344]byte
+	var save Save
 	file, err := os.Open(path)
 	if err != nil {
 		fmt.Println("Error opening file:", err)
@@ -33,22 +35,22 @@ func ReadDataFromSave(path string) (Save, error) {
 	saveB := buffer[57344 : 57344*2]
 
 	if saveA[0] < saveB[0] {
-		primarySave = saveB
+		copy(primarySave[:], saveB)
 	} else if saveA[0] > saveB[0] {
-		primarySave = saveA
+		copy(primarySave[:], saveA)
 	} else {
 		if saveA[1] < saveB[1] {
-			primarySave = saveB
+			copy(primarySave[:], saveB)
 		} else {
-			primarySave = saveA
+			copy(primarySave[:], saveA)
 		}
 	}
 
-	return Save{
-		Trainer: Trainer{
-			Name: helpers.ReadString(primarySave[:7]),
-		},
-	}, nil
+	save.saveRaw = primarySave
+
+	save.Trainer.Name = helpers.ReadString(primarySave[:7])
+
+	return save, nil
 }
 
 type Trainer struct {
