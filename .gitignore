@@ -22,3 +22,7 @@ go.work
 
 # Devcontainer
 .devcontainer/
+
+# Save files for testing
+*.sav
+*.SAV
