@@ -1,6 +1,7 @@
 package savereader
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 
@@ -48,11 +49,20 @@ func ReadDataFromSave(path string) (Save, error) {
 
 	save.saveRaw = primarySave
 
+	// Getting trainer's name
 	save.Trainer.Name = helpers.ReadString(primarySave[:7])
+
+	// Getting trainer's gender
+	if gender := primarySave[8:9]; bytes.Equal(gender, []byte{0}) {
+		save.Trainer.Gender = "Boy"
+	} else {
+		save.Trainer.Gender = "Girl"
+	}
 
 	return save, nil
 }
 
 type Trainer struct {
-	Name string
+	Name   string
+	Gender string
 }
