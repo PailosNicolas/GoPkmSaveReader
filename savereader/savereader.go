@@ -15,6 +15,7 @@ type Save struct {
 
 func ReadDataFromSave(path string) (Save, error) {
 	var primarySave [57344]byte
+	var sections map[int]helpers.Section
 	var save Save
 	file, err := os.Open(path)
 	if err != nil {
@@ -35,25 +36,29 @@ func ReadDataFromSave(path string) (Save, error) {
 	saveA := buffer[:57344]
 	saveB := buffer[57344 : 57344*2]
 
-	if saveA[0] < saveB[0] {
-		copy(primarySave[:], saveB)
-	} else if saveA[0] > saveB[0] {
+	if sectionsA := helpers.CreateSectionsMap(saveA); len(sectionsA) == 14 {
 		copy(primarySave[:], saveA)
-	} else {
-		if saveA[1] < saveB[1] {
-			copy(primarySave[:], saveB)
+		sections = sectionsA
+	}
+	if sectionsB := helpers.CreateSectionsMap(saveB); len(sectionsB) == 14 {
+		if len(sections) == 14 {
+			if sections[0].Index < sectionsB[0].Index {
+				copy(primarySave[:], saveB)
+				sections = sectionsB
+			}
 		} else {
-			copy(primarySave[:], saveA)
+			copy(primarySave[:], saveB)
+			sections = sectionsB
 		}
 	}
 
 	save.saveRaw = primarySave
 
 	// Getting trainer's name
-	save.Trainer.Name = helpers.ReadString(primarySave[:7])
+	save.Trainer.Name = helpers.ReadString(sections[0].Contents[:7])
 
 	// Getting trainer's gender
-	if gender := primarySave[8:9]; bytes.Equal(gender, []byte{0}) {
+	if gender := sections[0].Contents[8:9]; bytes.Equal(gender, []byte{0}) {
 		save.Trainer.Gender = "Boy"
 	} else {
 		save.Trainer.Gender = "Girl"
