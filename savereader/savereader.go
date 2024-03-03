@@ -16,6 +16,13 @@ type Save struct {
 	GameCode int
 }
 
+type Trainer struct {
+	Name     string
+	Gender   string
+	PublicID int
+	SecretID int
+}
+
 func ReadDataFromSave(path string) (Save, error) {
 	var primarySave [57344]byte
 	var sections map[int]helpers.Section
@@ -84,11 +91,4 @@ func ReadDataFromSave(path string) (Save, error) {
 	save.Trainer.SecretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
 
 	return save, nil
-}
-
-type Trainer struct {
-	Name     string
-	Gender   string
-	PublicID int
-	SecretID int
 }
