@@ -21,6 +21,7 @@ type Trainer struct {
 	Gender   string
 	PublicID int
 	SecretID int
+	TeamSize int
 }
 
 func ReadDataFromSave(path string) (Save, error) {
@@ -89,6 +90,13 @@ func ReadDataFromSave(path string) (Save, error) {
 	//getting trainer's ids
 	save.Trainer.PublicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
 	save.Trainer.SecretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
+
+	// getting team size:
+	if save.GameCode != 1 {
+		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
+	} else {
+		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
+	}
 
 	return save, nil
 }
