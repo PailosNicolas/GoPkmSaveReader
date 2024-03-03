@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/PailosNicolas/GoPkmSaveReader/helpers"
+	"github.com/PailosNicolas/GoPkmSaveReader/pokemon"
 )
 
 type Save struct {
@@ -22,6 +23,7 @@ type Trainer struct {
 	PublicID int
 	SecretID int
 	TeamSize int
+	Team     [6]pokemon.Pokemon
 }
 
 func ReadDataFromSave(path string) (Save, error) {
@@ -96,6 +98,21 @@ func ReadDataFromSave(path string) (Save, error) {
 		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
 	} else {
 		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
+	}
+
+	// getting team
+	for i := range save.Trainer.TeamSize {
+		var pkm pokemon.Pokemon
+		var start int
+		if save.GameCode != 1 {
+			start = 568 + 100*i
+		} else {
+			start = 56 + 100*i
+		}
+
+		pkm = pokemon.ParsePokemon(sections[1].Contents[start : start+100])
+
+		save.Trainer.Team[i] = pkm
 	}
 
 	return save, nil
