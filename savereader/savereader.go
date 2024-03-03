@@ -10,9 +10,10 @@ import (
 )
 
 type Save struct {
-	saveRaw [57344]byte
-	Trainer Trainer
-	Game    string
+	saveRaw  [57344]byte
+	Trainer  Trainer
+	Game     string
+	GameCode int
 }
 
 func ReadDataFromSave(path string) (Save, error) {
@@ -69,10 +70,13 @@ func ReadDataFromSave(path string) (Save, error) {
 	// getting gamecode
 	if code := int(sections[0].Contents[172]); code == 0 {
 		save.Game = "R/S"
+		save.GameCode = code
 	} else if code == 1 {
 		save.Game = "FR/LG"
+		save.GameCode = code
 	} else {
 		save.Game = "E"
+		save.GameCode = code
 	}
 
 	//getting trainer's ids
