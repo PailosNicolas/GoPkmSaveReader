@@ -7,6 +7,7 @@ import (
 )
 
 type Pokemon struct {
+	raw              []byte // added in case it may be needed later
 	PersonalityValue int
 	OTPublicId       int
 	OTSecretId       int
@@ -19,6 +20,7 @@ type Pokemon struct {
 func ParsePokemon(pkmData []byte) Pokemon {
 	orders := [24]string{"GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME", "AEGM", "AEMG", "AMGE", "AMEG", "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"}
 	pkm := Pokemon{}
+	pkm.raw = pkmData
 	var growth []byte
 	// var attacks []byte
 	// var evsAndCondition []byte
