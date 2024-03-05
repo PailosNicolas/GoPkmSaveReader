@@ -18,6 +18,7 @@ type Pokemon struct {
 	ItemHeld         string
 	ItemHeldIndex    int
 	Experience       int
+	Friendship       int
 }
 
 func ParsePokemon(pkmData []byte) Pokemon {
@@ -73,6 +74,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.ItemHeldIndex = int(binary.LittleEndian.Uint16(growth[2:4]))
 	pkm.ItemHeld = helpers.ItemIndex[pkm.ItemHeldIndex]
 	pkm.Experience = int(binary.LittleEndian.Uint32(growth[4:8]))
+	pkm.Friendship = int(growth[9])
 
 	return pkm
 }
