@@ -1,6 +1,7 @@
 package helpers
 
 var MovesIndex = []string{
+	"Empty",
 	"Pound",
 	"Karate Chop",
 	"Double Slap",
