@@ -33,6 +33,7 @@ type Pokemon struct {
 type Move struct {
 	Id   int
 	Name string
+	PP   int
 }
 
 func ParsePokemon(pkmData []byte) Pokemon {
@@ -112,6 +113,11 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Moves[1].Name = helpers.MovesIndex[pkm.Moves[1].Id]
 	pkm.Moves[2].Name = helpers.MovesIndex[pkm.Moves[2].Id]
 	pkm.Moves[3].Name = helpers.MovesIndex[pkm.Moves[3].Id]
+
+	pkm.Moves[0].PP = int(attacks[8])
+	pkm.Moves[1].PP = int(attacks[9])
+	pkm.Moves[2].PP = int(attacks[10])
+	pkm.Moves[3].PP = int(attacks[11])
 
 	return pkm
 }
