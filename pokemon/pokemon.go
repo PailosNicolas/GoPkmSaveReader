@@ -34,6 +34,7 @@ type Pokemon struct {
 	Speed            int
 	SpecialAttack    int
 	SpecialDefense   int
+	Level            int
 }
 
 func ParsePokemon(pkmData []byte) Pokemon {
@@ -71,6 +72,9 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
 	pkm.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
 	pkm.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
+
+	//Level
+	pkm.Level = int(pkmData[84])
 
 	//subdata
 	key := helpers.XorBytes(personalityValue, trainerId)
