@@ -18,8 +18,7 @@ type Pokemon struct {
 	Nickname         string
 	Species          string
 	SpeciesIndex     int
-	ItemHeld         string
-	ItemHeldIndex    int
+	ItemHeld         Item
 	Experience       int
 	Friendship       int
 	Moves            [4]Move
@@ -40,6 +39,11 @@ type Move struct {
 	Id   int
 	Name string
 	PP   int
+}
+
+type Item struct {
+	Id   int
+	Name string
 }
 
 /*
@@ -107,8 +111,10 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	// Growth
 	pkm.SpeciesIndex = int(binary.LittleEndian.Uint16(growth[0:2]))
 	pkm.Species = helpers.Species[pkm.SpeciesIndex]
-	pkm.ItemHeldIndex = int(binary.LittleEndian.Uint16(growth[2:4]))
-	pkm.ItemHeld = helpers.ItemIndex[pkm.ItemHeldIndex]
+	pkm.ItemHeld = Item{
+		Id:   int(binary.LittleEndian.Uint16(growth[2:4])),
+		Name: helpers.ItemIndex[int(binary.LittleEndian.Uint16(growth[2:4]))],
+	}
 	pkm.Experience = int(binary.LittleEndian.Uint32(growth[4:8]))
 	pkm.Friendship = int(growth[9])
 
