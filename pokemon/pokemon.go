@@ -19,14 +19,7 @@ type Pokemon struct {
 	ItemHeldIndex    int
 	Experience       int
 	Friendship       int
-	Move1Index       int
-	Move2Index       int
-	Move3Index       int
-	Move4Index       int
-	Move1            string
-	Move2            string
-	Move3            string
-	Move4            string
+	Moves            [4]Move
 	TotalHP          int
 	CurrentHP        int
 	Attack           int
@@ -35,6 +28,11 @@ type Pokemon struct {
 	SpecialAttack    int
 	SpecialDefense   int
 	Level            int
+}
+
+type Move struct {
+	Id   int
+	Name string
 }
 
 func ParsePokemon(pkmData []byte) Pokemon {
@@ -105,15 +103,15 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Friendship = int(growth[9])
 
 	// Attacks
-	pkm.Move1Index = int(binary.LittleEndian.Uint16(attacks[0:2]))
-	pkm.Move2Index = int(binary.LittleEndian.Uint16(attacks[2:4]))
-	pkm.Move3Index = int(binary.LittleEndian.Uint16(attacks[4:6]))
-	pkm.Move4Index = int(binary.LittleEndian.Uint16(attacks[6:8]))
+	pkm.Moves[0].Id = int(binary.LittleEndian.Uint16(attacks[0:2]))
+	pkm.Moves[1].Id = int(binary.LittleEndian.Uint16(attacks[2:4]))
+	pkm.Moves[2].Id = int(binary.LittleEndian.Uint16(attacks[4:6]))
+	pkm.Moves[3].Id = int(binary.LittleEndian.Uint16(attacks[6:8]))
 
-	pkm.Move1 = helpers.MovesIndex[pkm.Move1Index]
-	pkm.Move2 = helpers.MovesIndex[pkm.Move2Index]
-	pkm.Move3 = helpers.MovesIndex[pkm.Move3Index]
-	pkm.Move4 = helpers.MovesIndex[pkm.Move4Index]
+	pkm.Moves[0].Name = helpers.MovesIndex[pkm.Moves[0].Id]
+	pkm.Moves[1].Name = helpers.MovesIndex[pkm.Moves[1].Id]
+	pkm.Moves[2].Name = helpers.MovesIndex[pkm.Moves[2].Id]
+	pkm.Moves[3].Name = helpers.MovesIndex[pkm.Moves[3].Id]
 
 	return pkm
 }
