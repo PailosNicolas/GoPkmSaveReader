@@ -6,6 +6,9 @@ import (
 	"github.com/PailosNicolas/GoPkmSaveReader/helpers"
 )
 
+/*
+Basic Pokemon Gen3 information.
+*/
 type Pokemon struct {
 	raw              []byte // added in case it may be needed later
 	PersonalityValue int
@@ -30,12 +33,18 @@ type Pokemon struct {
 	Level            int
 }
 
+/*
+Represents the information of a pokemon move
+*/
 type Move struct {
 	Id   int
 	Name string
 	PP   int
 }
 
+/*
+Reads the pokemon data and returns a Pokemon with it's information.
+*/
 func ParsePokemon(pkmData []byte) Pokemon {
 	orders := [24]string{"GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME", "AEGM", "AEMG", "AMGE", "AMEG", "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"}
 	pkm := Pokemon{}

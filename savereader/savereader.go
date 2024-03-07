@@ -26,6 +26,10 @@ type Trainer struct {
 	Team     [6]pokemon.Pokemon
 }
 
+/*
+Reads the save file in the path and returns a Save file with Trainer info.
+Currenly only supports Gen3
+*/
 func ReadDataFromSave(path string) (Save, error) {
 	var primarySave [57344]byte
 	var sections map[int]helpers.Section
