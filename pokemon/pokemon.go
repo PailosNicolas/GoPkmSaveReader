@@ -25,6 +25,7 @@ type Pokemon struct {
 	Level            int
 	Evs
 	Stats
+	MetLocation string
 }
 
 /*
@@ -80,7 +81,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	var growth []byte
 	var attacks []byte
 	var evsAndCondition []byte
-	// var misc []byte
+	var misc []byte
 
 	//personality value
 	personalityValue := pkmData[0:4]
@@ -128,7 +129,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 			evsAndCondition = helpers.DecryptData(subdata[start:start+12], key)
 		}
 		if order[i] == 'M' {
-			_ = helpers.DecryptData(subdata[start:start+12], key)
+			misc = helpers.DecryptData(subdata[start:start+12], key)
 		}
 	}
 
@@ -166,5 +167,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Evs.SpecialAttack = int(evsAndCondition[4])
 	pkm.Evs.SpecialDefense = int(evsAndCondition[5])
 
+	// Misc
+	pkm.MetLocation = helpers.LocationIndexes[misc[1]]
 	return pkm
 }
