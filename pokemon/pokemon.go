@@ -30,6 +30,7 @@ type Pokemon struct {
 	SpecialAttack    int
 	SpecialDefense   int
 	Level            int
+	Evs
 }
 
 /*
@@ -46,6 +47,15 @@ type Item struct {
 	Name string
 }
 
+type Evs struct {
+	Hp             int
+	Attack         int
+	Defense        int
+	Speed          int
+	SpecialAttack  int
+	SpecialDefense int
+}
+
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
 */
@@ -55,7 +65,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.raw = pkmData
 	var growth []byte
 	var attacks []byte
-	// var evsAndCondition []byte
+	var evsAndCondition []byte
 	// var misc []byte
 
 	//personality value
@@ -101,7 +111,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 			attacks = helpers.DecryptData(subdata[start:start+12], key)
 		}
 		if order[i] == 'E' {
-			_ = helpers.DecryptData(subdata[start:start+12], key)
+			evsAndCondition = helpers.DecryptData(subdata[start:start+12], key)
 		}
 		if order[i] == 'M' {
 			_ = helpers.DecryptData(subdata[start:start+12], key)
@@ -133,6 +143,14 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Moves[1].PP = int(attacks[9])
 	pkm.Moves[2].PP = int(attacks[10])
 	pkm.Moves[3].PP = int(attacks[11])
+
+	// Ev & condition
+	pkm.Evs.Hp = int(evsAndCondition[0])
+	pkm.Evs.Attack = int(evsAndCondition[1])
+	pkm.Evs.Defense = int(evsAndCondition[2])
+	pkm.Evs.Speed = int(evsAndCondition[3])
+	pkm.Evs.SpecialAttack = int(evsAndCondition[4])
+	pkm.Evs.SpecialDefense = int(evsAndCondition[5])
 
 	return pkm
 }
