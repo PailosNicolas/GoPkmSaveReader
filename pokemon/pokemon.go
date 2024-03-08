@@ -22,15 +22,9 @@ type Pokemon struct {
 	Experience       int
 	Friendship       int
 	Moves            [4]Move
-	TotalHP          int
-	CurrentHP        int
-	Attack           int
-	Defense          int
-	Speed            int
-	SpecialAttack    int
-	SpecialDefense   int
 	Level            int
 	Evs
+	Stats
 }
 
 /*
@@ -42,11 +36,17 @@ type Move struct {
 	PP   int
 }
 
+/*
+Game items, can also be HeldItems
+*/
 type Item struct {
 	Id   int
 	Name string
 }
 
+/*
+Evs of a pokemon
+*/
 type Evs struct {
 	Hp             int
 	Attack         int
@@ -54,6 +54,20 @@ type Evs struct {
 	Speed          int
 	SpecialAttack  int
 	SpecialDefense int
+}
+
+/*
+Pokemon stats
+*/
+type Stats struct {
+	TotalHP        int
+	CurrentHP      int
+	Attack         int
+	Defense        int
+	Speed          int
+	SpecialAttack  int
+	SpecialDefense int
+	Level          int
 }
 
 /*
@@ -87,13 +101,13 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Nickname = helpers.ReadString(pkmData[8:18])
 
 	// Stats
-	pkm.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
-	pkm.TotalHP = int(binary.LittleEndian.Uint16(pkmData[88:90]))
-	pkm.Attack = int(binary.LittleEndian.Uint16(pkmData[90:92]))
-	pkm.Defense = int(binary.LittleEndian.Uint16(pkmData[92:94]))
-	pkm.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
-	pkm.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
-	pkm.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
+	pkm.Stats.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
+	pkm.Stats.TotalHP = int(binary.LittleEndian.Uint16(pkmData[88:90]))
+	pkm.Stats.Attack = int(binary.LittleEndian.Uint16(pkmData[90:92]))
+	pkm.Stats.Defense = int(binary.LittleEndian.Uint16(pkmData[92:94]))
+	pkm.Stats.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
+	pkm.Stats.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
+	pkm.Stats.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
 
 	//Level
 	pkm.Level = int(pkmData[84])
