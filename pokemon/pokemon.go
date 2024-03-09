@@ -23,7 +23,7 @@ type Pokemon struct {
 	Friendship       int
 	Moves            [4]Move
 	Level            int
-	Evs
+	Evs              EvsAndIV
 	Stats
 	MetLocation   string
 	MetAtLevel    int
@@ -52,7 +52,7 @@ type Item struct {
 /*
 Evs of a pokemon
 */
-type Evs struct {
+type EvsAndIV struct {
 	Hp             int
 	Attack         int
 	Defense        int
