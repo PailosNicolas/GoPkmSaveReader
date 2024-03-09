@@ -25,7 +25,11 @@ type Pokemon struct {
 	Level            int
 	Evs
 	Stats
-	MetLocation string
+	MetLocation   string
+	MetAtLevel    int
+	GameOfOrigin  string
+	PokeBall      string
+	TrainerGender string
 }
 
 /*
@@ -169,5 +173,38 @@ func ParsePokemon(pkmData []byte) Pokemon {
 
 	// Misc
 	pkm.MetLocation = helpers.LocationIndexes[misc[1]]
+	originInfo := helpers.Uint16ToBits(binary.LittleEndian.Uint16(misc[2:4]))
+	pkm.MetAtLevel = helpers.BitsToInt(originInfo[0:7])
+	pkm.GameOfOrigin = gamesOfOrigin[helpers.BitsToInt(originInfo[7:11])]
+	pkm.PokeBall = pokeBalls[helpers.BitsToInt(originInfo[11:15])]
+	if helpers.BitsToInt(originInfo[15:16]) == 1 {
+		pkm.TrainerGender = "Female"
+	} else {
+		pkm.TrainerGender = "Male"
+	}
 	return pkm
+}
+
+var gamesOfOrigin = map[int]string{
+	1:  "Sapphire",
+	2:  "Ruby",
+	3:  "Emerald",
+	4:  "FireRed",
+	5:  "LeafGreen",
+	15: "Colosseum or XD",
+}
+
+var pokeBalls = map[int]string{
+	1:  "Master Ball",
+	2:  "Ultra Ball",
+	3:  "Great Ball",
+	4:  "Poke Ball",
+	5:  "Safari Ball",
+	6:  "Net Ball",
+	7:  "Dive Ball",
+	8:  "Nest Ball",
+	9:  "Repeat Ball",
+	10: "Timer Ball",
+	11: "Luxury Ball",
+	12: "Premier Ball",
 }
