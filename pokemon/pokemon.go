@@ -31,6 +31,8 @@ type Pokemon struct {
 	GameOfOrigin  string
 	PokeBall      string
 	TrainerGender string
+	IsEgg         bool
+	SecondAbility bool
 }
 
 /*
@@ -191,6 +193,18 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.IVs.Speed = helpers.BitsToInt(ivsEggAbility[15:20])
 	pkm.IVs.SpecialAttack = helpers.BitsToInt(ivsEggAbility[20:25])
 	pkm.IVs.SpecialDefense = helpers.BitsToInt(ivsEggAbility[25:30])
+
+	if helpers.BitsToInt(ivsEggAbility[30:31]) == 1 {
+		pkm.IsEgg = true
+	} else {
+		pkm.IsEgg = false
+	}
+
+	if helpers.BitsToInt(ivsEggAbility[31:32]) == 1 {
+		pkm.SecondAbility = true
+	} else {
+		pkm.SecondAbility = false
+	}
 
 	return pkm
 }
