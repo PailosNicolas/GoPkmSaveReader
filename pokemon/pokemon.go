@@ -33,6 +33,7 @@ type Pokemon struct {
 	TrainerGender string
 	IsEgg         bool
 	SecondAbility bool
+	Language      string
 }
 
 /*
@@ -206,6 +207,8 @@ func ParsePokemon(pkmData []byte) Pokemon {
 		pkm.SecondAbility = false
 	}
 
+	pkm.Language = laguageOfOrigin[int(pkmData[18])]
+
 	return pkm
 }
 
@@ -231,4 +234,14 @@ var pokeBalls = map[int]string{
 	10: "Timer Ball",
 	11: "Luxury Ball",
 	12: "Premier Ball",
+}
+
+var laguageOfOrigin = map[int]string{
+	1: "Japanese",
+	2: "English",
+	3: "French",
+	4: "Italian",
+	5: "German",
+	6: "unused",
+	7: "Spanish",
 }
