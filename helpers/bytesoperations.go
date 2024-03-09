@@ -22,6 +22,17 @@ func Uint16ToBits(value uint16) []int {
 	return bits
 }
 
+func Uint32ToBits(value uint32) []int {
+	bits := make([]int, 32)
+
+	for i := 0; i < 32; i++ {
+		bit := (value >> i) & 1
+		bits[i] = int(bit)
+	}
+
+	return bits
+}
+
 func BitsToInt(bits []int) int {
 	result := 0
 
