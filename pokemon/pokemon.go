@@ -24,6 +24,7 @@ type Pokemon struct {
 	Moves            [4]Move
 	Level            int
 	Evs              EvsAndIV
+	IVs              EvsAndIV
 	Stats
 	MetLocation   string
 	MetAtLevel    int
@@ -182,6 +183,15 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	} else {
 		pkm.TrainerGender = "Male"
 	}
+
+	ivsEggAbility := helpers.Uint32ToBits(binary.LittleEndian.Uint32(misc[4:8]))
+	pkm.IVs.Hp = helpers.BitsToInt(ivsEggAbility[0:5])
+	pkm.IVs.Attack = helpers.BitsToInt(ivsEggAbility[5:10])
+	pkm.IVs.Defense = helpers.BitsToInt(ivsEggAbility[10:15])
+	pkm.IVs.Speed = helpers.BitsToInt(ivsEggAbility[15:20])
+	pkm.IVs.SpecialAttack = helpers.BitsToInt(ivsEggAbility[20:25])
+	pkm.IVs.SpecialDefense = helpers.BitsToInt(ivsEggAbility[25:30])
+
 	return pkm
 }
 
