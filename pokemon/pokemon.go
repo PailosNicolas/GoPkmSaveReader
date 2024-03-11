@@ -2,6 +2,8 @@ package pokemon
 
 import (
 	"encoding/binary"
+	"errors"
+	"os"
 
 	"github.com/PailosNicolas/GoPkmSaveReader/helpers"
 )
@@ -210,6 +212,26 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	pkm.Language = laguageOfOrigin[int(pkmData[18])]
 
 	return pkm
+}
+
+/*
+Exports Pokemon raw data to a file in the path directory
+path should be only the directory with no file name.
+*/
+func (pkm *Pokemon) ExportPokemonToFile(path string) error {
+	if path[len(path)-1] != '/' {
+		return errors.New("wrong path file, it should end in '/'")
+	}
+	if pkm.Nickname != "" {
+		path += pkm.Nickname + ".pkm"
+	} else {
+		path += pkm.Species + ".pkm"
+	}
+	err := os.WriteFile(path, pkm.raw, 0444)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 var gamesOfOrigin = map[int]string{
