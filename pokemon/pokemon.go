@@ -234,6 +234,27 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 	return nil
 }
 
+/*
+Reads a raw pokemon file from the path.
+The file should be the raw 100 bytes from a Gen3 save.
+*/
+func ReadPokemonFromFile(path string) (Pokemon, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return Pokemon{}, err
+	}
+	defer file.Close()
+
+	raw := make([]byte, 100)
+
+	_, err = file.Read(raw)
+	if err != nil {
+		return Pokemon{}, err
+	}
+
+	return ParsePokemon(raw), nil
+}
+
 var gamesOfOrigin = map[int]string{
 	1:  "Sapphire",
 	2:  "Ruby",
