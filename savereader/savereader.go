@@ -3,6 +3,7 @@ package savereader
 import (
 	"bytes"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"os"
 
@@ -72,6 +73,9 @@ func ReadDataFromSave(path string) (Save, error) {
 	save.saveRaw = primarySave
 
 	// Getting trainer's name
+	if len(sections[0].Contents) < 7 {
+		return Save{}, errors.New("unable to read file")
+	}
 	save.Trainer.Name = helpers.ReadString(sections[0].Contents[:7])
 
 	// Getting trainer's gender
