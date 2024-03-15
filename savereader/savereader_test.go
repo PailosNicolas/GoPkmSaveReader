@@ -14,7 +14,11 @@ func TestReadDataFromSave(t *testing.T) {
 	}
 
 	if save.Trainer.Name != "Fry" {
-		t.Error("name should be Fry but got:", save.Trainer.Name)
+		t.Error("name should be Fry but is:", save.Trainer.Name)
+	}
+
+	if save.Trainer.Gender != "Boy" {
+		t.Error("gender should be Boy but is:", save.Trainer.Gender)
 	}
 
 }
