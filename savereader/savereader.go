@@ -44,10 +44,14 @@ func ReadDataFromSave(path string) (Save, error) {
 
 	buffer := make([]byte, 131072)
 
-	_, err = file.Read(buffer)
+	bytesRead, err := file.Read(buffer)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
 		return Save{}, err
+	}
+
+	if bytesRead < 131072 {
+		return Save{}, errors.New("file to short to be a save")
 	}
 
 	// First 8kb contains primary and backup save
