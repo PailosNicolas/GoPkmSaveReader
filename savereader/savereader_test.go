@@ -10,7 +10,7 @@ func TestReadDataFromSave(t *testing.T) {
 	save, err := ReadDataFromSave(path)
 
 	if err != nil {
-		t.Fatalf("could not load testfile")
+		t.Fatalf(err.Error())
 	}
 
 	if save.Trainer.Name != "Fry" {
