@@ -28,7 +28,7 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Fatalf("file does not exist it shold error out")
 	}
 
-	// File too big
+	// File too short
 	pathTooShort := "../testfiles/dummyfile"
 
 	_, err = ReadPokemonFromFile(pathTooShort)
