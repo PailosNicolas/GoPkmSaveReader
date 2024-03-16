@@ -81,6 +81,9 @@ type Stats struct {
 	Level          int
 }
 
+// Errors
+var ErrFileShort = errors.New("file is too short to be a pokemon raw data")
+
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
 */
@@ -247,9 +250,14 @@ func ReadPokemonFromFile(path string) (Pokemon, error) {
 
 	raw := make([]byte, 100)
 
-	_, err = file.Read(raw)
+	bytesRead, err := file.Read(raw)
+
 	if err != nil {
 		return Pokemon{}, err
+	}
+
+	if 80 > bytesRead {
+		return Pokemon{}, ErrFileShort
 	}
 
 	return ParsePokemon(raw), nil
