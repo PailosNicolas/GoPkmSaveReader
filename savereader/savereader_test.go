@@ -5,6 +5,8 @@ import (
 )
 
 func TestReadDataFromSave(t *testing.T) {
+
+	// Happy Path
 	path := "../testfiles/testfile"
 
 	save, err := ReadDataFromSave(path)
@@ -19,6 +21,15 @@ func TestReadDataFromSave(t *testing.T) {
 
 	if save.Trainer.Gender != "Boy" {
 		t.Error("gender should be Boy but is:", save.Trainer.Gender)
+	}
+
+	// Error Short file
+	pathShort := "../testfiles/Lola.pkm"
+
+	_, err = ReadDataFromSave(pathShort)
+
+	if err != ErrShortFile {
+		t.Fatalf("it shold have been ErrShortFile")
 	}
 
 }
