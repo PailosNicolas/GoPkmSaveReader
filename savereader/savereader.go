@@ -27,6 +27,10 @@ type Trainer struct {
 	Team     [6]pokemon.Pokemon
 }
 
+// Errors
+var ErrShortFile = errors.New("file to short to be a save")
+var ErrReadingFile = errors.New("unable to read file")
+
 /*
 Reads the save file in the path and returns a Save file with Trainer info.
 Currenly only supports Gen3
@@ -51,7 +55,7 @@ func ReadDataFromSave(path string) (Save, error) {
 	}
 
 	if bytesRead < 131072 {
-		return Save{}, errors.New("file to short to be a save")
+		return Save{}, ErrShortFile
 	}
 
 	// First 8kb contains primary and backup save
@@ -78,7 +82,7 @@ func ReadDataFromSave(path string) (Save, error) {
 
 	// Getting trainer's name
 	if len(sections[0].Contents) < 7 {
-		return Save{}, errors.New("unable to read file")
+		return Save{}, ErrReadingFile
 	}
 	save.Trainer.Name = helpers.ReadString(sections[0].Contents[:7])
 
