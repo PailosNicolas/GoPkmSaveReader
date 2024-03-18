@@ -23,6 +23,13 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("The pokemon should be valid")
 	}
 
+	// Pkm is not valid
+	pkm.raw[28] = uint8(12)
+	_, err = ParsePokemon(pkm.raw)
+	if err != ErrPkmNotValid {
+		t.Fatalf("it should be invalid")
+	}
+
 	// File does not exist
 	pathNonExist := "../testfiles/thisfiledoesnotexist"
 
