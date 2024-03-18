@@ -126,7 +126,11 @@ func ReadDataFromSave(path string) (Save, error) {
 			start = 56 + 100*i
 		}
 
-		pkm = pokemon.ParsePokemon(sections[1].Contents[start : start+100])
+		pkm, err = pokemon.ParsePokemon(sections[1].Contents[start : start+100])
+
+		if err != nil {
+			return Save{}, err
+		}
 
 		save.Trainer.Team[i] = pkm
 	}
