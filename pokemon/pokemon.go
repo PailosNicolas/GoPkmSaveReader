@@ -28,14 +28,15 @@ type Pokemon struct {
 	Evs              EvsAndIV
 	IVs              EvsAndIV
 	Stats
-	MetLocation   string
-	MetAtLevel    int
-	GameOfOrigin  string
-	PokeBall      string
-	TrainerGender string
-	IsEgg         bool
-	SecondAbility bool
-	Language      string
+	MetLocation     string
+	MetAtLevel      int
+	GameOfOrigin    string
+	PokeBall        string
+	TrainerGender   string
+	IsEgg           bool
+	SecondAbility   bool
+	Language        string
+	UnencryptedData [][]byte
 }
 
 /*
@@ -146,6 +147,8 @@ func ParsePokemon(pkmData []byte) Pokemon {
 		}
 	}
 
+	pkm.UnencryptedData = [][]byte{growth, attacks, evsAndCondition, misc}
+
 	// Growth
 	pkm.SpeciesIndex = int(binary.LittleEndian.Uint16(growth[0:2]))
 	pkm.Species = helpers.Species[pkm.SpeciesIndex]
@@ -235,6 +238,33 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 		return err
 	}
 	return nil
+}
+
+/*
+Checks if a pokemon is valid, otherwise it will be displayed as a bad egg in-game.
+*/
+func (pkm *Pokemon) IsValid() bool {
+	valid := false
+	var sum uint16
+	for _, data := range pkm.UnencryptedData {
+		for i := 0; i < len(data); i += 2 {
+			var value uint16
+			if i+1 < len(data) {
+				value = uint16(data[i]) | (uint16(data[i+1]) << 8)
+			} else {
+				value = uint16(data[i])
+			}
+			sum += value
+		}
+	}
+
+	checksum := binary.LittleEndian.Uint16(pkm.raw[28:30])
+
+	if sum == checksum {
+		valid = true
+	}
+
+	return valid
 }
 
 /*
