@@ -19,6 +19,10 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("nickname should be Lola but is:", pkm.Nickname)
 	}
 
+	if pkm.IsValid() != true {
+		t.Error("The pokemon should be valid")
+	}
+
 	// File does not exist
 	pathNonExist := "../testfiles/thisfiledoesnotexist"
 
