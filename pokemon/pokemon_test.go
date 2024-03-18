@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestReadDataFromSave(t *testing.T) {
+func TestParsePokemons(t *testing.T) {
 
 	// Happy path
 	path := "../testfiles/Lola.pkm"
