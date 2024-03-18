@@ -84,11 +84,12 @@ type Stats struct {
 
 // Errors
 var ErrFileShort = errors.New("file is too short to be a pokemon raw data")
+var ErrPkmNotValid = errors.New("the pokemon is not valid")
 
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
 */
-func ParsePokemon(pkmData []byte) Pokemon {
+func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	orders := [24]string{"GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME", "AEGM", "AEMG", "AMGE", "AMEG", "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"}
 	pkm := Pokemon{}
 	pkm.raw = pkmData
@@ -148,6 +149,10 @@ func ParsePokemon(pkmData []byte) Pokemon {
 	}
 
 	pkm.UnencryptedData = [][]byte{growth, attacks, evsAndCondition, misc}
+
+	if !pkm.IsValid() {
+		return Pokemon{}, ErrPkmNotValid
+	}
 
 	// Growth
 	pkm.SpeciesIndex = int(binary.LittleEndian.Uint16(growth[0:2]))
@@ -217,7 +222,7 @@ func ParsePokemon(pkmData []byte) Pokemon {
 
 	pkm.Language = laguageOfOrigin[int(pkmData[18])]
 
-	return pkm
+	return pkm, nil
 }
 
 /*
@@ -290,7 +295,13 @@ func ReadPokemonFromFile(path string) (Pokemon, error) {
 		return Pokemon{}, ErrFileShort
 	}
 
-	return ParsePokemon(raw), nil
+	pkm, err := ParsePokemon(raw)
+
+	if err != nil {
+		return Pokemon{}, err
+	}
+
+	return pkm, nil
 }
 
 var gamesOfOrigin = map[int]string{
