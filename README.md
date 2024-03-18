@@ -1,5 +1,45 @@
 # GoPkmSaveReader
 ![tests_status](https://github.com/PailosNicolas/GoPkmSaveReader/actions/workflows/tests.yml/badge.svg)\
 This is a Pokemon save reader, it's far from complete and currently only supports Gen III. The goal is to be able to get
-all the save information, export pokemons for backup purposes and import them into saves. Depending on progress thinking
+all the save data, export pokemons for backup purposes and import them into saves. Depending on progress thinking
 about trades and trade evolution wouldn't be far fetched.
+
+## Features
+### Gen III:
+Right now you are able to access the following data of a save:
+#### General save data:
+- Game code
+#### Trainer info:
+- Public/secret ID
+- Name
+- Gender
+- Team size
+- Team
+#### Pokemon data:
+- Nickname
+- Species
+- Level
+- Held item
+- Experience
+- Friendship
+- Moves
+- Evs
+- Ivs
+- Stats
+- Met location
+- Met level
+- Game of origin
+- Captured ball
+
+Also you are able to export a pokemon to a file.
+
+## What is coming ?
+Currently my focus is in getting all the pokemon data, next step would be getting and completing data of the boxed pokemons.
+- Complete pokemon data
+- Boxed pokemons
+- Complete Trainer information
+- Improve testing (it is really bare bones right now)
+- Import pokemon to a save file
+- Implement trade between save files (possibly trade evolution)
+
+In the far away future if all of the above mentioned features are implemented I'll start research on the Gen IV save files.
