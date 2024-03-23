@@ -11,7 +11,7 @@ import (
 /*
 Basic Pokemon Gen3 information.
 */
-type Pokemon struct {
+type Pokemon struct   {
 	raw              []byte // added in case it may be needed later
 	PersonalityValue int
 	OTPublicId       int
