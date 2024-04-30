@@ -15,8 +15,8 @@ func TestParsePokemons(t *testing.T) {
 		t.Fatalf(err.Error())
 	}
 
-	if pkm.Nickname != "Lola" {
-		t.Error("nickname should be Lola but is:", pkm.Nickname)
+	if pkm.Nickname() != "Lola" {
+		t.Error("nickname should be Lola but is:", pkm.Nickname())
 	}
 
 	if pkm.IsValid() != true {
