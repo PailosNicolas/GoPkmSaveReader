@@ -13,30 +13,122 @@ Basic Pokemon Gen3 information.
 */
 type Pokemon struct {
 	raw              []byte // added in case it may be needed later
-	PersonalityValue int
-	OTPublicId       int
-	OTSecretId       int
-	OTName           string
-	Nickname         string
-	Species          string
-	SpeciesIndex     int
-	ItemHeld         Item
-	Experience       int
-	Friendship       int
-	Moves            [4]Move
-	Level            int
-	Evs              EvsAndIV
-	IVs              EvsAndIV
-	Stats
-	MetLocation     string
-	MetAtLevel      int
-	GameOfOrigin    string
-	PokeBall        string
-	TrainerGender   string
-	IsEgg           bool
-	SecondAbility   bool
-	Language        string
-	UnencryptedData [][]byte
+	personalityValue int
+	oTPublicId       int
+	oTSecretId       int
+	oTName           string
+	nickname         string
+	species          string
+	speciesIndex     int
+	itemHeld         Item
+	experience       int
+	friendship       int
+	moves            [4]Move
+	level            int
+	evs              EvsAndIV
+	iVs              EvsAndIV
+	stats            Stats
+	metLocation      string
+	metAtLevel       int
+	gameOfOrigin     string
+	pokeBall         string
+	trainerGender    string
+	isEgg            bool
+	secondAbility    bool
+	language         string
+	unencryptedData  [][]byte
+}
+
+func (p *Pokemon) PersonalityValue() int {
+	return p.personalityValue
+}
+
+func (p *Pokemon) OTPublicId() int {
+	return p.oTPublicId
+}
+
+func (p *Pokemon) OTSecretId() int {
+	return p.oTSecretId
+}
+
+func (p *Pokemon) OTName() string {
+	return p.oTName
+}
+
+func (p *Pokemon) Nickname() string {
+	return p.nickname
+}
+
+func (p *Pokemon) Species() string {
+	return p.species
+}
+
+func (p *Pokemon) SpeciesIndex() int {
+	return p.speciesIndex
+}
+
+func (p *Pokemon) ItemHeld() Item {
+	return p.itemHeld
+}
+
+func (p *Pokemon) Experience() int {
+	return p.experience
+}
+
+func (p *Pokemon) Friendship() int {
+	return p.friendship
+}
+
+func (p *Pokemon) Moves() [4]Move {
+	return p.moves
+}
+
+func (p *Pokemon) Level() int {
+	return p.level
+}
+
+func (p *Pokemon) Evs() EvsAndIV {
+	return p.evs
+}
+
+func (p *Pokemon) IVs() EvsAndIV {
+	return p.iVs
+}
+
+func (p *Pokemon) Stats() Stats {
+	return p.stats
+}
+
+func (p *Pokemon) MetLocation() string {
+	return p.metLocation
+}
+
+func (p *Pokemon) MetAtLevel() int {
+	return p.metAtLevel
+}
+
+func (p *Pokemon) GameOfOrigin() string {
+	return p.gameOfOrigin
+}
+
+func (p *Pokemon) PokeBall() string {
+	return p.pokeBall
+}
+
+func (p *Pokemon) TrainerGender() string {
+	return p.trainerGender
+}
+
+func (p *Pokemon) IsEgg() bool {
+	return p.isEgg
+}
+
+func (p *Pokemon) SecondAbility() bool {
+	return p.secondAbility
+}
+
+func (p *Pokemon) Language() string {
+	return p.language
 }
 
 /*
@@ -100,33 +192,33 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 
 	//personality value
 	personalityValue := pkmData[0:4]
-	pkm.PersonalityValue = int(binary.LittleEndian.Uint32(personalityValue))
+	pkm.personalityValue = int(binary.LittleEndian.Uint32(personalityValue))
 
 	//trianer full id
 	trainerId := pkmData[4:8]
-	pkm.OTPublicId = int(binary.LittleEndian.Uint16(pkmData[6:8]))
-	pkm.OTSecretId = int(binary.LittleEndian.Uint16(pkmData[4:6]))
+	pkm.oTPublicId = int(binary.LittleEndian.Uint16(pkmData[6:8]))
+	pkm.oTSecretId = int(binary.LittleEndian.Uint16(pkmData[4:6]))
 
 	//order
-	order := orders[pkm.PersonalityValue%24]
+	order := orders[pkm.personalityValue%24]
 
 	//getting ot
-	pkm.OTName = helpers.ReadString(pkmData[20:27])
+	pkm.oTName = helpers.ReadString(pkmData[20:27])
 
 	//getting nickname
-	pkm.Nickname = helpers.ReadString(pkmData[8:18])
+	pkm.nickname = helpers.ReadString(pkmData[8:18])
 
 	// Stats
-	pkm.Stats.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
-	pkm.Stats.TotalHP = int(binary.LittleEndian.Uint16(pkmData[88:90]))
-	pkm.Stats.Attack = int(binary.LittleEndian.Uint16(pkmData[90:92]))
-	pkm.Stats.Defense = int(binary.LittleEndian.Uint16(pkmData[92:94]))
-	pkm.Stats.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
-	pkm.Stats.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
-	pkm.Stats.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
+	pkm.stats.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
+	pkm.stats.TotalHP = int(binary.LittleEndian.Uint16(pkmData[88:90]))
+	pkm.stats.Attack = int(binary.LittleEndian.Uint16(pkmData[90:92]))
+	pkm.stats.Defense = int(binary.LittleEndian.Uint16(pkmData[92:94]))
+	pkm.stats.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
+	pkm.stats.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
+	pkm.stats.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
 
 	//Level
-	pkm.Level = int(pkmData[84])
+	pkm.level = int(pkmData[84])
 
 	//subdata
 	key := helpers.XorBytes(personalityValue, trainerId)
@@ -148,79 +240,79 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 		}
 	}
 
-	pkm.UnencryptedData = [][]byte{growth, attacks, evsAndCondition, misc}
+	pkm.unencryptedData = [][]byte{growth, attacks, evsAndCondition, misc}
 
 	if !pkm.IsValid() {
 		return Pokemon{}, ErrPkmNotValid
 	}
 
 	// Growth
-	pkm.SpeciesIndex = int(binary.LittleEndian.Uint16(growth[0:2]))
-	pkm.Species = helpers.Species[pkm.SpeciesIndex]
-	pkm.ItemHeld = Item{
+	pkm.speciesIndex = int(binary.LittleEndian.Uint16(growth[0:2]))
+	pkm.species = helpers.Species[pkm.speciesIndex]
+	pkm.itemHeld = Item{
 		Id:   int(binary.LittleEndian.Uint16(growth[2:4])),
 		Name: helpers.ItemIndex[int(binary.LittleEndian.Uint16(growth[2:4]))],
 	}
-	pkm.Experience = int(binary.LittleEndian.Uint32(growth[4:8]))
-	pkm.Friendship = int(growth[9])
+	pkm.experience = int(binary.LittleEndian.Uint32(growth[4:8]))
+	pkm.friendship = int(growth[9])
 
 	// Attacks
-	pkm.Moves[0].Id = int(binary.LittleEndian.Uint16(attacks[0:2]))
-	pkm.Moves[1].Id = int(binary.LittleEndian.Uint16(attacks[2:4]))
-	pkm.Moves[2].Id = int(binary.LittleEndian.Uint16(attacks[4:6]))
-	pkm.Moves[3].Id = int(binary.LittleEndian.Uint16(attacks[6:8]))
+	pkm.moves[0].Id = int(binary.LittleEndian.Uint16(attacks[0:2]))
+	pkm.moves[1].Id = int(binary.LittleEndian.Uint16(attacks[2:4]))
+	pkm.moves[2].Id = int(binary.LittleEndian.Uint16(attacks[4:6]))
+	pkm.moves[3].Id = int(binary.LittleEndian.Uint16(attacks[6:8]))
 
-	pkm.Moves[0].Name = helpers.MovesIndex[pkm.Moves[0].Id]
-	pkm.Moves[1].Name = helpers.MovesIndex[pkm.Moves[1].Id]
-	pkm.Moves[2].Name = helpers.MovesIndex[pkm.Moves[2].Id]
-	pkm.Moves[3].Name = helpers.MovesIndex[pkm.Moves[3].Id]
+	pkm.moves[0].Name = helpers.MovesIndex[pkm.moves[0].Id]
+	pkm.moves[1].Name = helpers.MovesIndex[pkm.moves[1].Id]
+	pkm.moves[2].Name = helpers.MovesIndex[pkm.moves[2].Id]
+	pkm.moves[3].Name = helpers.MovesIndex[pkm.moves[3].Id]
 
-	pkm.Moves[0].PP = int(attacks[8])
-	pkm.Moves[1].PP = int(attacks[9])
-	pkm.Moves[2].PP = int(attacks[10])
-	pkm.Moves[3].PP = int(attacks[11])
+	pkm.moves[0].PP = int(attacks[8])
+	pkm.moves[1].PP = int(attacks[9])
+	pkm.moves[2].PP = int(attacks[10])
+	pkm.moves[3].PP = int(attacks[11])
 
 	// Ev & condition
-	pkm.Evs.Hp = int(evsAndCondition[0])
-	pkm.Evs.Attack = int(evsAndCondition[1])
-	pkm.Evs.Defense = int(evsAndCondition[2])
-	pkm.Evs.Speed = int(evsAndCondition[3])
-	pkm.Evs.SpecialAttack = int(evsAndCondition[4])
-	pkm.Evs.SpecialDefense = int(evsAndCondition[5])
+	pkm.evs.Hp = int(evsAndCondition[0])
+	pkm.evs.Attack = int(evsAndCondition[1])
+	pkm.evs.Defense = int(evsAndCondition[2])
+	pkm.evs.Speed = int(evsAndCondition[3])
+	pkm.evs.SpecialAttack = int(evsAndCondition[4])
+	pkm.evs.SpecialDefense = int(evsAndCondition[5])
 
 	// Misc
-	pkm.MetLocation = helpers.LocationIndexes[misc[1]]
+	pkm.metLocation = helpers.LocationIndexes[misc[1]]
 	originInfo := helpers.Uint16ToBits(binary.LittleEndian.Uint16(misc[2:4]))
-	pkm.MetAtLevel = helpers.BitsToInt(originInfo[0:7])
-	pkm.GameOfOrigin = gamesOfOrigin[helpers.BitsToInt(originInfo[7:11])]
-	pkm.PokeBall = pokeBalls[helpers.BitsToInt(originInfo[11:15])]
+	pkm.metAtLevel = helpers.BitsToInt(originInfo[0:7])
+	pkm.gameOfOrigin = gamesOfOrigin[helpers.BitsToInt(originInfo[7:11])]
+	pkm.pokeBall = pokeBalls[helpers.BitsToInt(originInfo[11:15])]
 	if helpers.BitsToInt(originInfo[15:16]) == 1 {
-		pkm.TrainerGender = "Female"
+		pkm.trainerGender = "Female"
 	} else {
-		pkm.TrainerGender = "Male"
+		pkm.trainerGender = "Male"
 	}
 
 	ivsEggAbility := helpers.Uint32ToBits(binary.LittleEndian.Uint32(misc[4:8]))
-	pkm.IVs.Hp = helpers.BitsToInt(ivsEggAbility[0:5])
-	pkm.IVs.Attack = helpers.BitsToInt(ivsEggAbility[5:10])
-	pkm.IVs.Defense = helpers.BitsToInt(ivsEggAbility[10:15])
-	pkm.IVs.Speed = helpers.BitsToInt(ivsEggAbility[15:20])
-	pkm.IVs.SpecialAttack = helpers.BitsToInt(ivsEggAbility[20:25])
-	pkm.IVs.SpecialDefense = helpers.BitsToInt(ivsEggAbility[25:30])
+	pkm.iVs.Hp = helpers.BitsToInt(ivsEggAbility[0:5])
+	pkm.iVs.Attack = helpers.BitsToInt(ivsEggAbility[5:10])
+	pkm.iVs.Defense = helpers.BitsToInt(ivsEggAbility[10:15])
+	pkm.iVs.Speed = helpers.BitsToInt(ivsEggAbility[15:20])
+	pkm.iVs.SpecialAttack = helpers.BitsToInt(ivsEggAbility[20:25])
+	pkm.iVs.SpecialDefense = helpers.BitsToInt(ivsEggAbility[25:30])
 
 	if helpers.BitsToInt(ivsEggAbility[30:31]) == 1 {
-		pkm.IsEgg = true
+		pkm.isEgg = true
 	} else {
-		pkm.IsEgg = false
+		pkm.isEgg = false
 	}
 
 	if helpers.BitsToInt(ivsEggAbility[31:32]) == 1 {
-		pkm.SecondAbility = true
+		pkm.secondAbility = true
 	} else {
-		pkm.SecondAbility = false
+		pkm.secondAbility = false
 	}
 
-	pkm.Language = laguageOfOrigin[int(pkmData[18])]
+	pkm.language = laguageOfOrigin[int(pkmData[18])]
 
 	return pkm, nil
 }
@@ -233,10 +325,10 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 	if path[len(path)-1] != '/' {
 		return errors.New("wrong path file, it should end in '/'")
 	}
-	if pkm.Nickname != "" {
-		path += pkm.Nickname + ".pkm"
+	if pkm.nickname != "" {
+		path += pkm.nickname + ".pkm"
 	} else {
-		path += pkm.Species + ".pkm"
+		path += pkm.species + ".pkm"
 	}
 	err := os.WriteFile(path, pkm.raw, 0444)
 	if err != nil {
@@ -251,7 +343,7 @@ Checks if a pokemon is valid, otherwise it will be displayed as a bad egg in-gam
 func (pkm *Pokemon) IsValid() bool {
 	valid := false
 	var sum uint16
-	for _, data := range pkm.UnencryptedData {
+	for _, data := range pkm.unencryptedData {
 		for i := 0; i < len(data); i += 2 {
 			var value uint16
 			if i+1 < len(data) {
