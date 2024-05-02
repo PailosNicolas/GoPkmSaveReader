@@ -27,12 +27,36 @@ func (s *Save) GameCode() int {
 }
 
 type Trainer struct {
-	Name     string
-	Gender   string
-	PublicID int
-	SecretID int
-	TeamSize int
-	Team     [6]pokemon.Pokemon
+	name     string
+	gender   string
+	publicID int
+	secretID int
+	teamSize int
+	team     [6]pokemon.Pokemon
+}
+
+func (t *Trainer) Name() string {
+	return t.name
+}
+
+func (t *Trainer) Gender() string {
+	return t.gender
+}
+
+func (t *Trainer) PublicID() int {
+	return t.publicID
+}
+
+func (t *Trainer) SecretID() int {
+	return t.secretID
+}
+
+func (t *Trainer) TeamSize() int {
+	return t.teamSize
+}
+
+func (t *Trainer) Team() [6]pokemon.Pokemon {
+	return t.team
 }
 
 // Errors
@@ -92,13 +116,13 @@ func ReadDataFromSave(path string) (Save, error) {
 	if len(sections[0].Contents) < 7 {
 		return Save{}, ErrReadingFile
 	}
-	save.Trainer.Name = helpers.ReadString(sections[0].Contents[:7])
+	save.Trainer.name = helpers.ReadString(sections[0].Contents[:7])
 
 	// Getting trainer's gender
 	if gender := sections[0].Contents[8:9]; bytes.Equal(gender, []byte{0}) {
-		save.Trainer.Gender = "Boy"
+		save.Trainer.gender = "Boy"
 	} else {
-		save.Trainer.Gender = "Girl"
+		save.Trainer.gender = "Girl"
 	}
 
 	// getting gamecode
@@ -114,18 +138,18 @@ func ReadDataFromSave(path string) (Save, error) {
 	}
 
 	//getting trainer's ids
-	save.Trainer.PublicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
-	save.Trainer.SecretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
+	save.Trainer.publicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
+	save.Trainer.secretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
 
 	// getting team size:
 	if save.gameCode != 1 {
-		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
+		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
 	} else {
-		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
+		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
 	}
 
 	// getting team
-	for i := range save.Trainer.TeamSize {
+	for i := range save.Trainer.teamSize {
 		var pkm pokemon.Pokemon
 		var start int
 		if save.gameCode != 1 {
@@ -140,7 +164,7 @@ func ReadDataFromSave(path string) (Save, error) {
 			return Save{}, err
 		}
 
-		save.Trainer.Team[i] = pkm
+		save.Trainer.team[i] = pkm
 	}
 
 	return save, nil
