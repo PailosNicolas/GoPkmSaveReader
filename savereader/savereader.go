@@ -14,8 +14,16 @@ import (
 type Save struct {
 	saveRaw  [57344]byte
 	Trainer  Trainer
-	Game     string
-	GameCode int
+	game     string
+	gameCode int
+}
+
+func (s *Save) Game() string {
+	return s.game
+}
+
+func (s *Save) GameCode() int {
+	return s.gameCode
 }
 
 type Trainer struct {
@@ -95,14 +103,14 @@ func ReadDataFromSave(path string) (Save, error) {
 
 	// getting gamecode
 	if code := int(sections[0].Contents[172]); code == 0 {
-		save.Game = "R/S"
-		save.GameCode = code
+		save.game = "R/S"
+		save.gameCode = code
 	} else if code == 1 {
-		save.Game = "FR/LG"
-		save.GameCode = code
+		save.game = "FR/LG"
+		save.gameCode = code
 	} else {
-		save.Game = "E"
-		save.GameCode = code
+		save.game = "E"
+		save.gameCode = code
 	}
 
 	//getting trainer's ids
@@ -110,7 +118,7 @@ func ReadDataFromSave(path string) (Save, error) {
 	save.Trainer.SecretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
 
 	// getting team size:
-	if save.GameCode != 1 {
+	if save.gameCode != 1 {
 		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
 	} else {
 		save.Trainer.TeamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
@@ -120,7 +128,7 @@ func ReadDataFromSave(path string) (Save, error) {
 	for i := range save.Trainer.TeamSize {
 		var pkm pokemon.Pokemon
 		var start int
-		if save.GameCode != 1 {
+		if save.gameCode != 1 {
 			start = 568 + 100*i
 		} else {
 			start = 56 + 100*i
