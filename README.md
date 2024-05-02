@@ -4,6 +4,34 @@ This is a Pokemon save reader, it's far from complete and currently only support
 all the save data, export pokemons for backup purposes and import them into saves. Depending on progress thinking
 about trades and trade evolution wouldn't be far fetched.
 
+## Usage
+Get it with:
+```bash
+go get github.com/PailosNicolas/GoPkmSaveReader
+```
+
+Example:
+```go
+package main
+
+import (
+	"github.com/PailosNicolas/GoPkmSaveReader/savereader"
+)
+
+func main(){
+	path := "../myPKMNsave"
+
+	save, err := savereader.ReadDataFromSave(path)
+
+	if err != nil {
+		println("error.")
+		return 
+	}
+
+	println(save.Trainer.Name())
+}
+```
+
 ## Features
 ### Gen III:
 Right now you are able to access the following data of a save:
