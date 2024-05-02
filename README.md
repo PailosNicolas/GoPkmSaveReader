@@ -7,7 +7,7 @@ about trades and trade evolution wouldn't be far fetched.
 ## Usage
 Get it with:
 ```bash
-go get github.com/PailosNicolas/GoPkmSaveReader
+go get github.com/PailosNicolas/GoPkmSaveReader@v0.1.0
 ```
 
 Example:
