@@ -132,6 +132,17 @@ func (p *Pokemon) Language() string {
 }
 
 /*
+Returns displayable name for the pokemon, it will be it's nickname if it has one else it will be it's species
+*/
+func (p *Pokemon) Display() string {
+	if p.nickname != "" {
+		return p.nickname
+	} else {
+		return p.species
+	}
+}
+
+/*
 Represents the information of a pokemon move
 */
 type Move struct {
