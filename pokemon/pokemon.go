@@ -143,6 +143,14 @@ func (p *Pokemon) Display() string {
 }
 
 /*
+Compares two Pokemons
+*/
+func (p *Pokemon) Compare(pokemon Pokemon) bool {
+	// TODO: ADD FUNCTIONALITY !!
+	return true
+}
+
+/*
 Represents the information of a pokemon move
 */
 type Move struct {
