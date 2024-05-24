@@ -151,6 +151,17 @@ func (p *Pokemon) Compare(pokemon Pokemon) bool {
 }
 
 /*
+Represents the pokemon nature and which stats does it change
+*/
+//TODO: Implement nature structure
+type Nature struct {
+	Name      string
+	Increases string //TODO: they should be constants
+	Decreases string //TODO: they should be constants
+
+}
+
+/*
 Represents the information of a pokemon move
 */
 type Move struct {
