@@ -132,6 +132,10 @@ func (p *Pokemon) Language() string {
 	return p.language
 }
 
+func (p *Pokemon) Nature() Nature {
+	return p.nature
+}
+
 /*
 Returns displayable name for the pokemon, it will be it's nickname if it has one else it will be it's species
 */
