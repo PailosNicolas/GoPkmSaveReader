@@ -37,6 +37,7 @@ type Pokemon struct {
 	secondAbility    bool
 	language         string
 	unencryptedData  [][]byte
+	nature           Nature
 }
 
 func (p *Pokemon) PersonalityValue() int {
