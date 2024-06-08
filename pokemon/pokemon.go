@@ -226,6 +226,9 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	personalityValue := pkmData[0:4]
 	pkm.personalityValue = int(binary.LittleEndian.Uint32(personalityValue))
 
+	//nature
+	pkm.nature = natures[pkm.personalityValue%25]
+
 	//trianer full id
 	trainerId := pkmData[4:8]
 	pkm.oTPublicId = int(binary.LittleEndian.Uint16(pkmData[6:8]))
