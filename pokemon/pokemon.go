@@ -154,7 +154,6 @@ func (p *Pokemon) Compare(pokemon Pokemon) bool {
 /*
 Represents the pokemon nature and which stats does it change
 */
-//TODO: Implement nature structure
 type Nature struct {
 	ID        int
 	Name      string
