@@ -134,12 +134,18 @@ func ReadDataFromSave(path string) (Save, error) {
 	if code := int(sections[0].Contents[172]); code == 0 {
 		save.game = "R/S"
 		save.gameCode = code
+		//getting money
+		save.Trainer.money = int(binary.LittleEndian.Uint32(sections[1].Contents[1168:1172]))
 	} else if code == 1 {
 		save.game = "FR/LG"
 		save.gameCode = code
+		//getting money
+		save.Trainer.money = int(binary.LittleEndian.Uint32(helpers.XorBytes(sections[1].Contents[656:660], sections[0].Contents[2808:2812])))
 	} else {
 		save.game = "E"
 		save.gameCode = code
+		//getting money
+		save.Trainer.money = int(binary.LittleEndian.Uint32(helpers.XorBytes(sections[1].Contents[1168:1172], sections[0].Contents[172:176])))
 	}
 
 	//getting trainer's ids
