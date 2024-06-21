@@ -42,3 +42,17 @@ func BitsToInt(bits []int) int {
 
 	return result
 }
+
+func BytesToBits(bytes []byte) []int {
+	bits := make([]int, len(bytes)*8)
+	for i, b := range bytes {
+		for j := 0; j < 8; j++ {
+			if (b & (1 << (7 - j))) != 0 {
+				bits[i*8+j] = 1
+			} else {
+				bits[i*8+j] = 0
+			}
+		}
+	}
+	return bits
+}
