@@ -189,3 +189,29 @@ func ReadDataFromSave(path string) (Save, error) {
 
 	return save, nil
 }
+
+func parseTimePlayed(bytes []byte) (int, int, int, int) {
+	bits := helpers.BytesToBits(bytes)
+
+	hours := 0
+	for i := 0; i < 16; i++ {
+		hours = (hours << 1) | bits[i]
+	}
+
+	minutes := 0
+	for i := 16; i < 24; i++ {
+		minutes = (minutes << 1) | bits[i]
+	}
+
+	seconds := 0
+	for i := 24; i < 32; i++ {
+		seconds = (seconds << 1) | bits[i]
+	}
+
+	frames := 0
+	for i := 32; i < 40; i++ {
+		frames = (frames << 1) | bits[i]
+	}
+
+	return hours, minutes, seconds, frames
+}
