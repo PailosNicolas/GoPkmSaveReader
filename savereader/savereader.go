@@ -33,6 +33,7 @@ type Trainer struct {
 	secretID int
 	teamSize int
 	team     [6]pokemon.Pokemon
+	money    int
 }
 
 func (t *Trainer) Name() string {
@@ -57,6 +58,10 @@ func (t *Trainer) TeamSize() int {
 
 func (t *Trainer) Team() [6]pokemon.Pokemon {
 	return t.team
+}
+
+func (t *Trainer) Money() int {
+	return t.money
 }
 
 // Errors
