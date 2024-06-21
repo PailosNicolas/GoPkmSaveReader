@@ -16,7 +16,7 @@ type Save struct {
 	Trainer    Trainer
 	game       string
 	gameCode   int
-	timePlayed TimePlayed
+	TimePlayed TimePlayed
 }
 
 func (s *Save) Game() string {
@@ -71,6 +71,22 @@ type TimePlayed struct {
 	minutes int
 	seconds int
 	frames  int
+}
+
+func (t *TimePlayed) Hours() int {
+	return t.hours
+}
+
+func (t *TimePlayed) Minutes() int {
+	return t.minutes
+}
+
+func (t *TimePlayed) Seconds() int {
+	return t.seconds
+}
+
+func (t *TimePlayed) Frames() int {
+	return t.frames
 }
 
 // Errors
@@ -158,7 +174,7 @@ func ReadDataFromSave(path string) (Save, error) {
 	}
 
 	//getting time played
-	save.timePlayed.hours, save.timePlayed.minutes, save.timePlayed.seconds, save.timePlayed.frames = parseTimePlayed(sections[0].Contents[14:19])
+	save.TimePlayed.hours, save.TimePlayed.minutes, save.TimePlayed.seconds, save.TimePlayed.frames = parseTimePlayed(sections[0].Contents[14:19])
 
 	//getting trainer's ids
 	save.Trainer.publicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
