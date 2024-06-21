@@ -12,10 +12,11 @@ import (
 )
 
 type Save struct {
-	saveRaw  [57344]byte
-	Trainer  Trainer
-	game     string
-	gameCode int
+	saveRaw    [57344]byte
+	Trainer    Trainer
+	game       string
+	gameCode   int
+	TimePlayed TimePlayed
 }
 
 func (s *Save) Game() string {
@@ -62,6 +63,14 @@ func (t *Trainer) Team() [6]pokemon.Pokemon {
 
 func (t *Trainer) Money() int {
 	return t.money
+}
+
+/* Represents the time played in a save */
+type TimePlayed struct {
+	hours   int
+	minutes int
+	seconds int
+	frames  int
 }
 
 // Errors
