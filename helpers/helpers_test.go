@@ -6,7 +6,7 @@ import (
 
 func TestExperienceTypes(t *testing.T) {
 	for _, specie := range Species {
-		if specie != "?" && specie != "??????????" {
+		if specie != "?" && specie != "??????????" && specie != "Pokémon Egg" {
 			_, ok := ExperienceType[specie]
 
 			if !ok {
