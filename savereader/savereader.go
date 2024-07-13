@@ -98,9 +98,6 @@ Reads the save file in the path and returns a Save file with Trainer info.
 Currenly only supports Gen3
 */
 func ReadDataFromSave(path string) (Save, error) {
-	var primarySave [57344]byte
-	var sections map[int]helpers.Section
-	var save Save
 	file, err := os.Open(path)
 	if err != nil {
 		fmt.Println("Error opening file:", err)
@@ -117,6 +114,23 @@ func ReadDataFromSave(path string) (Save, error) {
 	}
 
 	if bytesRead < 131072 {
+		return Save{}, ErrShortFile
+	}
+
+	return ReadDataFromMemory(buffer)
+
+}
+
+/*
+Reads the save file from a []byte in memory and returns a Save file with Trainer info.
+Currenly only supports Gen3
+*/
+func ReadDataFromMemory(buffer []byte) (Save, error) {
+	var primarySave [57344]byte
+	var sections map[int]helpers.Section
+	var save Save
+
+	if len(buffer) < 131072 {
 		return Save{}, ErrShortFile
 	}
 
@@ -197,7 +211,7 @@ func ReadDataFromSave(path string) (Save, error) {
 			start = 56 + 100*i
 		}
 
-		pkm, err = pokemon.ParsePokemon(sections[1].Contents[start : start+100])
+		pkm, err := pokemon.ParsePokemon(sections[1].Contents[start : start+100])
 
 		if err != nil {
 			return Save{}, err
