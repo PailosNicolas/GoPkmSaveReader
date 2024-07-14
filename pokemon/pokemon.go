@@ -38,6 +38,7 @@ type Pokemon struct {
 	language         string
 	unencryptedData  [][]byte
 	nature           Nature
+	experienceType   string
 }
 
 func (p *Pokemon) PersonalityValue() int {
@@ -134,6 +135,10 @@ func (p *Pokemon) Language() string {
 
 func (p *Pokemon) Nature() Nature {
 	return p.nature
+}
+
+func (p *Pokemon) ExperienceType() string {
+	return p.experienceType
 }
 
 /*
@@ -287,6 +292,7 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	// Growth
 	pkm.speciesIndex = int(binary.LittleEndian.Uint16(growth[0:2]))
 	pkm.species = helpers.Species[pkm.speciesIndex]
+	pkm.experienceType = helpers.ExperienceType[pkm.species]
 	pkm.itemHeld = Item{
 		Id:   int(binary.LittleEndian.Uint16(growth[2:4])),
 		Name: helpers.ItemIndex[int(binary.LittleEndian.Uint16(growth[2:4]))],
