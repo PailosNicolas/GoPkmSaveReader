@@ -23,6 +23,6 @@ func TestLevelFromExperience(t *testing.T) {
 	level := GetLevelFromExperience(tre["Medium-Fast"], exp)
 
 	if level != 27 {
-		t.Error("There is no experience type for:")
+		t.Error("It should be lvl 27 but it is:", level)
 	}
 }
