@@ -15,3 +15,14 @@ func TestExperienceTypes(t *testing.T) {
 		}
 	}
 }
+
+func TestLevelFromExperience(t *testing.T) {
+	exp := 20822
+
+	tre := GetExperience()
+	level := GetLevelFromExperience(tre["Medium-Fast"], exp)
+
+	if level != 27 {
+		t.Error("There is no experience type for:")
+	}
+}
