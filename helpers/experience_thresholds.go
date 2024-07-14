@@ -9,6 +9,16 @@ var ExperienceThresholds = map[string]map[int]int{
 	"Fluctuating": make(map[int]int),
 }
 
+func GetLevelFromExperience(thresholds map[int]int, x int) int {
+	var highestExp int
+	for k := range thresholds {
+		if k < x && k > highestExp {
+			highestExp = k
+		}
+	}
+	return thresholds[highestExp]
+}
+
 func GetExperience() map[string]map[int]int {
 	ExperienceThresholds["Erratic"][0] = 1
 	ExperienceThresholds["Fast"][0] = 1
