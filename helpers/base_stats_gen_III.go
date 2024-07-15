@@ -226,7 +226,7 @@ var BaseStatsGenIII = map[string]map[string]int{
 		"SpDef":   55,
 		"Speed":   65,
 	},
-	"Nidoran♀": {
+	"Nidoran-f": {
 		"HP":      55,
 		"Attack":  47,
 		"Defense": 52,
@@ -250,7 +250,7 @@ var BaseStatsGenIII = map[string]map[string]int{
 		"SpDef":   85,
 		"Speed":   76,
 	},
-	"Nidoran♂": {
+	"Nidoran-m": {
 		"HP":      46,
 		"Attack":  57,
 		"Defense": 40,
