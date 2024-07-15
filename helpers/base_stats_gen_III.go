@@ -1,5 +1,6 @@
 package helpers
 
+// TODO: Add deoxys and it's forms
 var BaseStatsGenIII = map[string]map[string]int{
 	"Bulbasaur": {
 		"HP":      45,
