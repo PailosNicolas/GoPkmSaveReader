@@ -657,7 +657,7 @@ var BaseStatsGenIII = map[string]map[string]int{
 		"SpDef":   70,
 		"Speed":   70,
 	},
-	"Farfetch'd": {
+	"Farfetchd": {
 		"HP":      52,
 		"Attack":  65,
 		"Defense": 55,
