@@ -22,7 +22,7 @@ func TestBaseStats(t *testing.T) {
 			_, ok := BaseStatsGenIII[specie]
 
 			if !ok {
-				t.Error("There is no base stat type for:", specie)
+				t.Error("There is no base stat for:", specie)
 			}
 		}
 	}
