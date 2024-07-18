@@ -969,7 +969,7 @@ var BaseStatsGenIII = map[string]map[string]int{
 		"SpDef":   85,
 		"Speed":   115,
 	},
-	"Mr.Mime": {
+	"Mr-mime": {
 		"HP":      40,
 		"Attack":  45,
 		"Defense": 65,
