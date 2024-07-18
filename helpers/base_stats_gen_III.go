@@ -1993,7 +1993,7 @@ var BaseStatsGenIII = map[string]map[string]int{
 		"SpDef":   154,
 		"Speed":   110,
 	},
-	"Ho-Oh": {
+	"Ho-oh": {
 		"HP":      106,
 		"Attack":  130,
 		"Defense": 90,
