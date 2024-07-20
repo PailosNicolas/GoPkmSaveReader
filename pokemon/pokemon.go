@@ -453,6 +453,45 @@ func ReadPokemonFromFile(path string) (Pokemon, error) {
 	return pkm, nil
 }
 
+func (pkm *Pokemon) caculateStats(statName string) int {
+	var iv float32
+	var ev float32
+	var nature float32
+	var natureName string
+	switch statName {
+	case "Attack":
+		iv = float32(pkm.iVs.Attack)
+		ev = float32(pkm.evs.Attack)
+		natureName = "Attack"
+	case "Defense":
+		iv = float32(pkm.iVs.Defense)
+		ev = float32(pkm.evs.Defense)
+		natureName = "Defense"
+	case "SpAtk":
+		iv = float32(pkm.iVs.SpecialAttack)
+		ev = float32(pkm.evs.SpecialAttack)
+		natureName = "Sp. Attack"
+	case "SpDef":
+		iv = float32(pkm.iVs.SpecialDefense)
+		ev = float32(pkm.evs.SpecialDefense)
+		natureName = "Sp. Defense"
+	case "Speed":
+		iv = float32(pkm.iVs.Speed)
+		ev = float32(pkm.evs.Speed)
+		natureName = "Speed"
+	}
+
+	if pkm.nature.Increases == natureName {
+		nature = 1.1
+	} else if pkm.nature.Decreases == statName {
+		nature = 0.9
+	} else {
+		nature = 1
+	}
+
+	return int(((((float32(2*helpers.BaseStatsGenIII[pkm.species][statName]) + iv + (ev / 4)) * float32(pkm.level)) / 100) + 5) * nature)
+}
+
 var gamesOfOrigin = map[int]string{
 	1:  "Sapphire",
 	2:  "Ruby",
