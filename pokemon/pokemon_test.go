@@ -45,6 +45,22 @@ func TestParsePokemons(t *testing.T) {
 		t.Fatalf("calculated Attack is wrong")
 	}
 
+	if pkm.stats.Defense != pkmFromBox.stats.Defense {
+		t.Fatalf("calculated Defense is wrong")
+	}
+
+	if pkm.stats.SpecialAttack != pkmFromBox.stats.SpecialAttack {
+		t.Fatalf("calculated SpecialAttack is wrong")
+	}
+
+	if pkm.stats.SpecialDefense != pkmFromBox.stats.SpecialDefense {
+		t.Fatalf("calculated SpecialDefense is wrong")
+	}
+
+	if pkm.stats.Speed != pkmFromBox.stats.Speed {
+		t.Fatalf("calculated Speed is wrong")
+	}
+
 	// Pkm is not valid
 	pkm.raw[28] = uint8(12)
 	_, err = ParsePokemon(pkm.raw)
