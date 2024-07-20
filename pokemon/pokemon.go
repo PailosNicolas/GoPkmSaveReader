@@ -355,7 +355,7 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 		helpers.GetExperience() // TODO: Remove the need for this function
 		pkm.level = helpers.GetLevelFromExperience(helpers.ExperienceThresholds[expType], pkm.experience)
 
-		pkm.stats.TotalHP = (((2*helpers.BaseStatsGenIII[pkm.species]["HP"] + pkm.iVs.Hp + (pkm.evs.Hp / 4.0)) * pkm.level) / 100) + pkm.level + 10
+		pkm.stats.TotalHP = (((2*helpers.BaseStatsGenIII[pkm.species][helpers.HpString] + pkm.iVs.Hp + (pkm.evs.Hp / 4.0)) * pkm.level) / 100) + pkm.level + 10
 		pkm.stats.CurrentHP = pkm.stats.TotalHP
 		pkm.stats.Attack = pkm.caculateStats("Attack")
 		pkm.stats.Defense = pkm.caculateStats("Defense")
