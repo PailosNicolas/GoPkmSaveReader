@@ -167,9 +167,8 @@ Represents the pokemon nature and which stats does it change
 type Nature struct {
 	ID        int
 	Name      string
-	Increases string //TODO: they should be constants
-	Decreases string //TODO: they should be constants
-
+	Increases string
+	Decreases string
 }
 
 /*
