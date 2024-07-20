@@ -3,6 +3,7 @@ package pokemon
 import (
 	"encoding/binary"
 	"errors"
+	"math"
 	"os"
 
 	"github.com/PailosNicolas/GoPkmSaveReader/helpers"
@@ -458,30 +459,30 @@ func (pkm *Pokemon) caculateStats(statName string) int {
 	/*
 		Calculate the stats of gen3 pokemon except for hp.
 	*/
-	var iv float32
-	var ev float32
-	var nature float32
+	var iv float64
+	var ev float64
+	var nature float64
 	var natureName string
 	switch statName {
 	case "Attack":
-		iv = float32(pkm.iVs.Attack)
-		ev = float32(pkm.evs.Attack)
+		iv = float64(pkm.iVs.Attack)
+		ev = float64(pkm.evs.Attack)
 		natureName = "Attack"
 	case "Defense":
-		iv = float32(pkm.iVs.Defense)
-		ev = float32(pkm.evs.Defense)
+		iv = float64(pkm.iVs.Defense)
+		ev = float64(pkm.evs.Defense)
 		natureName = "Defense"
 	case "SpAtk":
-		iv = float32(pkm.iVs.SpecialAttack)
-		ev = float32(pkm.evs.SpecialAttack)
+		iv = float64(pkm.iVs.SpecialAttack)
+		ev = float64(pkm.evs.SpecialAttack)
 		natureName = "Sp. Attack"
 	case "SpDef":
-		iv = float32(pkm.iVs.SpecialDefense)
-		ev = float32(pkm.evs.SpecialDefense)
+		iv = float64(pkm.iVs.SpecialDefense)
+		ev = float64(pkm.evs.SpecialDefense)
 		natureName = "Sp. Defense"
 	case "Speed":
-		iv = float32(pkm.iVs.Speed)
-		ev = float32(pkm.evs.Speed)
+		iv = float64(pkm.iVs.Speed)
+		ev = float64(pkm.evs.Speed)
 		natureName = "Speed"
 	}
 
@@ -490,10 +491,10 @@ func (pkm *Pokemon) caculateStats(statName string) int {
 	} else if pkm.nature.Decreases == statName {
 		nature = 0.9
 	} else {
-		nature = 1
+		nature = 1.0
 	}
-
-	return int(((((float32(2*helpers.BaseStatsGenIII[pkm.species][statName]) + iv + (ev / 4)) * float32(pkm.level)) / 100) + 5) * nature)
+	result := (math.Floor((((float64(2*helpers.BaseStatsGenIII[pkm.species][statName]) + iv + math.Floor((ev / 4.0))) * float64(pkm.level)) / 100.0)) + 5) * nature
+	return int(result)
 }
 
 var gamesOfOrigin = map[int]string{
