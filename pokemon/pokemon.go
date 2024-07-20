@@ -251,18 +251,6 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	//getting nickname
 	pkm.nickname = helpers.ReadString(pkmData[8:18])
 
-	// Stats
-	pkm.stats.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
-	pkm.stats.TotalHP = int(binary.LittleEndian.Uint16(pkmData[88:90]))
-	pkm.stats.Attack = int(binary.LittleEndian.Uint16(pkmData[90:92]))
-	pkm.stats.Defense = int(binary.LittleEndian.Uint16(pkmData[92:94]))
-	pkm.stats.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
-	pkm.stats.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
-	pkm.stats.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
-
-	//Level
-	pkm.level = int(pkmData[84])
-
 	//subdata
 	key := helpers.XorBytes(personalityValue, trainerId)
 	subdata := pkmData[32:80]
@@ -357,6 +345,18 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	}
 
 	pkm.language = laguageOfOrigin[int(pkmData[18])]
+
+	// Stats
+	pkm.stats.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
+	pkm.stats.TotalHP = int(binary.LittleEndian.Uint16(pkmData[88:90]))
+	pkm.stats.Attack = int(binary.LittleEndian.Uint16(pkmData[90:92]))
+	pkm.stats.Defense = int(binary.LittleEndian.Uint16(pkmData[92:94]))
+	pkm.stats.Speed = int(binary.LittleEndian.Uint16(pkmData[94:96]))
+	pkm.stats.SpecialAttack = int(binary.LittleEndian.Uint16(pkmData[96:98]))
+	pkm.stats.SpecialDefense = int(binary.LittleEndian.Uint16(pkmData[98:100]))
+
+	//Level
+	pkm.level = int(pkmData[84])
 
 	return pkm, nil
 }
