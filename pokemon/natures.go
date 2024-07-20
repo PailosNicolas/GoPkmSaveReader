@@ -1,229 +1,231 @@
 package pokemon
 
+import "github.com/PailosNicolas/GoPkmSaveReader/helpers"
+
 var natures = []Nature{
 	{
 		ID: 0,
 
 		Name: "Hardy",
 
-		Increases: "Attack",
+		Increases: helpers.AttackString,
 
-		Decreases: "Attack",
+		Decreases: helpers.AttackString,
 	},
 	{
 		ID: 1,
 
 		Name: "Lonely",
 
-		Increases: "Attack",
+		Increases: helpers.AttackString,
 
-		Decreases: "Defense",
+		Decreases: helpers.DefenseString,
 	},
 	{
 		ID: 2,
 
 		Name: "Brave",
 
-		Increases: "Attack",
+		Increases: helpers.AttackString,
 
-		Decreases: "Speed",
+		Decreases: helpers.SpeedString,
 	},
 	{
 		ID: 3,
 
 		Name: "Adamant",
 
-		Increases: "Attack",
+		Increases: helpers.AttackString,
 
-		Decreases: "Sp. Attack",
+		Decreases: helpers.SpecialAttackString,
 	},
 	{
 		ID: 4,
 
 		Name: "Naughty",
 
-		Increases: "Attack",
+		Increases: helpers.AttackString,
 
-		Decreases: "Sp. Defense",
+		Decreases: helpers.SpecialDefenseString,
 	},
 	{
 		ID: 5,
 
 		Name: "Bold",
 
-		Increases: "Defense",
+		Increases: helpers.DefenseString,
 
-		Decreases: "Attack",
+		Decreases: helpers.AttackString,
 	},
 	{
 		ID: 6,
 
 		Name: "Docile",
 
-		Increases: "Defense",
+		Increases: helpers.DefenseString,
 
-		Decreases: "Defense",
+		Decreases: helpers.DefenseString,
 	},
 	{
 		ID: 7,
 
 		Name: "Relaxed",
 
-		Increases: "Defense",
+		Increases: helpers.DefenseString,
 
-		Decreases: "Speed",
+		Decreases: helpers.SpeedString,
 	},
 	{
 		ID: 8,
 
 		Name: "Impish",
 
-		Increases: "Defense",
+		Increases: helpers.DefenseString,
 
-		Decreases: "Sp. Attack",
+		Decreases: helpers.SpecialAttackString,
 	},
 	{
 		ID: 9,
 
 		Name: "Lax",
 
-		Increases: "Defense",
+		Increases: helpers.DefenseString,
 
-		Decreases: "Sp. Defense",
+		Decreases: helpers.SpecialDefenseString,
 	},
 	{
 		ID: 10,
 
 		Name: "Timid",
 
-		Increases: "Speed",
+		Increases: helpers.SpeedString,
 
-		Decreases: "Attack",
+		Decreases: helpers.AttackString,
 	},
 	{
 		ID: 11,
 
 		Name: "Hasty",
 
-		Increases: "Speed",
+		Increases: helpers.SpeedString,
 
-		Decreases: "Defense",
+		Decreases: helpers.DefenseString,
 	},
 	{
 		ID: 12,
 
 		Name: "Serious",
 
-		Increases: "Speed",
+		Increases: helpers.SpeedString,
 
-		Decreases: "Speed",
+		Decreases: helpers.SpeedString,
 	},
 	{
 		ID: 13,
 
 		Name: "Jolly",
 
-		Increases: "Speed",
+		Increases: helpers.SpeedString,
 
-		Decreases: "Sp. Attack",
+		Decreases: helpers.SpecialAttackString,
 	},
 	{
 		ID: 14,
 
 		Name: "Naive",
 
-		Increases: "Speed",
+		Increases: helpers.SpeedString,
 
-		Decreases: "Sp. Defense",
+		Decreases: helpers.SpecialDefenseString,
 	},
 	{
 		ID: 15,
 
 		Name: "Modest",
 
-		Increases: "Sp. Attack",
+		Increases: helpers.SpecialAttackString,
 
-		Decreases: "Attack",
+		Decreases: helpers.AttackString,
 	},
 	{
 		ID: 16,
 
 		Name: "Mild",
 
-		Increases: "Sp. Attack",
+		Increases: helpers.SpecialAttackString,
 
-		Decreases: "Defense",
+		Decreases: helpers.DefenseString,
 	},
 	{
 		ID: 17,
 
 		Name: "Quiet",
 
-		Increases: "Sp. Attack",
+		Increases: helpers.SpecialAttackString,
 
-		Decreases: "Speed",
+		Decreases: helpers.SpeedString,
 	},
 	{
 		ID: 18,
 
 		Name: "Bashful",
 
-		Increases: "Sp. Attack",
+		Increases: helpers.SpecialAttackString,
 
-		Decreases: "Sp. Attack",
+		Decreases: helpers.SpecialAttackString,
 	},
 	{
 		ID: 19,
 
 		Name: "Rash",
 
-		Increases: "Sp. Attack",
+		Increases: helpers.SpecialAttackString,
 
-		Decreases: "Sp. Defense",
+		Decreases: helpers.SpecialDefenseString,
 	},
 	{
 		ID: 20,
 
 		Name: "Calm",
 
-		Increases: "Sp. Defense",
+		Increases: helpers.SpecialDefenseString,
 
-		Decreases: "Attack",
+		Decreases: helpers.AttackString,
 	},
 	{
 		ID: 21,
 
 		Name: "Gentle",
 
-		Increases: "Sp. Defense",
+		Increases: helpers.SpecialDefenseString,
 
-		Decreases: "Defense",
+		Decreases: helpers.DefenseString,
 	},
 	{
 		ID: 22,
 
 		Name: "Sassy",
 
-		Increases: "Sp. Defense",
+		Increases: helpers.SpecialDefenseString,
 
-		Decreases: "Speed",
+		Decreases: helpers.SpeedString,
 	},
 	{
 		ID: 23,
 
 		Name: "Careful",
 
-		Increases: "Sp. Defense",
+		Increases: helpers.SpecialDefenseString,
 
-		Decreases: "Sp. Attack",
+		Decreases: helpers.SpecialAttackString,
 	},
 	{
 		ID: 24,
 
 		Name: "Quirky",
 
-		Increases: "Sp. Defense",
+		Increases: helpers.SpecialDefenseString,
 
-		Decreases: "Sp. Defense",
+		Decreases: helpers.SpecialDefenseString,
 	},
 }
