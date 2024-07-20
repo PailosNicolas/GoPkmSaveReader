@@ -466,31 +466,25 @@ func (pkm *Pokemon) caculateStats(statName string) int {
 	var iv float64
 	var ev float64
 	var nature float64
-	var natureName string
 	switch statName {
 	case "Attack":
 		iv = float64(pkm.iVs.Attack)
 		ev = float64(pkm.evs.Attack)
-		natureName = "Attack"
 	case "Defense":
 		iv = float64(pkm.iVs.Defense)
 		ev = float64(pkm.evs.Defense)
-		natureName = "Defense"
 	case "SpAtk":
 		iv = float64(pkm.iVs.SpecialAttack)
 		ev = float64(pkm.evs.SpecialAttack)
-		natureName = "Sp. Attack"
 	case "SpDef":
 		iv = float64(pkm.iVs.SpecialDefense)
 		ev = float64(pkm.evs.SpecialDefense)
-		natureName = "Sp. Defense"
 	case "Speed":
 		iv = float64(pkm.iVs.Speed)
 		ev = float64(pkm.evs.Speed)
-		natureName = "Speed"
 	}
 
-	if pkm.nature.Increases == natureName {
+	if pkm.nature.Increases == statName {
 		nature = 1.1
 	} else if pkm.nature.Decreases == statName {
 		nature = 0.9
