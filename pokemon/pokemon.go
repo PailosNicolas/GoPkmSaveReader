@@ -454,6 +454,9 @@ func ReadPokemonFromFile(path string) (Pokemon, error) {
 }
 
 func (pkm *Pokemon) caculateStats(statName string) int {
+	/*
+		Calculate the stats of gen3 pokemon except for hp.
+	*/
 	var iv float32
 	var ev float32
 	var nature float32
