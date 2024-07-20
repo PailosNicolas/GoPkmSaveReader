@@ -356,6 +356,7 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 
 		pkm.stats.TotalHP = (((2*helpers.BaseStatsGenIII[pkm.species]["HP"] + pkm.iVs.Hp + (pkm.evs.Hp / 4.0)) * pkm.level) / 100) + pkm.level + 10
 		pkm.stats.CurrentHP = pkm.stats.TotalHP
+		pkm.stats.Attack = pkm.caculateStats("Attack")
 
 	} else {
 		// Stats
