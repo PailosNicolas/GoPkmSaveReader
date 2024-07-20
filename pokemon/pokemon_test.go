@@ -27,6 +27,16 @@ func TestParsePokemons(t *testing.T) {
 		t.Error("The pokemon should be valid")
 	}
 
+	pkmFromBox, err := ParsePokemon(pkm.raw[:80])
+
+	if err != nil {
+		t.Fatalf("couldn't parse boxed pokemon")
+	}
+
+	if pkm.level != pkmFromBox.level {
+		t.Fatalf("calculated level is wrong")
+	}
+
 	// Pkm is not valid
 	pkm.raw[28] = uint8(12)
 	_, err = ParsePokemon(pkm.raw)
