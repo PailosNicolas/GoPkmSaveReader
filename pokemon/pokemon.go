@@ -349,6 +349,11 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	if len(pkmData) == 80 {
 		// Boxed pokemon need to calculate stats
 
+		//Level
+		expType := helpers.ExperienceType[pkm.species]
+		helpers.GetExperience() // TODO: Remove the need for this function
+		pkm.level = helpers.GetLevelFromExperience(helpers.ExperienceThresholds[expType], pkm.experience)
+
 	} else {
 		// Stats
 		pkm.stats.CurrentHP = int(binary.LittleEndian.Uint16(pkmData[86:88]))
