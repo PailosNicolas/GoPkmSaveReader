@@ -103,6 +103,7 @@ type PC struct {
 // Errors
 var ErrShortFile = errors.New("file to short to be a save")
 var ErrReadingFile = errors.New("unable to read file")
+var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
 
 /*
 Reads the save file in the path and returns a Save file with Trainer info.
@@ -239,7 +240,11 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	}
 
 	for i := 0; i <= 13; i++ {
-		save.Trainer.pc.boxes[i].pokemonList = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
+		var err error
+		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
+		if err != nil {
+			return Save{}, err
+		}
 		save.Trainer.pc.boxes[i].id = i + 1
 		save.Trainer.pc.boxes[i].name = "" // TODO: Remove placeholder and add functionality
 	}
@@ -273,7 +278,7 @@ func parseTimePlayed(bytes []byte) (int, int, int, int) {
 	return hours, minutes, seconds, frames
 }
 
-func makeBoxList(data []byte) [30]pokemon.Pokemon {
+func makeBoxList(data []byte) ([30]pokemon.Pokemon, error) {
 	pkmList := []pokemon.Pokemon{}
 	for i := 80; i <= 2400; i += 80 {
 		if int(binary.LittleEndian.Uint32(data[i:i+4])) == 0 {
@@ -283,7 +288,7 @@ func makeBoxList(data []byte) [30]pokemon.Pokemon {
 			pkm, err := pokemon.ParsePokemon(data[i : i+80])
 
 			if err != nil {
-				return [30]pokemon.Pokemon{} //TODO: add better error handling
+				return [30]pokemon.Pokemon{}, ErrReadingPokemonFromBox
 			}
 
 			pkmList = append(pkmList, pkm)
@@ -291,5 +296,5 @@ func makeBoxList(data []byte) [30]pokemon.Pokemon {
 
 	}
 
-	return [30]pokemon.Pokemon(pkmList)
+	return [30]pokemon.Pokemon(pkmList), nil
 }
