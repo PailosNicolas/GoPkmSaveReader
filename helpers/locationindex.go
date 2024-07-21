@@ -1,6 +1,6 @@
 package helpers
 
-var LocationIndexes = []string{
+var LocationIndexes = []string{ // TODO: this list is incomplete or wrong !!
 	"Littleroot Town",
 	"Oldale Town",
 	"Dewford Town",
