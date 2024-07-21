@@ -35,6 +35,7 @@ type Trainer struct {
 	teamSize int
 	team     [6]pokemon.Pokemon
 	money    int
+	pc       PC
 }
 
 func (t *Trainer) Name() string {
