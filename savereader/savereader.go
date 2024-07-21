@@ -89,6 +89,12 @@ func (t *TimePlayed) Frames() int {
 	return t.frames
 }
 
+type Box struct {
+	id          int
+	name        string
+	pokemonList [30]pokemon.Pokemon
+}
+
 // Errors
 var ErrShortFile = errors.New("file to short to be a save")
 var ErrReadingFile = errors.New("unable to read file")
