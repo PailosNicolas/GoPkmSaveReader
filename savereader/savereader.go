@@ -66,6 +66,10 @@ func (t *Trainer) Money() int {
 	return t.money
 }
 
+func (t *Trainer) Pc() PC {
+	return t.pc
+}
+
 /* Represents the time played in a save */
 type TimePlayed struct {
 	hours   int
@@ -96,14 +100,30 @@ type Box struct {
 	pokemonList [30]pokemon.Pokemon
 }
 
+func (b *Box) BoxedPokemon() [30]pokemon.Pokemon {
+	return b.pokemonList
+}
+
 type PC struct {
 	boxes [14]Box
+}
+
+func (pc *PC) Box(id int) (Box, error) {
+	/*
+		Returns the box select by id (1~15)
+	*/
+	if id < 1 || id > 15 {
+		return Box{}, ErrIdNotAllowed
+	} else {
+		return pc.boxes[id-1], nil
+	}
 }
 
 // Errors
 var ErrShortFile = errors.New("file to short to be a save")
 var ErrReadingFile = errors.New("unable to read file")
 var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
+var ErrIdNotAllowed = errors.New("id must be 1~15")
 
 /*
 Reads the save file in the path and returns a Save file with Trainer info.
