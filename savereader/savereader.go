@@ -266,3 +266,24 @@ func parseTimePlayed(bytes []byte) (int, int, int, int) {
 
 	return hours, minutes, seconds, frames
 }
+
+func makeBoxList(data []byte) [30]pokemon.Pokemon {
+	pkmList := []pokemon.Pokemon{}
+	for i := 80; i <= 2400; i += 80 {
+		if int(binary.LittleEndian.Uint32(data[i:i+4])) == 0 {
+			// Empty space in box
+			pkmList = append(pkmList, pokemon.Pokemon{})
+		} else {
+			pkm, err := pokemon.ParsePokemon(data[i : i+80])
+
+			if err != nil {
+				return [30]pokemon.Pokemon{} //TODO: add better error handling
+			}
+
+			pkmList = append(pkmList, pkm)
+		}
+
+	}
+
+	return [30]pokemon.Pokemon(pkmList)
+}
