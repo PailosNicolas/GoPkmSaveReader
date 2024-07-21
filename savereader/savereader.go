@@ -241,6 +241,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	for i := 0; i <= 13; i++ {
 		save.Trainer.pc.boxes[i].pokemonList = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
 		save.Trainer.pc.boxes[i].id = i + 1
+		save.Trainer.pc.boxes[i].name = "" // TODO: Remove placeholder and add functionality
 	}
 
 	return save, nil
