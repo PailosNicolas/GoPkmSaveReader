@@ -95,6 +95,10 @@ type Box struct {
 	pokemonList [30]pokemon.Pokemon
 }
 
+type PC struct {
+	boxes [14]Box
+}
+
 // Errors
 var ErrShortFile = errors.New("file to short to be a save")
 var ErrReadingFile = errors.New("unable to read file")
