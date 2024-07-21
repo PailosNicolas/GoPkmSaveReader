@@ -231,6 +231,13 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 		save.Trainer.team[i] = pkm
 	}
 
+	//PC
+	pcBoxedList := sections[5].Contents[4:]
+
+	for i := 6; i <= 14; i++ {
+		pcBoxedList = append(pcBoxedList, sections[i].Contents...)
+	}
+
 	return save, nil
 }
 
