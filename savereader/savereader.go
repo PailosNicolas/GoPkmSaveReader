@@ -261,7 +261,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 
 	for i := 0; i <= 13; i++ {
 		var err error
-		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
+		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)]) // TODO: tryed using go func and mutex result was worse, try channel approach
 		if err != nil {
 			return Save{}, err
 		}

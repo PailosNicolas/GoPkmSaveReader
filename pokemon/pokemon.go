@@ -313,7 +313,7 @@ func ParsePokemon(pkmData []byte) (Pokemon, error) {
 	pkm.evs.SpecialDefense = int(evsAndCondition[5])
 
 	// Misc
-	pkm.metLocation = helpers.LocationIndexes[misc[1]]
+	pkm.metLocation = helpers.LocationIndexes[misc[1]] // TODO: This does not work map is wrong FIX ASAP
 	originInfo := helpers.Uint16ToBits(binary.LittleEndian.Uint16(misc[2:4]))
 	pkm.metAtLevel = helpers.BitsToInt(originInfo[0:7])
 	pkm.gameOfOrigin = gamesOfOrigin[helpers.BitsToInt(originInfo[7:11])]

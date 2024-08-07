@@ -19,7 +19,7 @@ func GetLevelFromExperience(thresholds map[int]int, x int) int {
 	return thresholds[highestExp]
 }
 
-func GetExperience() map[string]map[int]int {
+func GetExperience() map[string]map[int]int { // TODO: Remove this asap
 	ExperienceThresholds["Erratic"][0] = 1
 	ExperienceThresholds["Fast"][0] = 1
 	ExperienceThresholds["Medium-Fast"][0] = 1
