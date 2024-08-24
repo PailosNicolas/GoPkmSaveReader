@@ -302,7 +302,7 @@ func parseTimePlayed(bytes []byte) (int, int, int, int) {
 
 func makeBoxList(data []byte) ([30]pokemon.Pokemon, error) {
 	pkmList := []pokemon.Pokemon{}
-	for i := 80; i <= 2400; i += 80 {
+	for i := 0; i <= 2400; i += 80 {
 		if int(binary.LittleEndian.Uint32(data[i:i+4])) == 0 {
 			// Empty space in box
 			pkmList = append(pkmList, pokemon.Pokemon{})
