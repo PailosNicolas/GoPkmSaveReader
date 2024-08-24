@@ -259,6 +259,8 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 		pcBoxedList = append(pcBoxedList, sections[i].Contents...)
 	}
 
+	nameBytes := pcBoxedList[33600:33726]
+
 	for i := 0; i <= 13; i++ { // TODO: Analyze a paralel implementation
 		var err error
 		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
@@ -266,7 +268,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 			return Save{}, err
 		}
 		save.Trainer.pc.boxes[i].id = i + 1
-		save.Trainer.pc.boxes[i].name = "" // TODO: Remove placeholder and add functionality
+		save.Trainer.pc.boxes[i].name = helpers.ReadString(nameBytes[9*i : 9*(i+1)])
 	}
 
 	return save, nil
