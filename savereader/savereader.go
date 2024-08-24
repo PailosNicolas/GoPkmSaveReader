@@ -259,9 +259,9 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 		pcBoxedList = append(pcBoxedList, sections[i].Contents...)
 	}
 
-	for i := 0; i <= 13; i++ {
+	for i := 0; i <= 13; i++ { // TODO: Analyze a paralel implementation
 		var err error
-		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)]) // TODO: tryed using go func and mutex result was worse, try channel approach
+		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
 		if err != nil {
 			return Save{}, err
 		}
