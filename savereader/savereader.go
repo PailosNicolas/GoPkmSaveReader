@@ -263,7 +263,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 
 	for i := 0; i <= 13; i++ { // TODO: Analyze a paralel implementation
 		var err error
-		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[80*i : 80*(i+1)])
+		save.Trainer.pc.boxes[i].pokemonList, err = makeBoxList(pcBoxedList[2400*i : 2400*(i+1)])
 		if err != nil {
 			return Save{}, err
 		}
@@ -302,7 +302,7 @@ func parseTimePlayed(bytes []byte) (int, int, int, int) {
 
 func makeBoxList(data []byte) ([30]pokemon.Pokemon, error) {
 	pkmList := []pokemon.Pokemon{}
-	for i := 0; i <= 2400; i += 80 {
+	for i := 0; i <= 2320; i += 80 {
 		if int(binary.LittleEndian.Uint32(data[i:i+4])) == 0 {
 			// Empty space in box
 			pkmList = append(pkmList, pokemon.Pokemon{})
