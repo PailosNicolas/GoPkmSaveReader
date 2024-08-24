@@ -1,12 +1,618 @@
 package helpers
 
 var ExperienceThresholds = map[string]map[int]int{
-	"Erratic":     make(map[int]int),
-	"Fast":        make(map[int]int),
-	"Medium-Fast": make(map[int]int),
-	"Medium-Slow": make(map[int]int),
-	"Slow":        make(map[int]int),
-	"Fluctuating": make(map[int]int),
+	"Erratic": {
+		0:      1,
+		15:     2,
+		52:     3,
+		122:    4,
+		237:    5,
+		406:    6,
+		637:    7,
+		942:    8,
+		1326:   9,
+		1800:   10,
+		2369:   11,
+		3041:   12,
+		3822:   13,
+		4719:   14,
+		5737:   15,
+		6881:   16,
+		8155:   17,
+		9564:   18,
+		11111:  19,
+		12800:  20,
+		14632:  21,
+		16610:  22,
+		18737:  23,
+		21012:  24,
+		23437:  25,
+		26012:  26,
+		28737:  27,
+		31610:  28,
+		34632:  29,
+		37800:  30,
+		41111:  31,
+		44564:  32,
+		48155:  33,
+		51881:  34,
+		55737:  35,
+		59719:  36,
+		63822:  37,
+		68041:  38,
+		72369:  39,
+		76800:  40,
+		81326:  41,
+		85942:  42,
+		90637:  43,
+		95406:  44,
+		100237: 45,
+		105122: 46,
+		110052: 47,
+		115015: 48,
+		120001: 49,
+		125000: 50,
+		131324: 51,
+		137795: 52,
+		144410: 53,
+		151165: 54,
+		158056: 55,
+		165079: 56,
+		172229: 57,
+		179503: 58,
+		186894: 59,
+		194400: 60,
+		202013: 61,
+		209728: 62,
+		217540: 63,
+		225443: 64,
+		233431: 65,
+		241496: 66,
+		249633: 67,
+		257834: 68,
+		267406: 69,
+		276458: 70,
+		286328: 71,
+		296358: 72,
+		305767: 73,
+		316074: 74,
+		326531: 75,
+		336255: 76,
+		346965: 77,
+		357812: 78,
+		367807: 79,
+		378880: 80,
+		390077: 81,
+		400293: 82,
+		411686: 83,
+		423190: 84,
+		433572: 85,
+		445239: 86,
+		457001: 87,
+		467489: 88,
+		479378: 89,
+		491346: 90,
+		501878: 91,
+		513934: 92,
+		526049: 93,
+		536557: 94,
+		548720: 95,
+		560922: 96,
+		571333: 97,
+		583539: 98,
+		591882: 99,
+		600000: 100,
+	},
+	"Fast": {
+		0:      1,
+		6:      2,
+		21:     3,
+		51:     4,
+		100:    5,
+		172:    6,
+		274:    7,
+		409:    8,
+		583:    9,
+		800:    10,
+		1064:   11,
+		1382:   12,
+		1757:   13,
+		2195:   14,
+		2700:   15,
+		3276:   16,
+		3930:   17,
+		4665:   18,
+		5487:   19,
+		6400:   20,
+		7408:   21,
+		8518:   22,
+		9733:   23,
+		11059:  24,
+		12500:  25,
+		14060:  26,
+		15746:  27,
+		17561:  28,
+		19511:  29,
+		21600:  30,
+		23832:  31,
+		26214:  32,
+		28749:  33,
+		31443:  34,
+		34300:  35,
+		37324:  36,
+		40522:  37,
+		43897:  38,
+		47455:  39,
+		51200:  40,
+		55136:  41,
+		59270:  42,
+		63605:  43,
+		68147:  44,
+		72900:  45,
+		77868:  46,
+		83058:  47,
+		88473:  48,
+		94119:  49,
+		100000: 50,
+		106120: 51,
+		112486: 52,
+		119101: 53,
+		125971: 54,
+		133100: 55,
+		140492: 56,
+		148154: 57,
+		156089: 58,
+		164303: 59,
+		172800: 60,
+		181584: 61,
+		190662: 62,
+		200037: 63,
+		209715: 64,
+		219700: 65,
+		229996: 66,
+		240610: 67,
+		251545: 68,
+		262807: 69,
+		274400: 70,
+		286328: 71,
+		298598: 72,
+		311213: 73,
+		324179: 74,
+		337500: 75,
+		351180: 76,
+		365226: 77,
+		379641: 78,
+		394431: 79,
+		409600: 80,
+		425152: 81,
+		441094: 82,
+		457429: 83,
+		474163: 84,
+		491300: 85,
+		508844: 86,
+		526802: 87,
+		545177: 88,
+		563975: 89,
+		583200: 90,
+		602856: 91,
+		622950: 92,
+		643485: 93,
+		664467: 94,
+		685900: 95,
+		707788: 96,
+		730138: 97,
+		752953: 98,
+		776239: 99,
+		800000: 100,
+	},
+	"Medium-Fast": {
+		0:       1,
+		8:       2,
+		27:      3,
+		64:      4,
+		125:     5,
+		216:     6,
+		343:     7,
+		512:     8,
+		729:     9,
+		1000:    10,
+		1331:    11,
+		1728:    12,
+		2197:    13,
+		2744:    14,
+		3375:    15,
+		4096:    16,
+		4913:    17,
+		5832:    18,
+		6859:    19,
+		8000:    20,
+		9261:    21,
+		10648:   22,
+		12167:   23,
+		13824:   24,
+		15625:   25,
+		17576:   26,
+		19683:   27,
+		21952:   28,
+		24389:   29,
+		27000:   30,
+		29791:   31,
+		32768:   32,
+		35937:   33,
+		39304:   34,
+		42875:   35,
+		46656:   36,
+		50653:   37,
+		54872:   38,
+		59319:   39,
+		64000:   40,
+		68921:   41,
+		74088:   42,
+		79507:   43,
+		85184:   44,
+		91125:   45,
+		97336:   46,
+		103823:  47,
+		110592:  48,
+		117649:  49,
+		125000:  50,
+		132651:  51,
+		140608:  52,
+		148877:  53,
+		157464:  54,
+		166375:  55,
+		175616:  56,
+		185193:  57,
+		195112:  58,
+		205379:  59,
+		216000:  60,
+		226981:  61,
+		238328:  62,
+		250047:  63,
+		262144:  64,
+		274625:  65,
+		287496:  66,
+		300763:  67,
+		314432:  68,
+		328509:  69,
+		343000:  70,
+		357911:  71,
+		373248:  72,
+		389017:  73,
+		405224:  74,
+		421875:  75,
+		438976:  76,
+		456533:  77,
+		474552:  78,
+		493039:  79,
+		512000:  80,
+		531441:  81,
+		551368:  82,
+		571787:  83,
+		592704:  84,
+		614125:  85,
+		636056:  86,
+		658503:  87,
+		681472:  88,
+		704969:  89,
+		729000:  90,
+		753571:  91,
+		778688:  92,
+		804357:  93,
+		830584:  94,
+		857375:  95,
+		884736:  96,
+		912673:  97,
+		941192:  98,
+		970299:  99,
+		1000000: 100,
+	},
+	"Medium-Slow": {
+		0:       1,
+		9:       2,
+		57:      3,
+		96:      4,
+		135:     5,
+		179:     6,
+		236:     7,
+		314:     8,
+		419:     9,
+		560:     10,
+		742:     11,
+		973:     12,
+		1261:    13,
+		1612:    14,
+		2035:    15,
+		2535:    16,
+		3120:    17,
+		3798:    18,
+		4575:    19,
+		5460:    20,
+		6458:    21,
+		7577:    22,
+		8825:    23,
+		10208:   24,
+		11735:   25,
+		13411:   26,
+		15244:   27,
+		17242:   28,
+		19411:   29,
+		21760:   30,
+		24294:   31,
+		27021:   32,
+		29949:   33,
+		33084:   34,
+		36435:   35,
+		40007:   36,
+		43808:   37,
+		47846:   38,
+		52127:   39,
+		56660:   40,
+		61450:   41,
+		66505:   42,
+		71833:   43,
+		77440:   44,
+		83335:   45,
+		89523:   46,
+		96012:   47,
+		102810:  48,
+		109923:  49,
+		117360:  50,
+		125126:  51,
+		133229:  52,
+		141677:  53,
+		150476:  54,
+		159635:  55,
+		169159:  56,
+		179056:  57,
+		189334:  58,
+		199999:  59,
+		211060:  60,
+		222522:  61,
+		234393:  62,
+		246681:  63,
+		259392:  64,
+		272535:  65,
+		286115:  66,
+		300140:  67,
+		314618:  68,
+		329555:  69,
+		344960:  70,
+		360838:  71,
+		377197:  72,
+		394045:  73,
+		411388:  74,
+		429235:  75,
+		447591:  76,
+		466464:  77,
+		485862:  78,
+		505791:  79,
+		526260:  80,
+		547274:  81,
+		568841:  82,
+		590969:  83,
+		613664:  84,
+		636935:  85,
+		660787:  86,
+		685228:  87,
+		710266:  88,
+		735907:  89,
+		762160:  90,
+		789030:  91,
+		816525:  92,
+		844653:  93,
+		873420:  94,
+		902835:  95,
+		932903:  96,
+		963632:  97,
+		995030:  98,
+		1027103: 99,
+		1059860: 100,
+	},
+	"Slow": {
+		0:       1,
+		10:      2,
+		33:      3,
+		80:      4,
+		156:     5,
+		270:     6,
+		428:     7,
+		640:     8,
+		911:     9,
+		1250:    10,
+		1663:    11,
+		2160:    12,
+		2746:    13,
+		3430:    14,
+		4218:    15,
+		5120:    16,
+		6141:    17,
+		7290:    18,
+		8573:    19,
+		10000:   20,
+		11576:   21,
+		13310:   22,
+		15208:   23,
+		17280:   24,
+		19531:   25,
+		21970:   26,
+		24603:   27,
+		27440:   28,
+		30486:   29,
+		33750:   30,
+		37238:   31,
+		40960:   32,
+		44921:   33,
+		49130:   34,
+		53593:   35,
+		58320:   36,
+		63316:   37,
+		68590:   38,
+		74148:   39,
+		80000:   40,
+		86151:   41,
+		92610:   42,
+		99383:   43,
+		106480:  44,
+		113906:  45,
+		121670:  46,
+		129778:  47,
+		138240:  48,
+		147061:  49,
+		156250:  50,
+		165813:  51,
+		175760:  52,
+		186096:  53,
+		196830:  54,
+		207968:  55,
+		219520:  56,
+		231491:  57,
+		243890:  58,
+		256723:  59,
+		270000:  60,
+		283726:  61,
+		297910:  62,
+		312558:  63,
+		327680:  64,
+		343281:  65,
+		359370:  66,
+		375953:  67,
+		393040:  68,
+		410636:  69,
+		428750:  70,
+		447388:  71,
+		466560:  72,
+		486271:  73,
+		506530:  74,
+		527343:  75,
+		548720:  76,
+		570666:  77,
+		593190:  78,
+		616298:  79,
+		640000:  80,
+		664301:  81,
+		689210:  82,
+		714733:  83,
+		740880:  84,
+		767656:  85,
+		795070:  86,
+		823128:  87,
+		851840:  88,
+		881211:  89,
+		911250:  90,
+		941963:  91,
+		973360:  92,
+		1005446: 93,
+		1038230: 94,
+		1071718: 95,
+		1105920: 96,
+		1140841: 97,
+		1176490: 98,
+		1212873: 99,
+		1250000: 100,
+	},
+	"Fluctuating": {
+		0:       1,
+		4:       2,
+		13:      3,
+		32:      4,
+		65:      5,
+		112:     6,
+		178:     7,
+		276:     8,
+		393:     9,
+		540:     10,
+		745:     11,
+		967:     12,
+		1230:    13,
+		1591:    14,
+		1957:    15,
+		2457:    16,
+		3046:    17,
+		3732:    18,
+		4526:    19,
+		5440:    20,
+		6482:    21,
+		7666:    22,
+		9003:    23,
+		10506:   24,
+		12187:   25,
+		14060:   26,
+		16140:   27,
+		18439:   28,
+		20974:   29,
+		23760:   30,
+		26811:   31,
+		30146:   32,
+		33780:   33,
+		37731:   34,
+		42017:   35,
+		46656:   36,
+		50653:   37,
+		55969:   38,
+		60505:   39,
+		66560:   40,
+		71677:   41,
+		78533:   42,
+		84277:   43,
+		91998:   44,
+		98415:   45,
+		107069:  46,
+		114205:  47,
+		123863:  48,
+		131766:  49,
+		142500:  50,
+		151222:  51,
+		163105:  52,
+		172697:  53,
+		185807:  54,
+		196322:  55,
+		210739:  56,
+		222231:  57,
+		238036:  58,
+		250562:  59,
+		267840:  60,
+		281456:  61,
+		300293:  62,
+		315059:  63,
+		335544:  64,
+		351520:  65,
+		373744:  66,
+		390991:  67,
+		415050:  68,
+		433631:  69,
+		459620:  70,
+		479600:  71,
+		507617:  72,
+		529063:  73,
+		559209:  74,
+		582187:  75,
+		614566:  76,
+		639146:  77,
+		673863:  78,
+		700115:  79,
+		737280:  80,
+		765275:  81,
+		804997:  82,
+		834809:  83,
+		877201:  84,
+		908905:  85,
+		954084:  86,
+		987754:  87,
+		1035837: 88,
+		1071552: 89,
+		1122660: 90,
+		1160499: 91,
+		1214753: 92,
+		1254796: 93,
+		1312322: 94,
+		1354652: 95,
+		1415577: 96,
+		1460276: 97,
+		1524731: 98,
+		1571884: 99,
+		1640000: 100,
+	},
 }
 
 func GetLevelFromExperience(thresholds map[int]int, x int) int {
@@ -17,608 +623,4 @@ func GetLevelFromExperience(thresholds map[int]int, x int) int {
 		}
 	}
 	return thresholds[highestExp]
-}
-
-func GetExperience() map[string]map[int]int { // TODO: Remove this asap
-	ExperienceThresholds["Erratic"][0] = 1
-	ExperienceThresholds["Fast"][0] = 1
-	ExperienceThresholds["Medium-Fast"][0] = 1
-	ExperienceThresholds["Medium-Slow"][0] = 1
-	ExperienceThresholds["Slow"][0] = 1
-	ExperienceThresholds["Fluctuating"][0] = 1
-	ExperienceThresholds["Erratic"][15] = 2
-	ExperienceThresholds["Fast"][6] = 2
-	ExperienceThresholds["Medium-Fast"][8] = 2
-	ExperienceThresholds["Medium-Slow"][9] = 2
-	ExperienceThresholds["Slow"][10] = 2
-	ExperienceThresholds["Fluctuating"][4] = 2
-	ExperienceThresholds["Erratic"][52] = 3
-	ExperienceThresholds["Fast"][21] = 3
-	ExperienceThresholds["Medium-Fast"][27] = 3
-	ExperienceThresholds["Medium-Slow"][57] = 3
-	ExperienceThresholds["Slow"][33] = 3
-	ExperienceThresholds["Fluctuating"][13] = 3
-	ExperienceThresholds["Erratic"][122] = 4
-	ExperienceThresholds["Fast"][51] = 4
-	ExperienceThresholds["Medium-Fast"][64] = 4
-	ExperienceThresholds["Medium-Slow"][96] = 4
-	ExperienceThresholds["Slow"][80] = 4
-	ExperienceThresholds["Fluctuating"][32] = 4
-	ExperienceThresholds["Erratic"][237] = 5
-	ExperienceThresholds["Fast"][100] = 5
-	ExperienceThresholds["Medium-Fast"][125] = 5
-	ExperienceThresholds["Medium-Slow"][135] = 5
-	ExperienceThresholds["Slow"][156] = 5
-	ExperienceThresholds["Fluctuating"][65] = 5
-	ExperienceThresholds["Erratic"][406] = 6
-	ExperienceThresholds["Fast"][172] = 6
-	ExperienceThresholds["Medium-Fast"][216] = 6
-	ExperienceThresholds["Medium-Slow"][179] = 6
-	ExperienceThresholds["Slow"][270] = 6
-	ExperienceThresholds["Fluctuating"][112] = 6
-	ExperienceThresholds["Erratic"][637] = 7
-	ExperienceThresholds["Fast"][274] = 7
-	ExperienceThresholds["Medium-Fast"][343] = 7
-	ExperienceThresholds["Medium-Slow"][236] = 7
-	ExperienceThresholds["Slow"][428] = 7
-	ExperienceThresholds["Fluctuating"][178] = 7
-	ExperienceThresholds["Erratic"][942] = 8
-	ExperienceThresholds["Fast"][409] = 8
-	ExperienceThresholds["Medium-Fast"][512] = 8
-	ExperienceThresholds["Medium-Slow"][314] = 8
-	ExperienceThresholds["Slow"][640] = 8
-	ExperienceThresholds["Fluctuating"][276] = 8
-	ExperienceThresholds["Erratic"][1326] = 9
-	ExperienceThresholds["Fast"][583] = 9
-	ExperienceThresholds["Medium-Fast"][729] = 9
-	ExperienceThresholds["Medium-Slow"][419] = 9
-	ExperienceThresholds["Slow"][911] = 9
-	ExperienceThresholds["Fluctuating"][393] = 9
-	ExperienceThresholds["Erratic"][1800] = 10
-	ExperienceThresholds["Fast"][800] = 10
-	ExperienceThresholds["Medium-Fast"][1000] = 10
-	ExperienceThresholds["Medium-Slow"][560] = 10
-	ExperienceThresholds["Slow"][1250] = 10
-	ExperienceThresholds["Fluctuating"][540] = 10
-	ExperienceThresholds["Erratic"][2369] = 11
-	ExperienceThresholds["Fast"][1064] = 11
-	ExperienceThresholds["Medium-Fast"][1331] = 11
-	ExperienceThresholds["Medium-Slow"][742] = 11
-	ExperienceThresholds["Slow"][1663] = 11
-	ExperienceThresholds["Fluctuating"][745] = 11
-	ExperienceThresholds["Erratic"][3041] = 12
-	ExperienceThresholds["Fast"][1382] = 12
-	ExperienceThresholds["Medium-Fast"][1728] = 12
-	ExperienceThresholds["Medium-Slow"][973] = 12
-	ExperienceThresholds["Slow"][2160] = 12
-	ExperienceThresholds["Fluctuating"][967] = 12
-	ExperienceThresholds["Erratic"][3822] = 13
-	ExperienceThresholds["Fast"][1757] = 13
-	ExperienceThresholds["Medium-Fast"][2197] = 13
-	ExperienceThresholds["Medium-Slow"][1261] = 13
-	ExperienceThresholds["Slow"][2746] = 13
-	ExperienceThresholds["Fluctuating"][1230] = 13
-	ExperienceThresholds["Erratic"][4719] = 14
-	ExperienceThresholds["Fast"][2195] = 14
-	ExperienceThresholds["Medium-Fast"][2744] = 14
-	ExperienceThresholds["Medium-Slow"][1612] = 14
-	ExperienceThresholds["Slow"][3430] = 14
-	ExperienceThresholds["Fluctuating"][1591] = 14
-	ExperienceThresholds["Erratic"][5737] = 15
-	ExperienceThresholds["Fast"][2700] = 15
-	ExperienceThresholds["Medium-Fast"][3375] = 15
-	ExperienceThresholds["Medium-Slow"][2035] = 15
-	ExperienceThresholds["Slow"][4218] = 15
-	ExperienceThresholds["Fluctuating"][1957] = 15
-	ExperienceThresholds["Erratic"][6881] = 16
-	ExperienceThresholds["Fast"][3276] = 16
-	ExperienceThresholds["Medium-Fast"][4096] = 16
-	ExperienceThresholds["Medium-Slow"][2535] = 16
-	ExperienceThresholds["Slow"][5120] = 16
-	ExperienceThresholds["Fluctuating"][2457] = 16
-	ExperienceThresholds["Erratic"][8155] = 17
-	ExperienceThresholds["Fast"][3930] = 17
-	ExperienceThresholds["Medium-Fast"][4913] = 17
-	ExperienceThresholds["Medium-Slow"][3120] = 17
-	ExperienceThresholds["Slow"][6141] = 17
-	ExperienceThresholds["Fluctuating"][3046] = 17
-	ExperienceThresholds["Erratic"][9564] = 18
-	ExperienceThresholds["Fast"][4665] = 18
-	ExperienceThresholds["Medium-Fast"][5832] = 18
-	ExperienceThresholds["Medium-Slow"][3798] = 18
-	ExperienceThresholds["Slow"][7290] = 18
-	ExperienceThresholds["Fluctuating"][3732] = 18
-	ExperienceThresholds["Erratic"][11111] = 19
-	ExperienceThresholds["Fast"][5487] = 19
-	ExperienceThresholds["Medium-Fast"][6859] = 19
-	ExperienceThresholds["Medium-Slow"][4575] = 19
-	ExperienceThresholds["Slow"][8573] = 19
-	ExperienceThresholds["Fluctuating"][4526] = 19
-	ExperienceThresholds["Erratic"][12800] = 20
-	ExperienceThresholds["Fast"][6400] = 20
-	ExperienceThresholds["Medium-Fast"][8000] = 20
-	ExperienceThresholds["Medium-Slow"][5460] = 20
-	ExperienceThresholds["Slow"][10000] = 20
-	ExperienceThresholds["Fluctuating"][5440] = 20
-	ExperienceThresholds["Erratic"][14632] = 21
-	ExperienceThresholds["Fast"][7408] = 21
-	ExperienceThresholds["Medium-Fast"][9261] = 21
-	ExperienceThresholds["Medium-Slow"][6458] = 21
-	ExperienceThresholds["Slow"][11576] = 21
-	ExperienceThresholds["Fluctuating"][6482] = 21
-	ExperienceThresholds["Erratic"][16610] = 22
-	ExperienceThresholds["Fast"][8518] = 22
-	ExperienceThresholds["Medium-Fast"][10648] = 22
-	ExperienceThresholds["Medium-Slow"][7577] = 22
-	ExperienceThresholds["Slow"][13310] = 22
-	ExperienceThresholds["Fluctuating"][7666] = 22
-	ExperienceThresholds["Erratic"][18737] = 23
-	ExperienceThresholds["Fast"][9733] = 23
-	ExperienceThresholds["Medium-Fast"][12167] = 23
-	ExperienceThresholds["Medium-Slow"][8825] = 23
-	ExperienceThresholds["Slow"][15208] = 23
-	ExperienceThresholds["Fluctuating"][9003] = 23
-	ExperienceThresholds["Erratic"][21012] = 24
-	ExperienceThresholds["Fast"][11059] = 24
-	ExperienceThresholds["Medium-Fast"][13824] = 24
-	ExperienceThresholds["Medium-Slow"][10208] = 24
-	ExperienceThresholds["Slow"][17280] = 24
-	ExperienceThresholds["Fluctuating"][10506] = 24
-	ExperienceThresholds["Erratic"][23437] = 25
-	ExperienceThresholds["Fast"][12500] = 25
-	ExperienceThresholds["Medium-Fast"][15625] = 25
-	ExperienceThresholds["Medium-Slow"][11735] = 25
-	ExperienceThresholds["Slow"][19531] = 25
-	ExperienceThresholds["Fluctuating"][12187] = 25
-	ExperienceThresholds["Erratic"][26012] = 26
-	ExperienceThresholds["Fast"][14060] = 26
-	ExperienceThresholds["Medium-Fast"][17576] = 26
-	ExperienceThresholds["Medium-Slow"][13411] = 26
-	ExperienceThresholds["Slow"][21970] = 26
-	ExperienceThresholds["Fluctuating"][14060] = 26
-	ExperienceThresholds["Erratic"][28737] = 27
-	ExperienceThresholds["Fast"][15746] = 27
-	ExperienceThresholds["Medium-Fast"][19683] = 27
-	ExperienceThresholds["Medium-Slow"][15244] = 27
-	ExperienceThresholds["Slow"][24603] = 27
-	ExperienceThresholds["Fluctuating"][16140] = 27
-	ExperienceThresholds["Erratic"][31610] = 28
-	ExperienceThresholds["Fast"][17561] = 28
-	ExperienceThresholds["Medium-Fast"][21952] = 28
-	ExperienceThresholds["Medium-Slow"][17242] = 28
-	ExperienceThresholds["Slow"][27440] = 28
-	ExperienceThresholds["Fluctuating"][18439] = 28
-	ExperienceThresholds["Erratic"][34632] = 29
-	ExperienceThresholds["Fast"][19511] = 29
-	ExperienceThresholds["Medium-Fast"][24389] = 29
-	ExperienceThresholds["Medium-Slow"][19411] = 29
-	ExperienceThresholds["Slow"][30486] = 29
-	ExperienceThresholds["Fluctuating"][20974] = 29
-	ExperienceThresholds["Erratic"][37800] = 30
-	ExperienceThresholds["Fast"][21600] = 30
-	ExperienceThresholds["Medium-Fast"][27000] = 30
-	ExperienceThresholds["Medium-Slow"][21760] = 30
-	ExperienceThresholds["Slow"][33750] = 30
-	ExperienceThresholds["Fluctuating"][23760] = 30
-	ExperienceThresholds["Erratic"][41111] = 31
-	ExperienceThresholds["Fast"][23832] = 31
-	ExperienceThresholds["Medium-Fast"][29791] = 31
-	ExperienceThresholds["Medium-Slow"][24294] = 31
-	ExperienceThresholds["Slow"][37238] = 31
-	ExperienceThresholds["Fluctuating"][26811] = 31
-	ExperienceThresholds["Erratic"][44564] = 32
-	ExperienceThresholds["Fast"][26214] = 32
-	ExperienceThresholds["Medium-Fast"][32768] = 32
-	ExperienceThresholds["Medium-Slow"][27021] = 32
-	ExperienceThresholds["Slow"][40960] = 32
-	ExperienceThresholds["Fluctuating"][30146] = 32
-	ExperienceThresholds["Erratic"][48155] = 33
-	ExperienceThresholds["Fast"][28749] = 33
-	ExperienceThresholds["Medium-Fast"][35937] = 33
-	ExperienceThresholds["Medium-Slow"][29949] = 33
-	ExperienceThresholds["Slow"][44921] = 33
-	ExperienceThresholds["Fluctuating"][33780] = 33
-	ExperienceThresholds["Erratic"][51881] = 34
-	ExperienceThresholds["Fast"][31443] = 34
-	ExperienceThresholds["Medium-Fast"][39304] = 34
-	ExperienceThresholds["Medium-Slow"][33084] = 34
-	ExperienceThresholds["Slow"][49130] = 34
-	ExperienceThresholds["Fluctuating"][37731] = 34
-	ExperienceThresholds["Erratic"][55737] = 35
-	ExperienceThresholds["Fast"][34300] = 35
-	ExperienceThresholds["Medium-Fast"][42875] = 35
-	ExperienceThresholds["Medium-Slow"][36435] = 35
-	ExperienceThresholds["Slow"][53593] = 35
-	ExperienceThresholds["Fluctuating"][42017] = 35
-	ExperienceThresholds["Erratic"][59719] = 36
-	ExperienceThresholds["Fast"][37324] = 36
-	ExperienceThresholds["Medium-Fast"][46656] = 36
-	ExperienceThresholds["Medium-Slow"][40007] = 36
-	ExperienceThresholds["Slow"][58320] = 36
-	ExperienceThresholds["Fluctuating"][46656] = 36
-	ExperienceThresholds["Erratic"][63822] = 37
-	ExperienceThresholds["Fast"][40522] = 37
-	ExperienceThresholds["Medium-Fast"][50653] = 37
-	ExperienceThresholds["Medium-Slow"][43808] = 37
-	ExperienceThresholds["Slow"][63316] = 37
-	ExperienceThresholds["Fluctuating"][50653] = 37
-	ExperienceThresholds["Erratic"][68041] = 38
-	ExperienceThresholds["Fast"][43897] = 38
-	ExperienceThresholds["Medium-Fast"][54872] = 38
-	ExperienceThresholds["Medium-Slow"][47846] = 38
-	ExperienceThresholds["Slow"][68590] = 38
-	ExperienceThresholds["Fluctuating"][55969] = 38
-	ExperienceThresholds["Erratic"][72369] = 39
-	ExperienceThresholds["Fast"][47455] = 39
-	ExperienceThresholds["Medium-Fast"][59319] = 39
-	ExperienceThresholds["Medium-Slow"][52127] = 39
-	ExperienceThresholds["Slow"][74148] = 39
-	ExperienceThresholds["Fluctuating"][60505] = 39
-	ExperienceThresholds["Erratic"][76800] = 40
-	ExperienceThresholds["Fast"][51200] = 40
-	ExperienceThresholds["Medium-Fast"][64000] = 40
-	ExperienceThresholds["Medium-Slow"][56660] = 40
-	ExperienceThresholds["Slow"][80000] = 40
-	ExperienceThresholds["Fluctuating"][66560] = 40
-	ExperienceThresholds["Erratic"][81326] = 41
-	ExperienceThresholds["Fast"][55136] = 41
-	ExperienceThresholds["Medium-Fast"][68921] = 41
-	ExperienceThresholds["Medium-Slow"][61450] = 41
-	ExperienceThresholds["Slow"][86151] = 41
-	ExperienceThresholds["Fluctuating"][71677] = 41
-	ExperienceThresholds["Erratic"][85942] = 42
-	ExperienceThresholds["Fast"][59270] = 42
-	ExperienceThresholds["Medium-Fast"][74088] = 42
-	ExperienceThresholds["Medium-Slow"][66505] = 42
-	ExperienceThresholds["Slow"][92610] = 42
-	ExperienceThresholds["Fluctuating"][78533] = 42
-	ExperienceThresholds["Erratic"][90637] = 43
-	ExperienceThresholds["Fast"][63605] = 43
-	ExperienceThresholds["Medium-Fast"][79507] = 43
-	ExperienceThresholds["Medium-Slow"][71833] = 43
-	ExperienceThresholds["Slow"][99383] = 43
-	ExperienceThresholds["Fluctuating"][84277] = 43
-	ExperienceThresholds["Erratic"][95406] = 44
-	ExperienceThresholds["Fast"][68147] = 44
-	ExperienceThresholds["Medium-Fast"][85184] = 44
-	ExperienceThresholds["Medium-Slow"][77440] = 44
-	ExperienceThresholds["Slow"][106480] = 44
-	ExperienceThresholds["Fluctuating"][91998] = 44
-	ExperienceThresholds["Erratic"][100237] = 45
-	ExperienceThresholds["Fast"][72900] = 45
-	ExperienceThresholds["Medium-Fast"][91125] = 45
-	ExperienceThresholds["Medium-Slow"][83335] = 45
-	ExperienceThresholds["Slow"][113906] = 45
-	ExperienceThresholds["Fluctuating"][98415] = 45
-	ExperienceThresholds["Erratic"][105122] = 46
-	ExperienceThresholds["Fast"][77868] = 46
-	ExperienceThresholds["Medium-Fast"][97336] = 46
-	ExperienceThresholds["Medium-Slow"][89523] = 46
-	ExperienceThresholds["Slow"][121670] = 46
-	ExperienceThresholds["Fluctuating"][107069] = 46
-	ExperienceThresholds["Erratic"][110052] = 47
-	ExperienceThresholds["Fast"][83058] = 47
-	ExperienceThresholds["Medium-Fast"][103823] = 47
-	ExperienceThresholds["Medium-Slow"][96012] = 47
-	ExperienceThresholds["Slow"][129778] = 47
-	ExperienceThresholds["Fluctuating"][114205] = 47
-	ExperienceThresholds["Erratic"][115015] = 48
-	ExperienceThresholds["Fast"][88473] = 48
-	ExperienceThresholds["Medium-Fast"][110592] = 48
-	ExperienceThresholds["Medium-Slow"][102810] = 48
-	ExperienceThresholds["Slow"][138240] = 48
-	ExperienceThresholds["Fluctuating"][123863] = 48
-	ExperienceThresholds["Erratic"][120001] = 49
-	ExperienceThresholds["Fast"][94119] = 49
-	ExperienceThresholds["Medium-Fast"][117649] = 49
-	ExperienceThresholds["Medium-Slow"][109923] = 49
-	ExperienceThresholds["Slow"][147061] = 49
-	ExperienceThresholds["Fluctuating"][131766] = 49
-	ExperienceThresholds["Erratic"][125000] = 50
-	ExperienceThresholds["Fast"][100000] = 50
-	ExperienceThresholds["Medium-Fast"][125000] = 50
-	ExperienceThresholds["Medium-Slow"][117360] = 50
-	ExperienceThresholds["Slow"][156250] = 50
-	ExperienceThresholds["Fluctuating"][142500] = 50
-	ExperienceThresholds["Erratic"][131324] = 51
-	ExperienceThresholds["Fast"][106120] = 51
-	ExperienceThresholds["Medium-Fast"][132651] = 51
-	ExperienceThresholds["Medium-Slow"][125126] = 51
-	ExperienceThresholds["Slow"][165813] = 51
-	ExperienceThresholds["Fluctuating"][151222] = 51
-	ExperienceThresholds["Erratic"][137795] = 52
-	ExperienceThresholds["Fast"][112486] = 52
-	ExperienceThresholds["Medium-Fast"][140608] = 52
-	ExperienceThresholds["Medium-Slow"][133229] = 52
-	ExperienceThresholds["Slow"][175760] = 52
-	ExperienceThresholds["Fluctuating"][163105] = 52
-	ExperienceThresholds["Erratic"][144410] = 53
-	ExperienceThresholds["Fast"][119101] = 53
-	ExperienceThresholds["Medium-Fast"][148877] = 53
-	ExperienceThresholds["Medium-Slow"][141677] = 53
-	ExperienceThresholds["Slow"][186096] = 53
-	ExperienceThresholds["Fluctuating"][172697] = 53
-	ExperienceThresholds["Erratic"][151165] = 54
-	ExperienceThresholds["Fast"][125971] = 54
-	ExperienceThresholds["Medium-Fast"][157464] = 54
-	ExperienceThresholds["Medium-Slow"][150476] = 54
-	ExperienceThresholds["Slow"][196830] = 54
-	ExperienceThresholds["Fluctuating"][185807] = 54
-	ExperienceThresholds["Erratic"][158056] = 55
-	ExperienceThresholds["Fast"][133100] = 55
-	ExperienceThresholds["Medium-Fast"][166375] = 55
-	ExperienceThresholds["Medium-Slow"][159635] = 55
-	ExperienceThresholds["Slow"][207968] = 55
-	ExperienceThresholds["Fluctuating"][196322] = 55
-	ExperienceThresholds["Erratic"][165079] = 56
-	ExperienceThresholds["Fast"][140492] = 56
-	ExperienceThresholds["Medium-Fast"][175616] = 56
-	ExperienceThresholds["Medium-Slow"][169159] = 56
-	ExperienceThresholds["Slow"][219520] = 56
-	ExperienceThresholds["Fluctuating"][210739] = 56
-	ExperienceThresholds["Erratic"][172229] = 57
-	ExperienceThresholds["Fast"][148154] = 57
-	ExperienceThresholds["Medium-Fast"][185193] = 57
-	ExperienceThresholds["Medium-Slow"][179056] = 57
-	ExperienceThresholds["Slow"][231491] = 57
-	ExperienceThresholds["Fluctuating"][222231] = 57
-	ExperienceThresholds["Erratic"][179503] = 58
-	ExperienceThresholds["Fast"][156089] = 58
-	ExperienceThresholds["Medium-Fast"][195112] = 58
-	ExperienceThresholds["Medium-Slow"][189334] = 58
-	ExperienceThresholds["Slow"][243890] = 58
-	ExperienceThresholds["Fluctuating"][238036] = 58
-	ExperienceThresholds["Erratic"][186894] = 59
-	ExperienceThresholds["Fast"][164303] = 59
-	ExperienceThresholds["Medium-Fast"][205379] = 59
-	ExperienceThresholds["Medium-Slow"][199999] = 59
-	ExperienceThresholds["Slow"][256723] = 59
-	ExperienceThresholds["Fluctuating"][250562] = 59
-	ExperienceThresholds["Erratic"][194400] = 60
-	ExperienceThresholds["Fast"][172800] = 60
-	ExperienceThresholds["Medium-Fast"][216000] = 60
-	ExperienceThresholds["Medium-Slow"][211060] = 60
-	ExperienceThresholds["Slow"][270000] = 60
-	ExperienceThresholds["Fluctuating"][267840] = 60
-	ExperienceThresholds["Erratic"][202013] = 61
-	ExperienceThresholds["Fast"][181584] = 61
-	ExperienceThresholds["Medium-Fast"][226981] = 61
-	ExperienceThresholds["Medium-Slow"][222522] = 61
-	ExperienceThresholds["Slow"][283726] = 61
-	ExperienceThresholds["Fluctuating"][281456] = 61
-	ExperienceThresholds["Erratic"][209728] = 62
-	ExperienceThresholds["Fast"][190662] = 62
-	ExperienceThresholds["Medium-Fast"][238328] = 62
-	ExperienceThresholds["Medium-Slow"][234393] = 62
-	ExperienceThresholds["Slow"][297910] = 62
-	ExperienceThresholds["Fluctuating"][300293] = 62
-	ExperienceThresholds["Erratic"][217540] = 63
-	ExperienceThresholds["Fast"][200037] = 63
-	ExperienceThresholds["Medium-Fast"][250047] = 63
-	ExperienceThresholds["Medium-Slow"][246681] = 63
-	ExperienceThresholds["Slow"][312558] = 63
-	ExperienceThresholds["Fluctuating"][315059] = 63
-	ExperienceThresholds["Erratic"][225443] = 64
-	ExperienceThresholds["Fast"][209715] = 64
-	ExperienceThresholds["Medium-Fast"][262144] = 64
-	ExperienceThresholds["Medium-Slow"][259392] = 64
-	ExperienceThresholds["Slow"][327680] = 64
-	ExperienceThresholds["Fluctuating"][335544] = 64
-	ExperienceThresholds["Erratic"][233431] = 65
-	ExperienceThresholds["Fast"][219700] = 65
-	ExperienceThresholds["Medium-Fast"][274625] = 65
-	ExperienceThresholds["Medium-Slow"][272535] = 65
-	ExperienceThresholds["Slow"][343281] = 65
-	ExperienceThresholds["Fluctuating"][351520] = 65
-	ExperienceThresholds["Erratic"][241496] = 66
-	ExperienceThresholds["Fast"][229996] = 66
-	ExperienceThresholds["Medium-Fast"][287496] = 66
-	ExperienceThresholds["Medium-Slow"][286115] = 66
-	ExperienceThresholds["Slow"][359370] = 66
-	ExperienceThresholds["Fluctuating"][373744] = 66
-	ExperienceThresholds["Erratic"][249633] = 67
-	ExperienceThresholds["Fast"][240610] = 67
-	ExperienceThresholds["Medium-Fast"][300763] = 67
-	ExperienceThresholds["Medium-Slow"][300140] = 67
-	ExperienceThresholds["Slow"][375953] = 67
-	ExperienceThresholds["Fluctuating"][390991] = 67
-	ExperienceThresholds["Erratic"][257834] = 68
-	ExperienceThresholds["Fast"][251545] = 68
-	ExperienceThresholds["Medium-Fast"][314432] = 68
-	ExperienceThresholds["Medium-Slow"][314618] = 68
-	ExperienceThresholds["Slow"][393040] = 68
-	ExperienceThresholds["Fluctuating"][415050] = 68
-	ExperienceThresholds["Erratic"][267406] = 69
-	ExperienceThresholds["Fast"][262807] = 69
-	ExperienceThresholds["Medium-Fast"][328509] = 69
-	ExperienceThresholds["Medium-Slow"][329555] = 69
-	ExperienceThresholds["Slow"][410636] = 69
-	ExperienceThresholds["Fluctuating"][433631] = 69
-	ExperienceThresholds["Erratic"][276458] = 70
-	ExperienceThresholds["Fast"][274400] = 70
-	ExperienceThresholds["Medium-Fast"][343000] = 70
-	ExperienceThresholds["Medium-Slow"][344960] = 70
-	ExperienceThresholds["Slow"][428750] = 70
-	ExperienceThresholds["Fluctuating"][459620] = 70
-	ExperienceThresholds["Erratic"][286328] = 71
-	ExperienceThresholds["Fast"][286328] = 71
-	ExperienceThresholds["Medium-Fast"][357911] = 71
-	ExperienceThresholds["Medium-Slow"][360838] = 71
-	ExperienceThresholds["Slow"][447388] = 71
-	ExperienceThresholds["Fluctuating"][479600] = 71
-	ExperienceThresholds["Erratic"][296358] = 72
-	ExperienceThresholds["Fast"][298598] = 72
-	ExperienceThresholds["Medium-Fast"][373248] = 72
-	ExperienceThresholds["Medium-Slow"][377197] = 72
-	ExperienceThresholds["Slow"][466560] = 72
-	ExperienceThresholds["Fluctuating"][507617] = 72
-	ExperienceThresholds["Erratic"][305767] = 73
-	ExperienceThresholds["Fast"][311213] = 73
-	ExperienceThresholds["Medium-Fast"][389017] = 73
-	ExperienceThresholds["Medium-Slow"][394045] = 73
-	ExperienceThresholds["Slow"][486271] = 73
-	ExperienceThresholds["Fluctuating"][529063] = 73
-	ExperienceThresholds["Erratic"][316074] = 74
-	ExperienceThresholds["Fast"][324179] = 74
-	ExperienceThresholds["Medium-Fast"][405224] = 74
-	ExperienceThresholds["Medium-Slow"][411388] = 74
-	ExperienceThresholds["Slow"][506530] = 74
-	ExperienceThresholds["Fluctuating"][559209] = 74
-	ExperienceThresholds["Erratic"][326531] = 75
-	ExperienceThresholds["Fast"][337500] = 75
-	ExperienceThresholds["Medium-Fast"][421875] = 75
-	ExperienceThresholds["Medium-Slow"][429235] = 75
-	ExperienceThresholds["Slow"][527343] = 75
-	ExperienceThresholds["Fluctuating"][582187] = 75
-	ExperienceThresholds["Erratic"][336255] = 76
-	ExperienceThresholds["Fast"][351180] = 76
-	ExperienceThresholds["Medium-Fast"][438976] = 76
-	ExperienceThresholds["Medium-Slow"][447591] = 76
-	ExperienceThresholds["Slow"][548720] = 76
-	ExperienceThresholds["Fluctuating"][614566] = 76
-	ExperienceThresholds["Erratic"][346965] = 77
-	ExperienceThresholds["Fast"][365226] = 77
-	ExperienceThresholds["Medium-Fast"][456533] = 77
-	ExperienceThresholds["Medium-Slow"][466464] = 77
-	ExperienceThresholds["Slow"][570666] = 77
-	ExperienceThresholds["Fluctuating"][639146] = 77
-	ExperienceThresholds["Erratic"][357812] = 78
-	ExperienceThresholds["Fast"][379641] = 78
-	ExperienceThresholds["Medium-Fast"][474552] = 78
-	ExperienceThresholds["Medium-Slow"][485862] = 78
-	ExperienceThresholds["Slow"][593190] = 78
-	ExperienceThresholds["Fluctuating"][673863] = 78
-	ExperienceThresholds["Erratic"][367807] = 79
-	ExperienceThresholds["Fast"][394431] = 79
-	ExperienceThresholds["Medium-Fast"][493039] = 79
-	ExperienceThresholds["Medium-Slow"][505791] = 79
-	ExperienceThresholds["Slow"][616298] = 79
-	ExperienceThresholds["Fluctuating"][700115] = 79
-	ExperienceThresholds["Erratic"][378880] = 80
-	ExperienceThresholds["Fast"][409600] = 80
-	ExperienceThresholds["Medium-Fast"][512000] = 80
-	ExperienceThresholds["Medium-Slow"][526260] = 80
-	ExperienceThresholds["Slow"][640000] = 80
-	ExperienceThresholds["Fluctuating"][737280] = 80
-	ExperienceThresholds["Erratic"][390077] = 81
-	ExperienceThresholds["Fast"][425152] = 81
-	ExperienceThresholds["Medium-Fast"][531441] = 81
-	ExperienceThresholds["Medium-Slow"][547274] = 81
-	ExperienceThresholds["Slow"][664301] = 81
-	ExperienceThresholds["Fluctuating"][765275] = 81
-	ExperienceThresholds["Erratic"][400293] = 82
-	ExperienceThresholds["Fast"][441094] = 82
-	ExperienceThresholds["Medium-Fast"][551368] = 82
-	ExperienceThresholds["Medium-Slow"][568841] = 82
-	ExperienceThresholds["Slow"][689210] = 82
-	ExperienceThresholds["Fluctuating"][804997] = 82
-	ExperienceThresholds["Erratic"][411686] = 83
-	ExperienceThresholds["Fast"][457429] = 83
-	ExperienceThresholds["Medium-Fast"][571787] = 83
-	ExperienceThresholds["Medium-Slow"][590969] = 83
-	ExperienceThresholds["Slow"][714733] = 83
-	ExperienceThresholds["Fluctuating"][834809] = 83
-	ExperienceThresholds["Erratic"][423190] = 84
-	ExperienceThresholds["Fast"][474163] = 84
-	ExperienceThresholds["Medium-Fast"][592704] = 84
-	ExperienceThresholds["Medium-Slow"][613664] = 84
-	ExperienceThresholds["Slow"][740880] = 84
-	ExperienceThresholds["Fluctuating"][877201] = 84
-	ExperienceThresholds["Erratic"][433572] = 85
-	ExperienceThresholds["Fast"][491300] = 85
-	ExperienceThresholds["Medium-Fast"][614125] = 85
-	ExperienceThresholds["Medium-Slow"][636935] = 85
-	ExperienceThresholds["Slow"][767656] = 85
-	ExperienceThresholds["Fluctuating"][908905] = 85
-	ExperienceThresholds["Erratic"][445239] = 86
-	ExperienceThresholds["Fast"][508844] = 86
-	ExperienceThresholds["Medium-Fast"][636056] = 86
-	ExperienceThresholds["Medium-Slow"][660787] = 86
-	ExperienceThresholds["Slow"][795070] = 86
-	ExperienceThresholds["Fluctuating"][954084] = 86
-	ExperienceThresholds["Erratic"][457001] = 87
-	ExperienceThresholds["Fast"][526802] = 87
-	ExperienceThresholds["Medium-Fast"][658503] = 87
-	ExperienceThresholds["Medium-Slow"][685228] = 87
-	ExperienceThresholds["Slow"][823128] = 87
-	ExperienceThresholds["Fluctuating"][987754] = 87
-	ExperienceThresholds["Erratic"][467489] = 88
-	ExperienceThresholds["Fast"][545177] = 88
-	ExperienceThresholds["Medium-Fast"][681472] = 88
-	ExperienceThresholds["Medium-Slow"][710266] = 88
-	ExperienceThresholds["Slow"][851840] = 88
-	ExperienceThresholds["Fluctuating"][1035837] = 88
-	ExperienceThresholds["Erratic"][479378] = 89
-	ExperienceThresholds["Fast"][563975] = 89
-	ExperienceThresholds["Medium-Fast"][704969] = 89
-	ExperienceThresholds["Medium-Slow"][735907] = 89
-	ExperienceThresholds["Slow"][881211] = 89
-	ExperienceThresholds["Fluctuating"][1071552] = 89
-	ExperienceThresholds["Erratic"][491346] = 90
-	ExperienceThresholds["Fast"][583200] = 90
-	ExperienceThresholds["Medium-Fast"][729000] = 90
-	ExperienceThresholds["Medium-Slow"][762160] = 90
-	ExperienceThresholds["Slow"][911250] = 90
-	ExperienceThresholds["Fluctuating"][1122660] = 90
-	ExperienceThresholds["Erratic"][501878] = 91
-	ExperienceThresholds["Fast"][602856] = 91
-	ExperienceThresholds["Medium-Fast"][753571] = 91
-	ExperienceThresholds["Medium-Slow"][789030] = 91
-	ExperienceThresholds["Slow"][941963] = 91
-	ExperienceThresholds["Fluctuating"][1160499] = 91
-	ExperienceThresholds["Erratic"][513934] = 92
-	ExperienceThresholds["Fast"][622950] = 92
-	ExperienceThresholds["Medium-Fast"][778688] = 92
-	ExperienceThresholds["Medium-Slow"][816525] = 92
-	ExperienceThresholds["Slow"][973360] = 92
-	ExperienceThresholds["Fluctuating"][1214753] = 92
-	ExperienceThresholds["Erratic"][526049] = 93
-	ExperienceThresholds["Fast"][643485] = 93
-	ExperienceThresholds["Medium-Fast"][804357] = 93
-	ExperienceThresholds["Medium-Slow"][844653] = 93
-	ExperienceThresholds["Slow"][1005446] = 93
-	ExperienceThresholds["Fluctuating"][1254796] = 93
-	ExperienceThresholds["Erratic"][536557] = 94
-	ExperienceThresholds["Fast"][664467] = 94
-	ExperienceThresholds["Medium-Fast"][830584] = 94
-	ExperienceThresholds["Medium-Slow"][873420] = 94
-	ExperienceThresholds["Slow"][1038230] = 94
-	ExperienceThresholds["Fluctuating"][1312322] = 94
-	ExperienceThresholds["Erratic"][548720] = 95
-	ExperienceThresholds["Fast"][685900] = 95
-	ExperienceThresholds["Medium-Fast"][857375] = 95
-	ExperienceThresholds["Medium-Slow"][902835] = 95
-	ExperienceThresholds["Slow"][1071718] = 95
-	ExperienceThresholds["Fluctuating"][1354652] = 95
-	ExperienceThresholds["Erratic"][560922] = 96
-	ExperienceThresholds["Fast"][707788] = 96
-	ExperienceThresholds["Medium-Fast"][884736] = 96
-	ExperienceThresholds["Medium-Slow"][932903] = 96
-	ExperienceThresholds["Slow"][1105920] = 96
-	ExperienceThresholds["Fluctuating"][1415577] = 96
-	ExperienceThresholds["Erratic"][571333] = 97
-	ExperienceThresholds["Fast"][730138] = 97
-	ExperienceThresholds["Medium-Fast"][912673] = 97
-	ExperienceThresholds["Medium-Slow"][963632] = 97
-	ExperienceThresholds["Slow"][1140841] = 97
-	ExperienceThresholds["Fluctuating"][1460276] = 97
-	ExperienceThresholds["Erratic"][583539] = 98
-	ExperienceThresholds["Fast"][752953] = 98
-	ExperienceThresholds["Medium-Fast"][941192] = 98
-	ExperienceThresholds["Medium-Slow"][995030] = 98
-	ExperienceThresholds["Slow"][1176490] = 98
-	ExperienceThresholds["Fluctuating"][1524731] = 98
-	ExperienceThresholds["Erratic"][591882] = 99
-	ExperienceThresholds["Fast"][776239] = 99
-	ExperienceThresholds["Medium-Fast"][970299] = 99
-	ExperienceThresholds["Medium-Slow"][1027103] = 99
-	ExperienceThresholds["Slow"][1212873] = 99
-	ExperienceThresholds["Fluctuating"][1571884] = 99
-	ExperienceThresholds["Erratic"][600000] = 100
-	ExperienceThresholds["Fast"][800000] = 100
-	ExperienceThresholds["Medium-Fast"][1000000] = 100
-	ExperienceThresholds["Medium-Slow"][1059860] = 100
-	ExperienceThresholds["Slow"][1250000] = 100
-	ExperienceThresholds["Fluctuating"][1640000] = 100
-	return ExperienceThresholds
 }

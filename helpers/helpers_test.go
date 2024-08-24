@@ -31,8 +31,7 @@ func TestBaseStats(t *testing.T) {
 func TestLevelFromExperience(t *testing.T) {
 	exp := 20822
 
-	tre := GetExperience()
-	level := GetLevelFromExperience(tre["Medium-Fast"], exp)
+	level := GetLevelFromExperience(ExperienceThresholds["Medium-Fast"], exp)
 
 	if level != 27 {
 		t.Error("It should be lvl 27 but it is:", level)
