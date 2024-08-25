@@ -27,3 +27,15 @@ type Section struct {
 	Contents []byte
 	CheckSum uint16
 }
+
+func CalculateChecksum(data []byte) uint16 {
+	var checksum uint32 = 0
+	for i := 0; i < len(data); i += 4 {
+		if i+4 <= len(data) {
+			word := binary.LittleEndian.Uint32(data[i : i+4])
+			checksum += word
+		}
+	}
+	checksum = (checksum & 0xFFFF) + (checksum >> 16)
+	return uint16(checksum & 0xFFFF)
+}
