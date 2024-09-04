@@ -1,4 +1,5 @@
 ![tests_status](https://github.com/PailosNicolas/GoPkmSaveReader/actions/workflows/tests.yml/badge.svg)
+![Coverage](./coverage-badge.svg)
 # GoPkmSaveReader
 This is a Pokemon save reader, it's far from complete and currently only supports Gen III. The goal is to be able to get
 all the save data, export pokemons for backup purposes and import them into saves. Depending on progress thinking
