@@ -63,7 +63,7 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) Save {
 
 	copy(s.fullRaw[checksumIndex:checksumIndex+2], newCheckSumBytes)
 
-	sAux, _ := ReadDataFromMemory(s.fullRaw)
+	sAux, _ := ReadDataFromMemory(s.fullRaw) //TODO: Add error handling and probably return unmodified save
 
 	return sAux
 
