@@ -17,6 +17,8 @@ type Save struct {
 	game       string
 	gameCode   int
 	TimePlayed TimePlayed
+	primaryA   bool
+	fullRaw    [131072]byte
 }
 
 func (s *Save) Game() string {
@@ -166,11 +168,14 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 		return Save{}, ErrShortFile
 	}
 
+	save.fullRaw = [131072]byte(buffer)
+
 	// First 8kb contains primary and backup save
 	saveA := buffer[:57344]
 	saveB := buffer[57344 : 57344*2]
 
 	if sectionsA := helpers.CreateSectionsMap(saveA); len(sectionsA) == 14 {
+		save.primaryA = true
 		copy(primarySave[:], saveA)
 		sections = sectionsA
 	}
@@ -179,10 +184,12 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 			if sections[0].Index < sectionsB[0].Index {
 				copy(primarySave[:], saveB)
 				sections = sectionsB
+				save.primaryA = false
 			}
 		} else {
 			copy(primarySave[:], saveB)
 			sections = sectionsB
+			save.primaryA = false
 		}
 	}
 
