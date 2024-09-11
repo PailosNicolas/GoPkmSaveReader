@@ -12,20 +12,22 @@ func CreateSectionsMap(savedata []byte) map[int]Section {
 		index := binary.LittleEndian.Uint32(footer[4:8])
 		checkSum := binary.LittleEndian.Uint16(footer[2:4])
 		sections[id] = Section{
-			ID:       id,
-			Index:    index,
-			Contents: section[0:3968],
-			CheckSum: checkSum,
+			ID:           id,
+			Index:        index,
+			Contents:     section[0:3968],
+			CheckSum:     checkSum,
+			SectionIndex: ix,
 		}
 	}
 	return sections
 }
 
 type Section struct {
-	ID       int
-	Index    uint32
-	Contents []byte
-	CheckSum uint16
+	ID           int
+	Index        uint32
+	Contents     []byte
+	CheckSum     uint16
+	SectionIndex int
 }
 
 func CalculateChecksum(data []byte) uint16 {
