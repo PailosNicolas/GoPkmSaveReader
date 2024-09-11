@@ -64,7 +64,7 @@ Also you are able to export a pokemon to a file.
 ## What is coming ?
 Currently my focus is in getting all the pokemon data, next step would be getting and completing data of the boxed pokemons.
 - Complete pokemon data
-- Boxed pokemons
+- Boxed pokemons (Done coming in next release)
 - Complete Trainer information
 - Improve testing (it is really bare bones right now)
 - Import pokemon to a save file
