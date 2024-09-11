@@ -18,7 +18,8 @@ type Save struct {
 	gameCode   int
 	TimePlayed TimePlayed
 	primaryA   bool
-	fullRaw    [131072]byte
+	fullRaw    []byte
+	sections   map[int]helpers.Section
 }
 
 func (s *Save) Game() string {
@@ -27,6 +28,45 @@ func (s *Save) Game() string {
 
 func (s *Save) GameCode() int {
 	return s.gameCode
+}
+
+/*
+Replaces a team member with the given pokemon, index are 1-6, and returns a new Save object with the change.
+*/
+func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) Save {
+	var start int
+	var saveStart int
+
+	//Getting team member section index
+	if s.gameCode != 1 {
+		start = 568 + 100*(teamIndex-1)
+	} else {
+		start = 56 + 100*(teamIndex-1)
+	}
+
+	//Getting raw save index
+	if s.primaryA {
+		saveStart = 0
+	} else {
+		saveStart = 57344
+	}
+
+	finalIndex := saveStart + s.sections[1].SectionIndex + start
+	checksumIndex := saveStart + s.sections[1].SectionIndex + 4086
+
+	copy(s.fullRaw[finalIndex:finalIndex+100], pkm.Raw())
+
+	newCheckSum := helpers.CalculateChecksum(s.fullRaw[s.sections[1].SectionIndex : s.sections[1].SectionIndex+3968])
+
+	newCheckSumBytes := make([]byte, 2)
+	binary.LittleEndian.PutUint16(newCheckSumBytes, newCheckSum)
+
+	copy(s.fullRaw[checksumIndex:checksumIndex+2], newCheckSumBytes)
+
+	sAux, _ := ReadDataFromMemory(s.fullRaw)
+
+	return sAux
+
 }
 
 type Trainer struct {
@@ -168,7 +208,8 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 		return Save{}, ErrShortFile
 	}
 
-	save.fullRaw = [131072]byte(buffer)
+	save.fullRaw = make([]byte, len(buffer))
+	copy(save.fullRaw, buffer)
 
 	// First 8kb contains primary and backup save
 	saveA := buffer[:57344]
@@ -194,6 +235,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	}
 
 	save.saveRaw = primarySave
+	save.sections = sections
 
 	// Getting trainer's name
 	if len(sections[0].Contents) < 7 {
