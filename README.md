@@ -37,12 +37,14 @@ func main(){
 Right now you are able to access the following data of a save:
 #### General save data:
 - Game code
+- Time played (Done coming in next release)
 #### Trainer info:
 - Public/secret ID
 - Name
 - Gender
 - Team size
 - Team
+- Money (Done coming in next release)
 #### Pokemon data:
 - Nickname
 - Species
@@ -58,6 +60,7 @@ Right now you are able to access the following data of a save:
 - Met level
 - Game of origin
 - Captured ball
+- Nature (Done coming in next release)
 
 Also you are able to export a pokemon to a file.
 
