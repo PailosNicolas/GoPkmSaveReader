@@ -142,6 +142,10 @@ func (p *Pokemon) ExperienceType() string {
 	return p.experienceType
 }
 
+func (p *Pokemon) Raw() []byte {
+	return p.raw
+}
+
 /*
 Returns displayable name for the pokemon, it will be it's nickname if it has one else it will be it's species
 */
