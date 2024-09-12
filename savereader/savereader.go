@@ -36,6 +36,7 @@ Replaces a team member with the given pokemon, index are 1-6, and returns a new 
 func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) Save { // TODO: Add pokemon lenght validation
 	var start int
 	var saveStart int
+	var startingSave Save = *s
 
 	//Getting team member section index
 	if s.gameCode != 1 {
@@ -63,7 +64,11 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) Save { /
 
 	copy(s.fullRaw[checksumIndex:checksumIndex+2], newCheckSumBytes)
 
-	sAux, _ := ReadDataFromMemory(s.fullRaw) //TODO: Add error handling and probably return unmodified save
+	sAux, err := ReadDataFromMemory(s.fullRaw)
+
+	if err != nil {
+		return startingSave
+	}
 
 	return sAux
 
