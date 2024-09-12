@@ -16,7 +16,7 @@ var ErrShortFile = errors.New("file to short to be a save")
 var ErrReadingFile = errors.New("unable to read file")
 var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
 var ErrIdNotAllowed = errors.New("id must be 1~15")
-var ErrBoxedPokemonInTeam = errors.New("a boxed pokemon can not be in the team")
+var ErrIncorrectLenght = errors.New("the raw of the pokemon is not the right lenght")
 
 type Save struct {
 	saveRaw    [57344]byte
@@ -47,7 +47,7 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, e
 	var startingSave Save = *s
 
 	if len(pkm.Raw()) < 100 { // TODO: Maybe look for a reconstruction of the boxed pokemon
-		return startingSave, ErrBoxedPokemonInTeam
+		return startingSave, ErrIncorrectLenght
 	}
 
 	//Getting team member section index
@@ -121,7 +121,7 @@ func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error
 	} else if len(raw) == 80 {
 		copy(s.fullRaw[start:start+80], raw)
 	} else {
-		return *s, nil // TODO: Add proper error
+		return *s, ErrIncorrectLenght // TODO: Add proper error
 	}
 
 	newCheckSum := helpers.CalculateChecksum(s.fullRaw[s.sections[startingSection].SectionIndex : s.sections[startingSection].SectionIndex+3968])
