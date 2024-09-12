@@ -11,6 +11,12 @@ import (
 	"github.com/PailosNicolas/GoPkmSaveReader/pokemon"
 )
 
+// Errors
+var ErrShortFile = errors.New("file to short to be a save")
+var ErrReadingFile = errors.New("unable to read file")
+var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
+var ErrIdNotAllowed = errors.New("id must be 1~15")
+
 type Save struct {
 	saveRaw    [57344]byte
 	Trainer    Trainer
@@ -165,12 +171,6 @@ func (pc *PC) Box(id int) (Box, error) {
 		return pc.boxes[id-1], nil
 	}
 }
-
-// Errors
-var ErrShortFile = errors.New("file to short to be a save")
-var ErrReadingFile = errors.New("unable to read file")
-var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
-var ErrIdNotAllowed = errors.New("id must be 1~15")
 
 /*
 Reads the save file in the path and returns a Save file with Trainer info.
