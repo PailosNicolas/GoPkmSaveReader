@@ -16,6 +16,7 @@ var ErrShortFile = errors.New("file to short to be a save")
 var ErrReadingFile = errors.New("unable to read file")
 var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
 var ErrIdNotAllowed = errors.New("id must be 1~15")
+var ErrBoxedPokemonInTeam = errors.New("a boxed pokemon can not be in the team")
 
 type Save struct {
 	saveRaw    [57344]byte
@@ -43,6 +44,10 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, e
 	var start int
 	var saveStart int
 	var startingSave Save = *s
+
+	if len(pkm.Raw()) < 100 {
+		return startingSave, ErrBoxedPokemonInTeam
+	}
 
 	//Getting team member section index
 	if s.gameCode != 1 {
