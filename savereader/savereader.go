@@ -33,7 +33,7 @@ func (s *Save) GameCode() int {
 /*
 Replaces a team member with the given pokemon, index are 1-6, and returns a new Save object with the change.
 */
-func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) Save { // TODO: Add pokemon lenght validation
+func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, error) { // TODO: Add pokemon lenght validation
 	var start int
 	var saveStart int
 	var startingSave Save = *s
@@ -67,10 +67,10 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) Save { /
 	sAux, err := ReadDataFromMemory(s.fullRaw)
 
 	if err != nil {
-		return startingSave
+		return startingSave, err
 	}
 
-	return sAux
+	return sAux, nil
 
 }
 
