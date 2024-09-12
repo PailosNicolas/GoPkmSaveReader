@@ -46,6 +46,8 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("I should error because of boxed pokemon")
 	}
 
+	//TODO: Add test for pc replacement
+
 	// Error Short file
 	pathShort := "../testfiles/Lola.pkm"
 
