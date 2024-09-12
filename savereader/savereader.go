@@ -167,10 +167,10 @@ type PC struct {
 	boxes [14]Box
 }
 
+/*
+Returns the box select by id (1~15)
+*/
 func (pc *PC) Box(id int) (Box, error) {
-	/*
-		Returns the box select by id (1~15)
-	*/
 	if id < 1 || id > 15 {
 		return Box{}, ErrIdNotAllowed
 	} else {
