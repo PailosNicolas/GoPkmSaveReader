@@ -86,6 +86,10 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, e
 
 }
 
+/*
+Replaces a pokemon in PC with the given pokemon.
+Index are 1-30, and returns a new Save object with the change, in case of error returns unmodified save.
+*/
 func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error) {
 
 	return *s, nil
