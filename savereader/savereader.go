@@ -104,6 +104,8 @@ func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error
 		saveStart = 57344
 	}
 
+	//This math could be cleaner but it is easier to see this way.
+
 	sectionPosition := ((80 * (pcIndex - 1)) + 4) / 3968
 
 	startingSection += sectionPosition
