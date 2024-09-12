@@ -91,8 +91,53 @@ Replaces a pokemon in PC with the given pokemon.
 Index are 1-30, and returns a new Save object with the change, in case of error returns unmodified save.
 */
 func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error) {
+	var start int
+	var saveStart int
+	var startingSave Save = *s
 
-	return *s, nil
+	startingSection := 5
+
+	// Getting raw save index
+	if s.primaryA {
+		saveStart = 0
+	} else {
+		saveStart = 57344
+	}
+
+	sectionPosition := ((80 * (pcIndex - 1)) + 4) / 3968
+
+	startingSection += sectionPosition
+
+	positionAdjustment := ((80 * (pcIndex - 1)) + 4) - (3968 * sectionPosition)
+
+	start = s.sections[startingSection].SectionIndex + positionAdjustment
+
+	checksumIndex := saveStart + s.sections[startingSection].SectionIndex + 4086
+
+	raw := pkm.Raw()
+
+	if len(raw) == 100 {
+		copy(s.fullRaw[start:start+80], raw[:80])
+	} else if len(raw) == 80 {
+		copy(s.fullRaw[start:start+80], raw)
+	} else {
+		return *s, nil // TODO: Add proper error
+	}
+
+	newCheckSum := helpers.CalculateChecksum(s.fullRaw[s.sections[startingSection].SectionIndex : s.sections[startingSection].SectionIndex+3968])
+
+	newCheckSumBytes := make([]byte, 2)
+	binary.LittleEndian.PutUint16(newCheckSumBytes, newCheckSum)
+
+	copy(s.fullRaw[checksumIndex:checksumIndex+2], newCheckSumBytes)
+
+	sAux, err := ReadDataFromMemory(s.fullRaw)
+
+	if err != nil {
+		return startingSave, err
+	}
+
+	return sAux, nil
 }
 
 type Trainer struct {
