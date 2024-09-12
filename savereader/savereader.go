@@ -121,7 +121,7 @@ func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error
 	} else if len(raw) == 80 {
 		copy(s.fullRaw[start:start+80], raw)
 	} else {
-		return *s, ErrIncorrectLenght // TODO: Add proper error
+		return *s, ErrIncorrectLenght
 	}
 
 	newCheckSum := helpers.CalculateChecksum(s.fullRaw[s.sections[startingSection].SectionIndex : s.sections[startingSection].SectionIndex+3968])
