@@ -42,7 +42,7 @@ func TestReadDataFromSave(t *testing.T) {
 	b, _ := save.Trainer.pc.Box(1)
 	save, err = save.ReplacePokemonInTeam(b.BoxedPokemon()[0], 5)
 
-	if err != ErrBoxedPokemonInTeam {
+	if err != ErrIncorrectLenght {
 		t.Error("I should error because of boxed pokemon")
 	}
 
