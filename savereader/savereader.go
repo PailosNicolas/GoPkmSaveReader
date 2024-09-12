@@ -86,6 +86,11 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, e
 
 }
 
+func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error) {
+
+	return *s, nil
+}
+
 type Trainer struct {
 	name     string
 	gender   string
