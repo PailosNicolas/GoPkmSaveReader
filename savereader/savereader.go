@@ -43,7 +43,7 @@ func (s *Save) GameCode() int {
 Replaces a team member with the given pokemon (It can not be a boxed one, validate raw lenght of 100).
 Index are 1-6, and returns a new Save object with the change, in case of error returns unmodified save.
 */
-func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, error) {
+func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, error) { // TODO: Check if it wouldn't be better to modify the pointer and only return error
 	var start int
 	var saveStart int
 	var startingSave Save = *s
