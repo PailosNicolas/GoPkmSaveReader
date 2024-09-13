@@ -38,6 +38,13 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("Error replacing pokemon in team")
 	}
 
+	// Replace pokemon in team wrong index
+	save, err = save.ReplacePokemonInTeam(save.Trainer.Team()[0], 20)
+
+	if err != ErrIncorrectIndex {
+		t.Error("I should error because of wrong index")
+	}
+
 	// Replace pokemon in team with boxed
 	b, _ := save.Trainer.pc.Box(1)
 	save, err = save.ReplacePokemonInTeam(b.BoxedPokemon()[0], 5)
