@@ -87,6 +87,13 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("Error replacing pokemon in box")
 	}
 
+	// Replace pokemon in box with boxed pokemon
+	save, err = save.ReplacePokemonInPC(pkmList[0], 8943)
+
+	if err != ErrIncorrectIndex {
+		t.Error("I should error because of wrong index")
+	}
+
 	// Error Short file
 	pathShort := "../testfiles/Lola.pkm"
 
