@@ -101,7 +101,7 @@ func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error
 	var startingSave Save = *s
 
 	if pcIndex > 420 || pcIndex < 1 {
-		return startingSave, ErrIncorrectLenght
+		return startingSave, ErrIncorrectIndex
 	}
 
 	startingSection := 5
