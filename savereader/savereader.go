@@ -19,6 +19,7 @@ var ErrIdNotAllowed = errors.New("id must be 1~15")
 var ErrIncorrectLenght = errors.New("the raw of the pokemon is not the right lenght")
 var ErrIncorrectIndex = errors.New("the index is not valid")
 
+// TODO: Export save !
 type Save struct {
 	saveRaw    [57344]byte
 	Trainer    Trainer
