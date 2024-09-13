@@ -21,7 +21,7 @@ var ErrIncorrectIndex = errors.New("the index is not valid")
 
 // TODO: Export save !
 type Save struct {
-	saveRaw    [57344]byte
+	saveRaw    [57344]byte // So far unused, maybe delete ?
 	Trainer    Trainer
 	game       string
 	gameCode   int
