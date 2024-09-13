@@ -115,6 +115,7 @@ func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error
 	}
 
 	//This math could be cleaner but it is easier to see this way.
+	//TODO: Better test the math below, the sections may no be divided equialy for example a pokemon starting at the end of 5 and goes on to 6
 
 	sectionPosition := ((80 * (pcIndex - 1)) + 4) / 3968
 
