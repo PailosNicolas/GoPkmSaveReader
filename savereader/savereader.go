@@ -17,6 +17,7 @@ var ErrReadingFile = errors.New("unable to read file")
 var ErrReadingPokemonFromBox = errors.New("unable to read pokemon from box")
 var ErrIdNotAllowed = errors.New("id must be 1~15")
 var ErrIncorrectLenght = errors.New("the raw of the pokemon is not the right lenght")
+var ErrIncorrectIndex = errors.New("the index is not valid")
 
 type Save struct {
 	saveRaw    [57344]byte
