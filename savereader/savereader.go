@@ -224,6 +224,9 @@ type Box struct {
 	pokemonList [30]pokemon.Pokemon
 }
 
+/*
+Return a [30]pokemon.Pokemon containing the pokemons in this box.
+*/
 func (b *Box) BoxedPokemon() [30]pokemon.Pokemon {
 	return b.pokemonList
 }
