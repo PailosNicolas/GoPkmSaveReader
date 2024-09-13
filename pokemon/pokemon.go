@@ -1,6 +1,7 @@
 package pokemon
 
 import (
+	"bytes"
 	"encoding/binary"
 	"errors"
 	"math"
@@ -158,11 +159,10 @@ func (p *Pokemon) Display() string {
 }
 
 /*
-Compares two Pokemons
+Compares two Pokemons returns true if they are the same
 */
 func (p *Pokemon) Compare(pokemon Pokemon) bool {
-	// TODO: ADD FUNCTIONALITY !!
-	return true
+	return bytes.Equal(p.raw[:80], pokemon.raw[:80])
 }
 
 /*
