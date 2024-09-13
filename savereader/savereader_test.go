@@ -34,7 +34,7 @@ func TestReadDataFromSave(t *testing.T) {
 
 	fifthTeam := save.Trainer.Team()[4]
 
-	if firstTeam.PersonalityValue() != fifthTeam.PersonalityValue() {
+	if !firstTeam.Compare(fifthTeam) {
 		t.Error("Error replacing pokemon in team")
 	}
 
@@ -66,7 +66,7 @@ func TestReadDataFromSave(t *testing.T) {
 
 	pkmList := box.BoxedPokemon()
 
-	if firstTeam.PersonalityValue() != pkmList[2].PersonalityValue() {
+	if !firstTeam.Compare(pkmList[2]) {
 		t.Error("Error replacing pokemon in box")
 	}
 
@@ -83,7 +83,7 @@ func TestReadDataFromSave(t *testing.T) {
 
 	pkmList = box.BoxedPokemon()
 
-	if pkmList[0].PersonalityValue() != pkmList[2].PersonalityValue() {
+	if !pkmList[0].Compare(pkmList[2]) {
 		t.Error("Error replacing pokemon in box")
 	}
 
