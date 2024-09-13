@@ -48,7 +48,7 @@ func (s *Save) ReplacePokemonInTeam(pkm pokemon.Pokemon, teamIndex int) (Save, e
 	var startingSave Save = *s
 
 	if teamIndex > 6 || teamIndex < 1 {
-		return startingSave, ErrIncorrectLenght
+		return startingSave, ErrIncorrectIndex
 	}
 
 	if len(pkm.Raw()) < 100 { // TODO: Maybe look for a reconstruction of the boxed pokemon
