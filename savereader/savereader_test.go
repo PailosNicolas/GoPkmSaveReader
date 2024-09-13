@@ -53,7 +53,22 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("I should error because of boxed pokemon")
 	}
 
-	//TODO: Add test for pc replacement
+	// Replace pokemon in box with team member
+	save, err = save.ReplacePokemonInPC(firstTeam, 3)
+
+	if err != nil {
+		t.Error("Error replacing pokemon in box")
+	}
+
+	pc := save.Trainer.Pc()
+
+	box, _ := pc.Box(1)
+
+	pkmList := box.BoxedPokemon()
+
+	if firstTeam.PersonalityValue() != pkmList[2].PersonalityValue() {
+		t.Error("Error replacing pokemon in box")
+	}
 
 	// Error Short file
 	pathShort := "../testfiles/Lola.pkm"
