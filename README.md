@@ -71,6 +71,6 @@ Currently my focus is in getting all the pokemon data, next step would be gettin
 - Complete Trainer information
 - Improve testing (it is really bare bones right now)
 - Import pokemon to a save file (Done coming in next release)
-- Implement trade between save files (possibly trade evolution)
+- Implement trade between save files (possibly trade evolution) (Technically done since you can import pokemons to a save comming next release)
 
 In the far away future if all of the above mentioned features are implemented I'll start research on the Gen IV save files.
