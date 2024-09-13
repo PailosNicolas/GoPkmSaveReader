@@ -70,7 +70,7 @@ Currently my focus is in getting all the pokemon data, next step would be gettin
 - Boxed pokemons (Done coming in next release)
 - Complete Trainer information
 - Improve testing (it is really bare bones right now)
-- Import pokemon to a save file
+- Import pokemon to a save file (Done coming in next release)
 - Implement trade between save files (possibly trade evolution)
 
 In the far away future if all of the above mentioned features are implemented I'll start research on the Gen IV save files.
