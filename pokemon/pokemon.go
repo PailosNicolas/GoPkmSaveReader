@@ -403,6 +403,13 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 }
 
 /*
+Evolves a pokemon.
+*/
+func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) {
+	return *pkm, nil
+}
+
+/*
 Checks if a pokemon is valid, otherwise it will be displayed as a bad egg in-game.
 */
 func (pkm *Pokemon) IsValid() bool {
