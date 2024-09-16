@@ -322,7 +322,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	}
 	if sectionsB := helpers.CreateSectionsMap(saveB); len(sectionsB) == 14 {
 		if len(sections) == 14 {
-			if sections[0].Index < sectionsB[0].Index {
+			if sections[0].Index < sectionsB[0].Index || sections[0].Index == sectionsB[0].Index {
 				copy(primarySave[:], saveB)
 				sections = sectionsB
 				save.primaryA = false
