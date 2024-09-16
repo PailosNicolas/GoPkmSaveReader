@@ -31,6 +31,24 @@ type Save struct {
 	sections   map[int]helpers.Section
 }
 
+/*
+Exports the save to a file, path should be a directory and name the file name.
+*/
+func (s *Save) ExportSaveToFile(path string, name string) error {
+	if path[len(path)-1] != '/' {
+		return errors.New("wrong path file, it should end in '/'")
+	}
+
+	path += name + ".sav"
+
+	err := os.WriteFile(path, s.fullRaw, 0444)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (s *Save) Game() string {
 	return s.game
 }
