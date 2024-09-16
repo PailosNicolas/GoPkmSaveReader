@@ -314,7 +314,6 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	saveA := buffer[:57344]
 	saveB := buffer[57344 : 57344*2]
 
-	//TODO: Check possible bug checking latest section.
 	if sectionsA := helpers.CreateSectionsMap(saveA); len(sectionsA) == 14 {
 		save.primaryA = true
 		copy(primarySave[:], saveA)
