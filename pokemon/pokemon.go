@@ -406,7 +406,7 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 Evolves a pokemon.
 */
 func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) {
-	return *pkm, nil
+	return *pkm, nil // TOOD: implement
 }
 
 /*
