@@ -413,7 +413,7 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 /*
 Evolves a pokemon.
 */
-func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) {
+func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable validation
 	var newRaw []byte
 	var growth []byte
 	var growthIndex int = 32
