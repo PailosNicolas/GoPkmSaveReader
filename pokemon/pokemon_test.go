@@ -12,7 +12,7 @@ func TestParsePokemons(t *testing.T) {
 	pkm, err := ReadPokemonFromFile(path)
 
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatal(err.Error())
 	}
 
 	if pkm.Nickname() != "Lola" {
@@ -84,5 +84,24 @@ func TestParsePokemons(t *testing.T) {
 
 	if err != ErrFileShort {
 		t.Fatalf("it shold have been ErrFileShort")
+	}
+
+	// EvolvePokemon Test
+	base, _ := ReadPokemonFromFile("../testfiles/base.pkm")
+
+	evol, _ := ReadPokemonFromFile("../testfiles/evol.pkm")
+
+	baseEvol, _ := base.EvolvePokemon()
+
+	valid := baseEvol.IsValid()
+
+	if !valid {
+		t.Fatalf("Evolution invalid")
+	}
+
+	success := baseEvol.Compare(evol)
+
+	if !success {
+		t.Fatalf("Evolution failed")
 	}
 }
