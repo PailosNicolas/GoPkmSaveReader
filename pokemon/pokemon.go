@@ -468,7 +468,7 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) {
 
 	evolution, _ := ParsePokemon(newRaw)
 
-	return evolution, nil // TOOD: implement
+	return evolution, nil
 }
 
 /*
