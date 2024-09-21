@@ -164,7 +164,7 @@ Compares two Pokemons returns true if they are the same
 */
 func (p *Pokemon) Compare(pokemon Pokemon) bool {
 	for i := 0; i < 80; i++ {
-		if i == 29 || i == 65 {
+		if i == 29 || i == 65 { // Unknown byte and friendship
 			continue
 		}
 		if p.raw[i] != pokemon.raw[i] {
