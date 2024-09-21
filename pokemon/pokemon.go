@@ -10,6 +10,8 @@ import (
 	"github.com/PailosNicolas/GoPkmSaveReader/helpers"
 )
 
+var orders = [24]string{"GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME", "AEGM", "AEMG", "AMGE", "AMEG", "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"}
+
 /*
 Basic Pokemon Gen3 information.
 */
@@ -226,7 +228,6 @@ var ErrPkmNotValid = errors.New("the pokemon is not valid")
 Reads the pokemon data and returns a Pokemon with it's information.
 */
 func ParsePokemon(pkmData []byte) (Pokemon, error) {
-	orders := [24]string{"GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME", "AEGM", "AEMG", "AMGE", "AMEG", "EGAM", "EGMA", "EAGM", "EAMG", "EMGA", "EMAG", "MGAE", "MGEA", "MAGE", "MAEG", "MEGA", "MEAG"}
 	pkm := Pokemon{}
 	pkm.raw = pkmData
 	var growth []byte
