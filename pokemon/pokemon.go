@@ -407,7 +407,61 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 Evolves a pokemon.
 */
 func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) {
-	return *pkm, nil // TOOD: implement
+	var newRaw []byte
+	var growth []byte
+	var growthIndex int = 32
+	var newCheckSum uint16
+
+	if len(pkm.raw) > 80 {
+		newRaw = pkm.raw[:80]
+	} else {
+		newRaw = pkm.raw
+	}
+
+	order := orders[pkm.personalityValue%24]
+
+	key := helpers.XorBytes(newRaw[0:4], newRaw[4:8])
+
+	for i := range 4 {
+		start := i * 12
+		if order[i] == 'G' {
+			growthIndex += start
+			break
+		}
+	}
+
+	decrypetdData := pkm.unencryptedData
+
+	growth = decrypetdData[0]
+
+	newSpecIndex := int(binary.LittleEndian.Uint16(growth[0:2])) + 1
+
+	binary.LittleEndian.PutUint16(growth[0:2], uint16(newSpecIndex))
+
+	encryptedGrowth := helpers.DecryptData(growth, key)
+
+	copy(newRaw[growthIndex:growthIndex+12], encryptedGrowth)
+
+	for index, data := range pkm.unencryptedData {
+		if index == 0 {
+			data = growth
+		}
+		for i := 0; i < len(data); i += 2 {
+			var value uint16
+			if i+1 < len(data) {
+				value = uint16(data[i]) | (uint16(data[i+1]) << 8)
+			} else {
+				value = uint16(data[i])
+			}
+			newCheckSum += value
+		}
+	}
+
+	binary.LittleEndian.PutUint16(newRaw[28:30], newCheckSum)
+
+	evolution, _ := ParsePokemon(newRaw)
+
+	return evolution, nil // TOOD: implement
 }
 
 /*
