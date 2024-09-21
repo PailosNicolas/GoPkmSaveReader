@@ -140,7 +140,7 @@ func (s *Save) ReplacePokemonInPC(pkm pokemon.Pokemon, pcIndex int) (Save, error
 
 	positionAdjustment := ((80 * (pcIndex - 1)) + 4) - (3968 * sectionPosition)
 
-	start = s.sections[startingSection].SectionIndex + positionAdjustment
+	start = saveStart + s.sections[startingSection].SectionIndex + positionAdjustment
 
 	checksumIndex := saveStart + s.sections[startingSection].SectionIndex + 4086
 
