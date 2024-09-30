@@ -3,7 +3,7 @@ package helpers
 const MethodLvlUp string = "levelup"
 const MethodFriendship string = "friendship"
 
-var EvolutionValidation = map[string]map[string]string{
+var EvolutionValidation = map[string]map[string]string{ // TODO: For now only level up and direct evolutions, check for stones and well... eevee
 	"Bulbasaur": {
 		"method": MethodLvlUp,
 		"level":  "16",
@@ -67,5 +67,13 @@ var EvolutionValidation = map[string]map[string]string{
 	"Pichu": {
 		"method":     MethodFriendship,
 		"friendship": "220",
+	},
+	"Sandshrew": {
+		"method": MethodLvlUp,
+		"level":  "22",
+	},
+	"Nidoran-f": {
+		"method": MethodLvlUp,
+		"level":  "16",
 	},
 }
