@@ -1,6 +1,7 @@
 package helpers
 
 const MethodLvlUp string = "levelup"
+const MethodFriendship string = "friendship"
 
 var EvolutionValidation = map[string]map[string]string{
 	"Bulbasaur": {
@@ -62,5 +63,9 @@ var EvolutionValidation = map[string]map[string]string{
 	"Ekans": {
 		"method": MethodLvlUp,
 		"level":  "22",
+	},
+	"Pichu": {
+		"method":     MethodFriendship,
+		"friendship": "220",
 	},
 }
