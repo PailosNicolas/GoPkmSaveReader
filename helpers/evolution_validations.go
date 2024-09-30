@@ -1,8 +1,10 @@
 package helpers
 
+const MethodLvlUp string = "levelup"
+
 var EvolutionValidation = map[string]map[string]string{
 	"Bulbasaur": {
-		"method": "levelup",
+		"method": MethodLvlUp,
 		"level":  "16",
 	},
 }

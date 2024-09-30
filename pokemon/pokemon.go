@@ -436,7 +436,7 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable va
 	method := evolValidation["method"]
 
 	switch method {
-	case "levelup":
+	case helpers.MethodLvlUp:
 		minLevel, _ := strconv.Atoi(evolValidation["level"])
 		if pkm.level < minLevel {
 			return *pkm, ErrPkmEvolutionNotValid
