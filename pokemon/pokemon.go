@@ -233,6 +233,7 @@ var ErrFileShort = errors.New("file is too short to be a pokemon raw data")
 var ErrPkmNotValid = errors.New("the pokemon is not valid")
 var ErrPkmEvolutionNotValid = errors.New("the pokemon is not valid for evolution")
 var ErrPkmEvoltionUnderLevel = errors.New("the pokemon is under level for evolution")
+var ErrPkmEvoltionUnderFriendship = errors.New("the pokemon does not have enough friendship")
 
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
@@ -445,7 +446,7 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable va
 	case helpers.MethodFriendship:
 		minFriendship, _ := strconv.Atoi(evolValidation["friendship"])
 		if pkm.friendship < minFriendship {
-			return *pkm, ErrPkmEvolutionNotValid
+			return *pkm, ErrPkmEvoltionUnderFriendship
 		}
 	}
 
