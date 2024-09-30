@@ -442,6 +442,11 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable va
 		if pkm.level < minLevel {
 			return *pkm, ErrPkmEvoltionUnderLevel
 		}
+	case helpers.MethodFriendship:
+		minFriendship, _ := strconv.Atoi(evolValidation["friendship"])
+		if pkm.friendship < minFriendship {
+			return *pkm, ErrPkmEvolutionNotValid
+		}
 	}
 
 	order := orders[pkm.personalityValue%24]
