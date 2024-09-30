@@ -232,6 +232,7 @@ type Stats struct {
 var ErrFileShort = errors.New("file is too short to be a pokemon raw data")
 var ErrPkmNotValid = errors.New("the pokemon is not valid")
 var ErrPkmEvolutionNotValid = errors.New("the pokemon is not valid for evolution")
+var ErrPkmEvoltionUnderLevel = errors.New("the pokemon is under level for evolution")
 
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
@@ -439,7 +440,7 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable va
 	case helpers.MethodLvlUp:
 		minLevel, _ := strconv.Atoi(evolValidation["level"])
 		if pkm.level < minLevel {
-			return *pkm, ErrPkmEvolutionNotValid
+			return *pkm, ErrPkmEvoltionUnderLevel
 		}
 	}
 
