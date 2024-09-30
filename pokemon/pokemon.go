@@ -5,6 +5,7 @@ import (
 	"errors"
 	"math"
 	"os"
+	"strconv"
 
 	"github.com/PailosNicolas/GoPkmSaveReader/helpers"
 )
@@ -230,6 +231,7 @@ type Stats struct {
 // Errors
 var ErrFileShort = errors.New("file is too short to be a pokemon raw data")
 var ErrPkmNotValid = errors.New("the pokemon is not valid")
+var ErrPkmEvolutionNotValid = errors.New("the pokemon is not valid for evolution")
 
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
@@ -423,6 +425,22 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable va
 		newRaw = pkm.raw[:80]
 	} else {
 		newRaw = pkm.raw
+	}
+
+	evolValidation, ok := helpers.EvolutionValidation[pkm.species]
+
+	if !ok {
+		return *pkm, ErrPkmEvolutionNotValid
+	}
+
+	method := evolValidation["method"]
+
+	switch method {
+	case "levelup":
+		minLevel, _ := strconv.Atoi(evolValidation["level"])
+		if pkm.level < minLevel {
+			return *pkm, ErrPkmEvolutionNotValid
+		}
 	}
 
 	order := orders[pkm.personalityValue%24]
