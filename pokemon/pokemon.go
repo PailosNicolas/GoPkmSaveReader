@@ -454,6 +454,8 @@ func (pkm *Pokemon) EvolvePokemon(target string) (Pokemon, error) { // TODO: Add
 		if pkm.friendship < minFriendship {
 			return *pkm, ErrPkmEvoltionUnderFriendship
 		}
+	case helpers.MethodTrade:
+		break
 	}
 
 	order := orders[pkm.personalityValue%24]
