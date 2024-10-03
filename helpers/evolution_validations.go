@@ -4,7 +4,7 @@ const MethodLvlUp string = "levelup"
 const MethodFriendship string = "friendship"
 const MethodTrade string = "trade"
 
-var EvolutionValidation = map[string]map[string]map[string]string{ // TODO: For now only level up and direct evolutions, check for stones and well... eevee
+var EvolutionValidation = map[string]map[string]map[string]string{
 	"Bulbasaur": {
 		"Ivysaur": {
 			"method": MethodLvlUp,
