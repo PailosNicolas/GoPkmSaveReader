@@ -3,6 +3,7 @@ package helpers
 const MethodLvlUp string = "levelup"
 const MethodFriendship string = "friendship"
 const MethodTrade string = "trade"
+const MethodStone string = "stone"
 
 var EvolutionValidation = map[string]map[string]map[string]string{
 	"Bulbasaur": {
@@ -99,6 +100,11 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 		"Pikachu": {
 			"method":     MethodFriendship,
 			"friendship": "220",
+		},
+	},
+	"Pikachu": {
+		"Raichu": {
+			"method": MethodStone,
 		},
 	},
 	"Sandshrew": {
