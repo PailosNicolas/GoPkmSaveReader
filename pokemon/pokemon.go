@@ -415,9 +415,9 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 }
 
 /*
-Evolves a pokemon.
+Evolves a pokemon to the target if valid.
 */
-func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable validation
+func (pkm *Pokemon) EvolvePokemon(target string) (Pokemon, error) { // TODO: Add evolvable validation
 	var newRaw []byte
 	var growth []byte
 	var growthIndex int = 32
@@ -435,16 +435,22 @@ func (pkm *Pokemon) EvolvePokemon() (Pokemon, error) { // TODO: Add evolvable va
 		return *pkm, ErrPkmEvolutionNotValid
 	}
 
-	method := evolValidation["method"]
+	targetValidation, ok := evolValidation[target]
+
+	if !ok {
+		return *pkm, ErrPkmEvolutionNotValid
+	}
+
+	method := targetValidation["method"]
 
 	switch method {
 	case helpers.MethodLvlUp:
-		minLevel, _ := strconv.Atoi(evolValidation["level"])
+		minLevel, _ := strconv.Atoi(targetValidation["level"])
 		if pkm.level < minLevel {
 			return *pkm, ErrPkmEvoltionUnderLevel
 		}
 	case helpers.MethodFriendship:
-		minFriendship, _ := strconv.Atoi(evolValidation["friendship"])
+		minFriendship, _ := strconv.Atoi(targetValidation["friendship"])
 		if pkm.friendship < minFriendship {
 			return *pkm, ErrPkmEvoltionUnderFriendship
 		}
