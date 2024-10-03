@@ -456,6 +456,8 @@ func (pkm *Pokemon) EvolvePokemon(target string) (Pokemon, error) { // TODO: Add
 		}
 	case helpers.MethodTrade:
 		break
+	case helpers.MethodStone: // I could make it so the pokemon must held that stone but not really how it works
+		break
 	}
 
 	order := orders[pkm.personalityValue%24]
