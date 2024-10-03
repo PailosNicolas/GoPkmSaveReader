@@ -479,7 +479,7 @@ func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemo
 
 	growth = decrypetdData[0]
 
-	newSpecIndex := int(binary.LittleEndian.Uint16(growth[0:2])) + 1
+	newSpecIndex, _ := strconv.Atoi(targetValidation["id"])
 
 	binary.LittleEndian.PutUint16(growth[0:2], uint16(newSpecIndex))
 
