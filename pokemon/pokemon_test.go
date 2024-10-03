@@ -91,7 +91,7 @@ func TestParsePokemons(t *testing.T) {
 
 	evol, _ := ReadPokemonFromFile("../testfiles/evol.pkm")
 
-	baseEvol, _ := base.EvolvePokemon()
+	baseEvol, _ := base.EvolvePokemon("Golem")
 
 	valid := baseEvol.IsValid()
 
