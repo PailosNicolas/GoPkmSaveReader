@@ -416,8 +416,9 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 
 /*
 Evolves a pokemon to the target if valid.
+You can skip certain validations like level, friendship, helditem, etc with validateEvolution = false.
 */
-func (pkm *Pokemon) EvolvePokemon(target string) (Pokemon, error) { // TODO: Add evolvable validation
+func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemon, error) { // TODO: Add evolvable validation
 	var newRaw []byte
 	var growth []byte
 	var growthIndex int = 32
@@ -441,23 +442,25 @@ func (pkm *Pokemon) EvolvePokemon(target string) (Pokemon, error) { // TODO: Add
 		return *pkm, ErrPkmEvolutionNotValid
 	}
 
-	method := targetValidation["method"]
+	if validateEvolution {
+		method := targetValidation["method"]
 
-	switch method {
-	case helpers.MethodLvlUp:
-		minLevel, _ := strconv.Atoi(targetValidation["level"])
-		if pkm.level < minLevel {
-			return *pkm, ErrPkmEvoltionUnderLevel
+		switch method {
+		case helpers.MethodLvlUp:
+			minLevel, _ := strconv.Atoi(targetValidation["level"])
+			if pkm.level < minLevel {
+				return *pkm, ErrPkmEvoltionUnderLevel
+			}
+		case helpers.MethodFriendship:
+			minFriendship, _ := strconv.Atoi(targetValidation["friendship"])
+			if pkm.friendship < minFriendship {
+				return *pkm, ErrPkmEvoltionUnderFriendship
+			}
+		case helpers.MethodTrade:
+			break
+		case helpers.MethodStone: // I could make it so the pokemon must held that stone but not really how it works
+			break
 		}
-	case helpers.MethodFriendship:
-		minFriendship, _ := strconv.Atoi(targetValidation["friendship"])
-		if pkm.friendship < minFriendship {
-			return *pkm, ErrPkmEvoltionUnderFriendship
-		}
-	case helpers.MethodTrade:
-		break
-	case helpers.MethodStone: // I could make it so the pokemon must held that stone but not really how it works
-		break
 	}
 
 	order := orders[pkm.personalityValue%24]
