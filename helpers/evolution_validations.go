@@ -107,4 +107,15 @@ var EvolutionValidation = map[string]map[string]map[string]string{ // TODO: For 
 			"level":  "22",
 		},
 	},
+	"Geodude": { // Added early for test
+		"Graveler": {
+			"method": MethodLvlUp,
+			"level":  "25",
+		},
+	},
+	"Graveler": {
+		"Golem": {
+			"method": MethodTrade,
+		},
+	},
 }
