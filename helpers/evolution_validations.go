@@ -132,19 +132,6 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":     "28",
 		},
 	},
-	"Geodude": { // Added early for test
-		"Graveler": {
-			"method": MethodLvlUp,
-			"level":  "25",
-			"id":     "75",
-		},
-	},
-	"Graveler": {
-		"Golem": {
-			"method": MethodTrade,
-			"id":     "76",
-		},
-	},
 	"Nidoran-f": {
 		"Nidorina": {
 			"method": MethodLvlUp,
@@ -344,6 +331,38 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"method": MethodLvlUp,
 			"level":  "30",
 			"id":     "73",
+		},
+	},
+	"Geodude": {
+		"Graveler": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "75",
+		},
+	},
+	"Graveler": {
+		"Golem": {
+			"method": MethodTrade,
+			"id":     "76",
+		},
+	},
+	"Ponyta": {
+		"Rapidash": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "78",
+		},
+	},
+	"Slowpoke": {
+		"Slowbro": {
+			"method": MethodLvlUp,
+			"level":  "37",
+			"id":     "80",
+		},
+		"Slowking": {
+			"method": MethodTradeHolding,
+			"item":   "King's Rock",
+			"id":     "199",
 		},
 	},
 }
