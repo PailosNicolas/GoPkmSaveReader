@@ -620,4 +620,157 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":     "149",
 		},
 	},
+	"Chikorita": {
+		"Bayleef": {
+			"method": MethodLvlUp,
+			"level":  "16",
+			"id":     "153",
+		},
+	},
+	"Bayleef": {
+		"Meganium": {
+			"method": MethodLvlUp,
+			"level":  "32",
+			"id":     "154",
+		},
+	},
+	"Cyndaquil": {
+		"Quilava": {
+			"method": MethodLvlUp,
+			"level":  "14",
+			"id":     "156",
+		},
+	},
+	"Quilava": {
+		"Typhlosion": {
+			"method": MethodLvlUp,
+			"level":  "36",
+			"id":     "157",
+		},
+	},
+	"Totodile": {
+		"Croconaw": {
+			"method": MethodLvlUp,
+			"level":  "18",
+			"id":     "159",
+		},
+	},
+	"Croconaw": {
+		"Feraligatr": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "160",
+		},
+	},
+	"Sentret": {
+		"Furret": {
+			"method": MethodLvlUp,
+			"level":  "15",
+			"id":     "162",
+		},
+	},
+	"Hoothoot": {
+		"Noctowl": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "164",
+		},
+	},
+	"Ledyba": {
+		"Ledian": {
+			"method": MethodLvlUp,
+			"level":  "18",
+			"id":     "166",
+		},
+	},
+	"Spinarak": {
+		"Ariados": {
+			"method": MethodLvlUp,
+			"level":  "22",
+			"id":     "168",
+		},
+	},
+	"Chinchou": {
+		"Lanturn": {
+			"method": MethodLvlUp,
+			"level":  "27",
+			"id":     "171",
+		},
+	},
+	"Togepi": {
+		"Togetic": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "176",
+		},
+	},
+	"Natu": {
+		"Xatu": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "178",
+		},
+	},
+	"Mareep": {
+		"Flaaffy": {
+			"method": MethodLvlUp,
+			"level":  "15",
+			"id":     "180",
+		},
+	},
+	"Flaaffy": {
+		"Ampharos": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "181",
+		},
+	},
+	"Azurill": {
+		"Marill": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "183",
+		},
+	},
+	"Azumarill": {
+		"Xatu": {
+			"method": MethodLvlUp,
+			"level":  "18",
+			"id":     "184",
+		},
+	},
+	"Hoppip": {
+		"Skiploom": {
+			"method": MethodLvlUp,
+			"level":  "18",
+			"id":     "188",
+		},
+	},
+	"Skiploom": {
+		"Jumpluff": {
+			"method": MethodLvlUp,
+			"level":  "27",
+			"id":     "189",
+		},
+	},
+	"Sunkern": {
+		"Sunflora": {
+			"method": MethodStone,
+			"id":     "192",
+		},
+	},
+	"Wooper": {
+		"Quagsire": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "195",
+		},
+	},
+	"Wynaut": {
+		"Quagsire": {
+			"method": MethodLvlUp,
+			"level":  "15",
+			"id":     "202",
+		},
+	},
 }
