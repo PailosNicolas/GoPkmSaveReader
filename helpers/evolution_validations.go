@@ -767,7 +767,7 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 		},
 	},
 	"Wynaut": {
-		"Quagsire": {
+		"Wobbuffet": {
 			"method": MethodLvlUp,
 			"level":  "15",
 			"id":     "202",
