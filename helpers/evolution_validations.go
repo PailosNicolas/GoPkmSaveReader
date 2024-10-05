@@ -561,4 +561,28 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":     "130",
 		},
 	},
+	"Eevee": {
+		"Vaporeon": {
+			"method": MethodStone,
+			"id":     "134",
+		},
+		"Jolteon": {
+			"method": MethodStone,
+			"id":     "135",
+		},
+		"Flareon": {
+			"method": MethodStone,
+			"id":     "136",
+		},
+		"Espeon": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "196",
+		},
+		"Umbreon": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "197",
+		},
+	},
 }
