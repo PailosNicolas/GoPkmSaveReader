@@ -585,4 +585,39 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":         "197",
 		},
 	},
+	"Porygon": {
+		"Porygon2": {
+			"method": MethodTradeHolding,
+			"item":   "Up-Grade",
+			"id":     "233",
+		},
+	},
+	"Omanyte": {
+		"Omastar": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "139",
+		},
+	},
+	"Kabuto": {
+		"Kabutops": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "141",
+		},
+	},
+	"Dratini": {
+		"Dragonair": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "148",
+		},
+	},
+	"Dragonair": {
+		"Dragonite": {
+			"method": MethodLvlUp,
+			"level":  "55",
+			"id":     "149",
+		},
+	},
 }
