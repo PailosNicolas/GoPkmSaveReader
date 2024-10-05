@@ -478,4 +478,87 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":        "237",
 		},
 	},
+	"Koffing": {
+		"Weezing": {
+			"method": MethodLvlUp,
+			"level":  "35",
+			"id":     "110",
+		},
+	},
+	"Rhyhorn": {
+		"Rhydon": {
+			"method": MethodLvlUp,
+			"level":  "42",
+			"id":     "112",
+		},
+	},
+	"Chansey": {
+		"Blissey": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "242",
+		},
+	},
+	"Horsea": {
+		"Seadra": {
+			"method": MethodLvlUp,
+			"level":  "32",
+			"id":     "117",
+		},
+	},
+	"Seadra": {
+		"Kingdra": {
+			"method": MethodTradeHolding,
+			"item":   "Dragon Scale",
+			"id":     "230",
+		},
+	},
+	"Goldeen": {
+		"Seaking": {
+			"method": MethodLvlUp,
+			"level":  "33",
+			"id":     "119",
+		},
+	},
+	"Staryu": {
+		"Starmie": {
+			"method": MethodStone,
+			"id":     "121",
+		},
+	},
+	"Scyther": {
+		"Scizor": {
+			"method": MethodTradeHolding,
+			"item":   "Metal Coat",
+			"id":     "212",
+		},
+	},
+	"Smoochum": {
+		"Jynx": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "124",
+		},
+	},
+	"Elekid": {
+		"Electabuzz": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "125",
+		},
+	},
+	"Magby": {
+		"Magmar": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "126",
+		},
+	},
+	"Magikarp": {
+		"Gyarados": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "130",
+		},
+	},
 }
