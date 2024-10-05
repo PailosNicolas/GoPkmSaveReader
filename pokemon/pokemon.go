@@ -234,6 +234,7 @@ var ErrPkmNotValid = errors.New("the pokemon is not valid")
 var ErrPkmEvolutionNotValid = errors.New("the pokemon is not valid for evolution")
 var ErrPkmEvoltionUnderLevel = errors.New("the pokemon is under level for evolution")
 var ErrPkmEvoltionUnderFriendship = errors.New("the pokemon does not have enough friendship")
+var ErrPkmEvoltionNotHoldingItem = errors.New("the pokemon does not have the right item to evolve")
 
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
@@ -460,6 +461,10 @@ func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemo
 			break
 		case helpers.MethodStone: // I could make it so the pokemon must held that stone but not really how it works
 			break
+		case helpers.MethodTradeHolding:
+			if pkm.itemHeld.Name != targetValidation["item"] {
+				return *pkm, ErrPkmEvoltionNotHoldingItem
+			}
 		}
 	}
 
