@@ -170,4 +170,81 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":     "34",
 		},
 	},
+	"Cleffa": {
+		"Clefairy": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "35",
+		},
+	},
+	"Clefairy": {
+		"Clefable": {
+			"method": MethodStone,
+			"id":     "36",
+		},
+	},
+	"Vulpix": {
+		"Ninetales": {
+			"method": MethodStone,
+			"id":     "38",
+		},
+	},
+	"Igglybuff": {
+		"Jigglypuff": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "39",
+		},
+	},
+	"Jigglypuff": {
+		"Wigglytuff": {
+			"method": MethodStone,
+			"id":     "40",
+		},
+	},
+	"Zubat": {
+		"Golbat": {
+			"method": MethodLvlUp,
+			"level":  "22",
+			"id":     "42",
+		},
+	},
+	"Golbat": {
+		"Crobat": {
+			"method":     MethodFriendship,
+			"friendship": "220",
+			"id":         "169",
+		},
+	},
+	"Oddish": {
+		"Gloom": {
+			"method": MethodLvlUp,
+			"level":  "21",
+			"id":     "44",
+		},
+	},
+	"Gloom": {
+		"Vileplume": {
+			"method": MethodStone,
+			"id":     "45",
+		},
+		"Bellossom": {
+			"method": MethodStone,
+			"id":     "182",
+		},
+	},
+	"Paras": {
+		"Parasect": {
+			"method": MethodLvlUp,
+			"level":  "24",
+			"id":     "47",
+		},
+	},
+	"Venonat": {
+		"Venomoth": {
+			"method": MethodLvlUp,
+			"level":  "31",
+			"id":     "49",
+		},
+	},
 }
