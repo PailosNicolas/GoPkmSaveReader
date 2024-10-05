@@ -1,10 +1,15 @@
 package helpers
 
 const MethodLvlUp string = "levelup"
+const MethodLvlUpAndStat string = "levelupAndStat"
 const MethodFriendship string = "friendship"
 const MethodTrade string = "trade"
 const MethodTradeHolding string = "tradeHolding"
 const MethodStone string = "stone"
+
+const ConditionHigher string = "higher"
+const ConditionLower string = "lower"
+const ConditionEqual string = "equal"
 
 var EvolutionValidation = map[string]map[string]map[string]string{
 	"Bulbasaur": {
@@ -363,6 +368,114 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"method": MethodTradeHolding,
 			"item":   "King's Rock",
 			"id":     "199",
+		},
+	},
+	"Magnemite": {
+		"Magneton": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "82",
+		},
+	},
+	"Doduo": {
+		"Dodrio": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "85",
+		},
+	},
+	"Seel": {
+		"Dewgong": {
+			"method": MethodLvlUp,
+			"level":  "34",
+			"id":     "87",
+		},
+	},
+	"Grimer": {
+		"Muk": {
+			"method": MethodLvlUp,
+			"level":  "38",
+			"id":     "89",
+		},
+	},
+	"Shellder": {
+		"Cloyster": {
+			"method": MethodStone,
+			"id":     "91",
+		},
+	},
+	"Gastly": {
+		"Haunter": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "93",
+		},
+	},
+	"Haunter": {
+		"Gengar": {
+			"method": MethodTrade,
+			"id":     "94",
+		},
+	},
+	"Onix": {
+		"Steelix": {
+			"method": MethodTradeHolding,
+			"item":   "King's Rock",
+			"id":     "208",
+		},
+	},
+	"Drowzee": {
+		"Hypno": {
+			"method": MethodLvlUp,
+			"level":  "26",
+			"id":     "97",
+		},
+	},
+	"Krabby": {
+		"Kingler": {
+			"method": MethodLvlUp,
+			"level":  "28",
+			"id":     "99",
+		},
+	},
+	"Voltorb": {
+		"Electrode": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "101",
+		},
+	},
+	"Exeggcute": {
+		"Exeggutor": {
+			"method": MethodStone,
+			"id":     "103",
+		},
+	},
+	"Cubone": {
+		"Marowak": {
+			"method": MethodLvlUp,
+			"level":  "28",
+			"id":     "105",
+		},
+	},
+	"Tyrogue": {
+		"Hitmonlee": {
+			"method":    MethodLvlUpAndStat,
+			"level":     "20",
+			"condition": ConditionHigher,
+			"id":        "106",
+		},
+		"Hitmonchan": {
+			"method":    MethodLvlUpAndStat,
+			"level":     "20",
+			"condition": ConditionLower,
+			"id":        "106",
+		},
+		"Hitmontop": {
+			"method":    MethodLvlUpAndStat,
+			"level":     "20",
+			"condition": ConditionEqual,
+			"id":        "237",
 		},
 	},
 }
