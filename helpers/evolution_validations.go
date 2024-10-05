@@ -3,6 +3,7 @@ package helpers
 const MethodLvlUp string = "levelup"
 const MethodFriendship string = "friendship"
 const MethodTrade string = "trade"
+const MethodTradeHolding string = "tradeHolding"
 const MethodStone string = "stone"
 
 var EvolutionValidation = map[string]map[string]map[string]string{
@@ -245,6 +246,104 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"method": MethodLvlUp,
 			"level":  "31",
 			"id":     "49",
+		},
+	},
+	"Diglett": {
+		"Dugtrio": {
+			"method": MethodLvlUp,
+			"level":  "26",
+			"id":     "51",
+		},
+	},
+	"Meowth": {
+		"Persian": {
+			"method": MethodLvlUp,
+			"level":  "28",
+			"id":     "53",
+		},
+	},
+	"Psyduck": {
+		"Golduck": {
+			"method": MethodLvlUp,
+			"level":  "33",
+			"id":     "55",
+		},
+	},
+	"Mankey": {
+		"Primeape": {
+			"method": MethodLvlUp,
+			"level":  "28",
+			"id":     "57",
+		},
+	},
+	"Growlithe": {
+		"Arcanine": {
+			"method": MethodStone,
+			"id":     "59",
+		},
+	},
+	"Poliwag": {
+		"Poliwhirl": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "61",
+		},
+	},
+	"Poliwhirl": {
+		"Poliwrath": {
+			"method": MethodStone,
+			"id":     "62",
+		},
+		"Politoed": {
+			"method": MethodTradeHolding,
+			"item":   "King's Rock",
+			"id":     "186",
+		},
+	},
+	"Abra": {
+		"Kadabra": {
+			"method": MethodLvlUp,
+			"level":  "16",
+			"id":     "64",
+		},
+	},
+	"Kadabra": {
+		"Alakazam": {
+			"method": MethodTrade,
+			"id":     "65",
+		},
+	},
+	"Machop": {
+		"Machoke": {
+			"method": MethodLvlUp,
+			"level":  "28",
+			"id":     "67",
+		},
+	},
+	"Machoke": {
+		"Machamp": {
+			"method": MethodTrade,
+			"id":     "68",
+		},
+	},
+	"Bellsprout": {
+		"Weepinbell": {
+			"method": MethodLvlUp,
+			"level":  "21",
+			"id":     "70",
+		},
+	},
+	"Weepinbell": {
+		"Victreebel": {
+			"method": MethodStone,
+			"id":     "71",
+		},
+	},
+	"Tentacool": {
+		"Tentacruel": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "73",
 		},
 	},
 }
