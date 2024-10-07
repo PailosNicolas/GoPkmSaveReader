@@ -236,6 +236,7 @@ var ErrPkmEvoltionUnderLevel = errors.New("the pokemon is under level for evolut
 var ErrPkmEvoltionUnderFriendship = errors.New("the pokemon does not have enough friendship")
 var ErrPkmEvoltionNotHoldingItem = errors.New("the pokemon does not have the right item to evolve")
 var ErrPkmEvoltionStatsNotValid = errors.New("the pokemon does not have the valid stats to evolve")
+var ErrPkmEvoltionPersonalityNotValid = errors.New("the pokemon does not have the valid personality value to evolve")
 
 /*
 Reads the pokemon data and returns a Pokemon with it's information.
@@ -482,6 +483,25 @@ func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemo
 				}
 			case helpers.ConditionLower:
 				if pkm.stats.Attack > pkm.stats.Defense {
+					return *pkm, ErrPkmEvoltionStatsNotValid
+				}
+			}
+
+		case helpers.MethodWurmple:
+			minLevel, _ := strconv.Atoi(targetValidation["level"])
+			pw := pkm.personalityValue >> 16
+			check := pw % 10
+
+			if pkm.level < minLevel {
+				return *pkm, ErrPkmEvoltionUnderLevel
+			}
+			switch targetValidation["condition"] {
+			case helpers.ConditionHigher:
+				if check <= 4 {
+					return *pkm, ErrPkmEvoltionStatsNotValid
+				}
+			case helpers.ConditionLower:
+				if check > 4 {
 					return *pkm, ErrPkmEvoltionStatsNotValid
 				}
 			}
