@@ -903,15 +903,262 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 	"Wurmple": {
 		"Silcoon": {
 			"method":    MethodWurmple,
-			"level":     "20",
+			"level":     "7",
 			"condition": ConditionLower,
 			"id":        "291",
 		},
 		"Cascoon": {
 			"method":    MethodWurmple,
-			"level":     "20",
+			"level":     "7",
 			"condition": ConditionHigher,
 			"id":        "293",
+		},
+	},
+	"Silcoon": {
+		"Beautifly": {
+			"method": MethodLvlUp,
+			"level":  "10",
+			"id":     "292",
+		},
+	},
+	"Cascoon": {
+		"Dustox": {
+			"method": MethodLvlUp,
+			"level":  "10",
+			"id":     "294",
+		},
+	},
+	"Lotad": {
+		"Lombre": {
+			"method": MethodLvlUp,
+			"level":  "14",
+			"id":     "296",
+		},
+	},
+	"Lombre": {
+		"Ludicolo": {
+			"method": MethodStone,
+			"id":     "297",
+		},
+	},
+	"Seedot": {
+		"Nuzleaf": {
+			"method": MethodLvlUp,
+			"level":  "14",
+			"id":     "300",
+		},
+	},
+	"Nuzleaf": {
+		"Shiftry": {
+			"method": MethodStone,
+			"id":     "301",
+		},
+	},
+	"Taillow": {
+		"Swellow": {
+			"method": MethodLvlUp,
+			"level":  "22",
+			"id":     "305",
+		},
+	},
+	"Wingull": {
+		"Pelipper": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "310",
+		},
+	},
+	"Ralts": {
+		"Kirlia": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "393",
+		},
+	},
+	"Kirlia": {
+		"Gardevoir": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "394",
+		},
+	},
+	"Surskit": {
+		"Masquerain": {
+			"method": MethodLvlUp,
+			"level":  "22",
+			"id":     "312",
+		},
+	},
+	"Shroomish": {
+		"Breloom": {
+			"method": MethodLvlUp,
+			"level":  "23",
+			"id":     "307",
+		},
+	},
+	"Slakoth": {
+		"Vigoroth": {
+			"method": MethodLvlUp,
+			"level":  "18",
+			"id":     "365",
+		},
+	},
+	"Vigoroth": {
+		"Slaking": {
+			"method": MethodLvlUp,
+			"level":  "36",
+			"id":     "366",
+		},
+	},
+	"Nincada": {
+		"Slaking": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "302",
+		},
+		"Shedinja": { // Can't find a way to properly do Shedinja
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "303",
+		},
+	},
+	"Whismur": {
+		"Loudred": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "371",
+		},
+	},
+	"Loudred": {
+		"Exploud": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "372",
+		},
+	},
+	"Makuhita": {
+		"Hariyama": {
+			"method": MethodLvlUp,
+			"level":  "24",
+			"id":     "335",
+		},
+	},
+	"Skitty": {
+		"Delcatty": {
+			"method": MethodStone,
+			"id":     "316",
+		},
+	},
+	"Aron": {
+		"Lairon": {
+			"method": MethodLvlUp,
+			"level":  "32",
+			"id":     "383",
+		},
+	},
+	"Lairon": {
+		"Aggron": {
+			"method": MethodLvlUp,
+			"level":  "42",
+			"id":     "384",
+		},
+	},
+	"Meditite": {
+		"Medicham": {
+			"method": MethodLvlUp,
+			"level":  "37",
+			"id":     "357",
+		},
+	},
+	"Electrike": {
+		"Manectric": {
+			"method": MethodLvlUp,
+			"level":  "26",
+			"id":     "338",
+		},
+	},
+	"Gulpin": {
+		"Swalot": {
+			"method": MethodLvlUp,
+			"level":  "26",
+			"id":     "368",
+		},
+	},
+	"Carvanha": {
+		"Sharpedo": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "331",
+		},
+	},
+	"Wailmer": {
+		"Wailord": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "314",
+		},
+	},
+	"Numel": {
+		"Camerupt": {
+			"method": MethodLvlUp,
+			"level":  "33",
+			"id":     "340",
+		},
+	},
+	"Spoink": {
+		"Grumpig": {
+			"method": MethodLvlUp,
+			"level":  "32",
+			"id":     "352",
+		},
+	},
+	"Trapinch": {
+		"Vibrava": {
+			"method": MethodLvlUp,
+			"level":  "35",
+			"id":     "333",
+		},
+	},
+	"Vibrava": {
+		"Flygon": {
+			"method": MethodLvlUp,
+			"level":  "45",
+			"id":     "334",
+		},
+	},
+	"Cacnea": {
+		"Cacturne": {
+			"method": MethodLvlUp,
+			"level":  "32",
+			"id":     "345",
+		},
+	},
+	"Swablu": {
+		"Altaria": {
+			"method": MethodLvlUp,
+			"level":  "35",
+			"id":     "359",
+		},
+	},
+	"Barboach": {
+		"Whiscash": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "324",
+		},
+	},
+	"Corphish": {
+		"Crawdaunt": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "327",
+		},
+	},
+	"Baltoy": {
+		"Claydol": {
+			"method": MethodLvlUp,
+			"level":  "36",
+			"id":     "319",
 		},
 	},
 }
