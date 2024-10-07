@@ -1182,4 +1182,79 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":     "329",
 		},
 	},
+	"Shuppet": {
+		"Banette": {
+			"method": MethodLvlUp,
+			"level":  "37",
+			"id":     "378",
+		},
+	},
+	"Duskull": {
+		"Dusclops": {
+			"method": MethodLvlUp,
+			"level":  "37",
+			"id":     "362",
+		},
+	},
+	"Snorunt": {
+		"Glalie": {
+			"method": MethodLvlUp,
+			"level":  "42",
+			"id":     "347",
+		},
+	},
+	"Spheal": {
+		"Sealeo": {
+			"method": MethodLvlUp,
+			"level":  "32",
+			"id":     "342",
+		},
+	},
+	"Sealeo": {
+		"Walrein": {
+			"method": MethodLvlUp,
+			"level":  "44",
+			"id":     "343",
+		},
+	},
+	"Clamperl": {
+		"Huntail": {
+			"method": MethodTradeHolding,
+			"item":   "Deep Sea Tooth",
+			"id":     "374",
+		},
+		"Gorebyss": {
+			"method": MethodTradeHolding,
+			"item":   "Deep Sea Scale",
+			"id":     "375",
+		},
+	},
+	"Bagon": {
+		"Shelgon": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "396",
+		},
+	},
+	"Shelgon": {
+		"Salamence": {
+			"method": MethodLvlUp,
+			"level":  "50",
+			"id":     "397",
+		},
+	},
+	"Beldum": {
+		"Metang": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "399",
+		},
+	},
+	"Metang": {
+		"Metagross": {
+			"method": MethodLvlUp,
+			"level":  "45",
+			"id":     "400",
+		},
+	},
 }
