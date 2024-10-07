@@ -773,4 +773,74 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"id":     "202",
 		},
 	},
+	"Pineco": {
+		"Forretress": {
+			"method": MethodLvlUp,
+			"level":  "31",
+			"id":     "205",
+		},
+	},
+	"Snubbull": {
+		"Granbull": {
+			"method": MethodLvlUp,
+			"level":  "23",
+			"id":     "210",
+		},
+	},
+	"Teddiursa": {
+		"Ursaring": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "217",
+		},
+	},
+	"Slugma": {
+		"Magcargo": {
+			"method": MethodLvlUp,
+			"level":  "38",
+			"id":     "219",
+		},
+	},
+	"Swinub": {
+		"Piloswine": {
+			"method": MethodLvlUp,
+			"level":  "33",
+			"id":     "221",
+		},
+	},
+	"Remoraid": {
+		"Octillery": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "224",
+		},
+	},
+	"Houndour": {
+		"Houndoom": {
+			"method": MethodLvlUp,
+			"level":  "24",
+			"id":     "229",
+		},
+	},
+	"Phanpy": {
+		"Donphan": {
+			"method": MethodLvlUp,
+			"level":  "25",
+			"id":     "232",
+		},
+	},
+	"Larvitar": {
+		"Pupitar": {
+			"method": MethodLvlUp,
+			"level":  "30",
+			"id":     "247",
+		},
+	},
+	"Pupitar": {
+		"Tyranitar": {
+			"method": MethodLvlUp,
+			"level":  "55",
+			"id":     "248",
+		},
+	},
 }
