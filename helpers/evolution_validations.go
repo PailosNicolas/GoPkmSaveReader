@@ -6,6 +6,7 @@ const MethodFriendship string = "friendship"
 const MethodTrade string = "trade"
 const MethodTradeHolding string = "tradeHolding"
 const MethodStone string = "stone"
+const MethodWurmple string = "wurmple"
 
 const ConditionHigher string = "higher"
 const ConditionLower string = "lower"
@@ -841,6 +842,76 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"method": MethodLvlUp,
 			"level":  "55",
 			"id":     "248",
+		},
+	},
+	"Treecko": {
+		"Grovyle": {
+			"method": MethodLvlUp,
+			"level":  "16",
+			"id":     "277",
+		},
+	},
+	"Grovyle": {
+		"Sceptile": {
+			"method": MethodLvlUp,
+			"level":  "36",
+			"id":     "278",
+		},
+	},
+	"Torchic": {
+		"Combusken": {
+			"method": MethodLvlUp,
+			"level":  "16",
+			"id":     "281",
+		},
+	},
+	"Combusken": {
+		"Blaziken": {
+			"method": MethodLvlUp,
+			"level":  "36",
+			"id":     "282",
+		},
+	},
+	"Mudkip": {
+		"Marshtomp": {
+			"method": MethodLvlUp,
+			"level":  "16",
+			"id":     "284",
+		},
+	},
+	"Marshtomp": {
+		"Swampert": {
+			"method": MethodLvlUp,
+			"level":  "36",
+			"id":     "285",
+		},
+	},
+	"Poochyena": {
+		"Mightyena": {
+			"method": MethodLvlUp,
+			"level":  "18",
+			"id":     "287",
+		},
+	},
+	"Zigzagoon": {
+		"Linoone": {
+			"method": MethodLvlUp,
+			"level":  "20",
+			"id":     "289",
+		},
+	},
+	"Wurmple": {
+		"Silcoon": {
+			"method":    MethodWurmple,
+			"level":     "20",
+			"condition": ConditionLower,
+			"id":        "291",
+		},
+		"Cascoon": {
+			"method":    MethodWurmple,
+			"level":     "20",
+			"condition": ConditionHigher,
+			"id":        "293",
 		},
 	},
 }
