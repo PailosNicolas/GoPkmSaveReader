@@ -8,7 +8,7 @@ about trades and trade evolution wouldn't be far fetched.
 ## Usage
 Get it with:
 ```bash
-go get github.com/PailosNicolas/GoPkmSaveReader@v0.1.0
+go get github.com/PailosNicolas/GoPkmSaveReader@v0.2.0
 ```
 
 Example:
@@ -38,14 +38,17 @@ func main(){
 Right now you are able to access the following data of a save:
 #### General save data:
 - Game code
-- Time played (Done coming in next release)
+- Time played
+- Import pokemon to save (A bit finicky due to boxed vs team pokemons, can be used to simulate a trade and trade evolution with the `EvolvePokemon` method)
+- Export save
 #### Trainer info:
 - Public/secret ID
 - Name
 - Gender
 - Team size
 - Team
-- Money (Done coming in next release)
+- PC boxes
+- Money
 #### Pokemon data:
 - Nickname
 - Species
@@ -61,17 +64,13 @@ Right now you are able to access the following data of a save:
 - Met level
 - Game of origin
 - Captured ball
-- Nature (Done coming in next release)
-
-Also you are able to export a pokemon to a file.
+- Nature
+- Export pokemon
+- Evolve pokemon
 
 ## What is coming ?
-Currently my focus is in getting all the pokemon data, next step would be getting and completing data of the boxed pokemons.
-- Complete pokemon data
-- Boxed pokemons (Done coming in next release)
-- Complete Trainer information
-- Improve testing (it is really bare bones right now)
-- Import pokemon to a save file (Done coming in next release)
-- Implement trade between save files (possibly trade evolution) (Technically done since you can import pokemons to a save comming next release)
+My focus has shifted significantly toward creating a feature-rich package, but it currently lacks sufficient testing, which may result in bugs. For now, I will refrain from adding new features and concentrate on writing as many tests as possible, applying hotfixes when necessary.
 
-In the far away future if all of the above mentioned features are implemented I'll start research on the Gen IV save files.
+- Improve testing (Priority number one !)
+- Complete pokemon data
+- Complete Trainer information
