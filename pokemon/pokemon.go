@@ -463,6 +463,8 @@ func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemo
 			break
 		case helpers.MethodStone: // I could make it so the pokemon must held that stone but not really how it works
 			break
+		case helpers.MethodBeauty:
+			break // TODO: Add validation when pokemon have beaty stat
 		case helpers.MethodTradeHolding:
 			if pkm.itemHeld.Name != targetValidation["item"] {
 				return *pkm, ErrPkmEvoltionNotHoldingItem
