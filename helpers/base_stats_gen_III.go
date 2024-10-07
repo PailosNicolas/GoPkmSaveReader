@@ -3089,7 +3089,7 @@ var BaseStatsGenIII = map[string]map[string]int{
 		SpecialDefenseString: 50,
 		SpeedString:          150,
 	},
-	"Deoxys-atk": {
+	"Deoxys-atk": { // TODO: This may no be in use.
 		HpString:             50,
 		AttackString:         180,
 		DefenseString:        20,
