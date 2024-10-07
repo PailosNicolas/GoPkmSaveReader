@@ -7,6 +7,7 @@ const MethodTrade string = "trade"
 const MethodTradeHolding string = "tradeHolding"
 const MethodStone string = "stone"
 const MethodWurmple string = "wurmple"
+const MethodBeauty string = "beauty"
 
 const ConditionHigher string = "higher"
 const ConditionLower string = "lower"
@@ -1159,6 +1160,26 @@ var EvolutionValidation = map[string]map[string]map[string]string{
 			"method": MethodLvlUp,
 			"level":  "36",
 			"id":     "319",
+		},
+	},
+	"Lileep": {
+		"Cradily": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "389",
+		},
+	},
+	"Anorith": {
+		"Armaldo": {
+			"method": MethodLvlUp,
+			"level":  "40",
+			"id":     "391",
+		},
+	},
+	"Feebas": {
+		"Milotic": {
+			"method": MethodBeauty,
+			"id":     "329",
 		},
 	},
 }
