@@ -421,7 +421,7 @@ func (pkm *Pokemon) ExportPokemonToFile(path string) error {
 Evolves a pokemon to the target if valid.
 You can skip certain validations like level, friendship, helditem, etc with validateEvolution = false.
 */
-func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemon, error) { // TODO: Add evolvable validation
+func (pkm *Pokemon) EvolvePokemon(target string, validateEvolution bool) (Pokemon, error) {
 	var newRaw []byte
 	var growth []byte
 	var growthIndex int = 32
