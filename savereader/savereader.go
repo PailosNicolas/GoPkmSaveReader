@@ -424,10 +424,9 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 func parseTimePlayed(bytes []byte) (int, int, int, int) {
 	bits := helpers.BytesToBits(bytes)
 
-	hours := 0
-	for i := 0; i < 16; i++ {
-		hours = (hours << 1) | bits[i]
-	}
+	hoursBits := helpers.Uint16ToBits(binary.LittleEndian.Uint16(bytes[0:2]))
+
+	hours := helpers.BitsToInt(hoursBits)
 
 	minutes := 0
 	for i := 16; i < 24; i++ {
