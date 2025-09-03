@@ -102,5 +102,6 @@ func TestReadDataFromSave(t *testing.T) {
 	if err != ErrShortFile {
 		t.Fatalf("it shold have been ErrShortFile")
 	}
+	// TODO: add more tests
 
 }
