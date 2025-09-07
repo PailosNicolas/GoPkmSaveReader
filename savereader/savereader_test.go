@@ -103,5 +103,6 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Fatalf("it shold have been ErrShortFile")
 	}
 	// TODO: add more tests
+	//TODO: add test for bag items
 
 }

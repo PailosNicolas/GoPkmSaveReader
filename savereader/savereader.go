@@ -401,7 +401,7 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	save.Trainer.publicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
 	save.Trainer.secretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
 
-	//TODO implement get key items
+	//getting bag key items
 	keyItemSlice := sections[1].Contents[keyItemStartingIndex : keyItemStartingIndex+keyItemSize]
 	for i := 0; i < keyItemSize; i += 4 {
 		itemId := int(binary.LittleEndian.Uint16(keyItemSlice[i : i+2]))
