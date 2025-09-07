@@ -464,7 +464,7 @@ func parseTimePlayed(bytes []byte) (int, int, int, int) {
 	bits := helpers.BytesToBits(bytes)
 
 	hours := 0
-	for i := 0; i < 16; i++ {
+	for i := range 16 {
 		hours = (hours << 1) | bits[i]
 	}
 
