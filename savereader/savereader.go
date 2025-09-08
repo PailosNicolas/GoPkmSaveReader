@@ -239,7 +239,7 @@ func (t *TimePlayed) Frames() int {
 }
 
 type Bag struct {
-	keyItemsPocket []BagItem
+	keyItemsPocket []BagItem // TODO: check if shouldn't this be a map or semthing better for handling this
 	itemsPocket    []BagItem
 }
 
