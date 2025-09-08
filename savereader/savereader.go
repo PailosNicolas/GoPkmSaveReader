@@ -243,6 +243,20 @@ type Bag struct {
 	itemsPocket    []BagItem
 }
 
+/*
+Returns a BagItem slice containing the items in the key items pocket.
+*/
+func (b *Bag) KeyItemsPocket() []BagItem {
+	return b.KeyItemsPocket()
+}
+
+/*
+Returns a BagItem slice containing the items in the items pocket.
+*/
+func (b *Bag) ItemsPocket() []BagItem {
+	return b.ItemsPocket()
+}
+
 type BagItem struct {
 	id       int
 	name     string
