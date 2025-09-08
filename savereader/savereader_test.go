@@ -26,9 +26,9 @@ func TestReadDataFromSave(t *testing.T) {
 	//TODO: add test for bag items
 	trainerBag := save.Trainer.Bag()
 	itemTests := []struct {
-		index int
-		expectedName string
-		expectedQuantity int 
+		index            int
+		expectedName     string
+		expectedQuantity int
 	}{
 		{
 			0,
