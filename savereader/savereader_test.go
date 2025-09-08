@@ -23,6 +23,52 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("gender should be Boy but is:", save.Trainer.Gender())
 	}
 
+	//TODO: add test for bag items
+	trainerBag := save.Trainer.Bag()
+	itemTests := []struct {
+		index int
+		expectedName string
+		expectedQuantity int 
+	}{
+		{
+			0,
+			"Potion",
+			8,
+		},
+		{
+			1,
+			"Repel",
+			4,
+		},
+		{
+			2,
+			"Escape Rope",
+			2,
+		},
+		{
+			3,
+			"Super Potion",
+			14,
+		},
+		{
+			4,
+			"X Attack",
+			4,
+		},
+	}
+
+	itemPocket := trainerBag.ItemsPocket()
+	for _, test := range itemTests {
+		item := itemPocket[test.index]
+		if item.name != test.expectedName {
+			t.Errorf("Index %d expected name %s but got %s", test.index, test.expectedName, item.name)
+		}
+		if item.quantity != test.expectedQuantity {
+			t.Errorf("Index %d expected quantity %d but got %d", test.index, test.expectedQuantity, item.quantity)
+		}
+
+	}
+
 	// Replace pokemon in team
 	save, err = save.ReplacePokemonInTeam(save.Trainer.Team()[0], 5)
 
@@ -103,6 +149,5 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Fatalf("it shold have been ErrShortFile")
 	}
 	// TODO: add more tests
-	//TODO: add test for bag items
 
 }
