@@ -214,6 +214,10 @@ func (t *Trainer) Pc() PC {
 	return t.pc
 }
 
+func (t *Trainer) Bag() Bag {
+	return t.bag
+}
+
 /* Represents the time played in a save */
 type TimePlayed struct {
 	hours   int
@@ -247,14 +251,14 @@ type Bag struct {
 Returns a BagItem slice containing the items in the key items pocket.
 */
 func (b *Bag) KeyItemsPocket() []BagItem {
-	return b.KeyItemsPocket()
+	return b.keyItemsPocket
 }
 
 /*
 Returns a BagItem slice containing the items in the items pocket.
 */
 func (b *Bag) ItemsPocket() []BagItem {
-	return b.ItemsPocket()
+	return b.itemsPocket
 }
 
 type BagItem struct {
