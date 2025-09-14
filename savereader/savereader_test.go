@@ -55,6 +55,21 @@ func TestReadDataFromSave(t *testing.T) {
 			"X Attack",
 			4,
 		},
+		{
+			5,
+			"Parlyz Heal",
+			1,
+		},
+		{
+			6,
+			"Ether",
+			2,
+		},
+		{
+			7,
+			"Antidote",
+			3,
+		},
 	}
 
 	itemPocket := trainerBag.ItemsPocket()
