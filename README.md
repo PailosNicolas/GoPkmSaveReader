@@ -49,6 +49,7 @@ Right now you are able to access the following data of a save:
 - Team
 - PC boxes
 - Money
+- Bag (Currently items & key items)
 #### Pokemon data:
 - Nickname
 - Species

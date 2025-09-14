@@ -179,6 +179,7 @@ type Trainer struct {
 	team     [6]pokemon.Pokemon
 	money    int
 	pc       PC
+	bag      Bag
 }
 
 func (t *Trainer) Name() string {
@@ -213,6 +214,10 @@ func (t *Trainer) Pc() PC {
 	return t.pc
 }
 
+func (t *Trainer) Bag() Bag {
+	return t.bag
+}
+
 /* Represents the time played in a save */
 type TimePlayed struct {
 	hours   int
@@ -235,6 +240,31 @@ func (t *TimePlayed) Seconds() int {
 
 func (t *TimePlayed) Frames() int {
 	return t.frames
+}
+
+type Bag struct {
+	keyItemsPocket []BagItem // TODO: check if shouldn't this be a map or semthing better for handling this
+	itemsPocket    []BagItem
+}
+
+/*
+Returns a BagItem slice containing the items in the key items pocket.
+*/
+func (b *Bag) KeyItemsPocket() []BagItem {
+	return b.keyItemsPocket
+}
+
+/*
+Returns a BagItem slice containing the items in the items pocket.
+*/
+func (b *Bag) ItemsPocket() []BagItem {
+	return b.itemsPocket
+}
+
+type BagItem struct {
+	id       int
+	name     string
+	quantity int
 }
 
 type Box struct {
@@ -347,23 +377,44 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	} else {
 		save.Trainer.gender = "Girl"
 	}
-
+	var itemStartingIndex int
+	var itemSize int
+	var keyItemStartingIndex int
+	var keyItemSize int
+	var securityKey []byte
 	// getting gamecode
 	if code := int(sections[0].Contents[172]); code == 0 {
 		save.game = "R/S"
 		save.gameCode = code
 		//getting money
 		save.Trainer.money = int(binary.LittleEndian.Uint32(sections[1].Contents[1168:1172]))
+		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
+		keyItemStartingIndex = 1456
+		keyItemSize = 20
+		itemStartingIndex = 1376
+		itemSize = 20
 	} else if code == 1 {
 		save.game = "FR/LG"
 		save.gameCode = code
 		//getting money
-		save.Trainer.money = int(binary.LittleEndian.Uint32(helpers.XorBytes(sections[1].Contents[656:660], sections[0].Contents[2808:2812])))
+		securityKey = sections[0].Contents[2808:2812]
+		save.Trainer.money = int(binary.LittleEndian.Uint32(helpers.XorBytes(sections[1].Contents[656:660], securityKey)))
+		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
+		keyItemStartingIndex = 952
+		keyItemSize = 30
+		itemStartingIndex = 784
+		itemSize = 42
 	} else {
 		save.game = "E"
 		save.gameCode = code
 		//getting money
-		save.Trainer.money = int(binary.LittleEndian.Uint32(helpers.XorBytes(sections[1].Contents[1168:1172], sections[0].Contents[172:176])))
+		securityKey = sections[0].Contents[172:176]
+		save.Trainer.money = int(binary.LittleEndian.Uint32(helpers.XorBytes(sections[1].Contents[1168:1172], securityKey)))
+		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
+		keyItemStartingIndex = 1496
+		keyItemSize = 30
+		itemStartingIndex = 1376
+		itemSize = 30
 	}
 
 	//getting time played
@@ -373,11 +424,40 @@ func ReadDataFromMemory(buffer []byte) (Save, error) {
 	save.Trainer.publicID = int(binary.LittleEndian.Uint16(sections[0].Contents[10:12]))
 	save.Trainer.secretID = int(binary.LittleEndian.Uint16(sections[0].Contents[12:14]))
 
-	// getting team size:
-	if save.gameCode != 1 {
-		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[564:568]))
-	} else {
-		save.Trainer.teamSize = int(binary.LittleEndian.Uint16(sections[1].Contents[52:56]))
+	//getting bag items
+	itemSlice := sections[1].Contents[itemStartingIndex : itemStartingIndex+itemSize]
+	for i := 0; i < itemSize; i += 4 {
+		itemId := int(binary.LittleEndian.Uint16(itemSlice[i : i+2]))
+		itemName := helpers.ItemIndex[itemId]
+		var itemQuantity int
+		if save.game != "R/S" {
+			itemQuantity = int(binary.LittleEndian.Uint16(helpers.XorBytes(itemSlice[i+2:i+4], securityKey[0:2])))
+		} else {
+			itemQuantity = int(binary.LittleEndian.Uint16(itemSlice[i+2 : i+4]))
+		}
+		save.Trainer.bag.itemsPocket = append(save.Trainer.bag.itemsPocket, BagItem{
+			id:       itemId,
+			name:     itemName,
+			quantity: itemQuantity,
+		})
+	}
+
+	//getting bag key items
+	keyItemSlice := sections[1].Contents[keyItemStartingIndex : keyItemStartingIndex+keyItemSize]
+	for i := 0; i < keyItemSize; i += 4 {
+		itemId := int(binary.LittleEndian.Uint16(keyItemSlice[i : i+2]))
+		itemName := helpers.ItemIndex[itemId]
+		var itemQuantity int
+		if save.game != "R/S" {
+			itemQuantity = int(binary.LittleEndian.Uint16(helpers.XorBytes(keyItemSlice[i+2:i+4], securityKey[0:2])))
+		} else {
+			itemQuantity = int(binary.LittleEndian.Uint16(keyItemSlice[i+2 : i+4]))
+		}
+		save.Trainer.bag.keyItemsPocket = append(save.Trainer.bag.keyItemsPocket, BagItem{
+			id:       itemId,
+			name:     itemName,
+			quantity: itemQuantity,
+		})
 	}
 
 	// getting team
@@ -425,7 +505,7 @@ func parseTimePlayed(bytes []byte) (int, int, int, int) {
 	bits := helpers.BytesToBits(bytes)
 
 	hours := 0
-	for i := 0; i < 16; i++ {
+	for i := range 16 {
 		hours = (hours << 1) | bits[i]
 	}
 
