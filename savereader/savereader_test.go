@@ -23,7 +23,6 @@ func TestReadDataFromSave(t *testing.T) {
 		t.Error("gender should be Boy but is:", save.Trainer.Gender())
 	}
 
-	//TODO: add test for bag items
 	trainerBag := save.Trainer.Bag()
 	itemTests := []struct {
 		index            int
@@ -75,6 +74,53 @@ func TestReadDataFromSave(t *testing.T) {
 	itemPocket := trainerBag.ItemsPocket()
 	for _, test := range itemTests {
 		item := itemPocket[test.index]
+		if item.name != test.expectedName {
+			t.Errorf("Index %d expected name %s but got %s", test.index, test.expectedName, item.name)
+		}
+		if item.quantity != test.expectedQuantity {
+			t.Errorf("Index %d expected quantity %d but got %d", test.index, test.expectedQuantity, item.quantity)
+		}
+
+	}
+	keyItemTests := []struct {
+		index            int
+		expectedName     string
+		expectedQuantity int
+	}{
+		{
+			0,
+			"Wailmer Pail",
+			1,
+		}, {
+			1,
+			"Old Rod",
+			1,
+		}, {
+			2,
+			"Powder Jar",
+			1,
+		}, {
+			3,
+			"Itemfinder",
+			1,
+		}, {
+			4,
+			"Acro Bike",
+			1,
+		}, {
+			5,
+			"Soot Sack",
+			1,
+		}, {
+			6,
+			"Meteorite",
+			1,
+		},
+	}
+
+	keyItemPocket := trainerBag.KeyItemsPocket()
+	for _, test := range keyItemTests {
+		item := keyItemPocket[test.index]
 		if item.name != test.expectedName {
 			t.Errorf("Index %d expected name %s but got %s", test.index, test.expectedName, item.name)
 		}
